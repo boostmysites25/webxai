@@ -1,72 +1,103 @@
 "use client";
-import { useState } from "react";
 
-const projects = [
-  {
-    title: "Fintech Dashboard",
-    category: "Web",
-    img: "https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=1600",
-    desc: "A scalable fintech dashboard with real-time analytics, fraud detection and AI-driven insights.",
-  },
-  {
-    title: "AI Chat Automation",
-    category: "AI",
-    img: "https://images.unsplash.com/photo-1500048993953-d23a436266cf?w=1600",
-    desc: "Intelligent automation engine powering support workflows using LLM pipelines.",
-  },
-  {
-    title: "Delivery App UI",
-    category: "App",
-    img: "https://images.unsplash.com/photo-1601597111158-2fceff2929fc?w=1600",
-    desc: "A modern food-delivery app with live tracking, OTP delivery, and automated order routing.",
-  },
-  {
-    title: "E-Commerce Store",
-    category: "Web",
-    img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1600",
-    desc: "High-speed storefront with intelligent product ranking and conversion-optimized UX.",
-  },
-  {
-    title: "Predictive Analytics Suite",
-    category: "Data",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600",
-    desc: "ML-driven forecasting engine for business intelligence and decision automation.",
-  },
-  {
-    title: "Ride-Hailing App",
-    category: "App",
-    img: "https://images.unsplash.com/photo-1601160458384-d89f3b5c0c9c?w=1600",
-    desc: "A complete ride-booking app with driver matching, live GPS tracking, and route optimization.",
-  },
-  {
-    title: "AI Brand Generator",
-    category: "AI",
-    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600",
-    desc: "Automatic brand identity generator powered by generative AI.",
-  },
-  {
-    title: "Healthcare Analytics",
-    category: "Data",
-    img: "https://images.unsplash.com/photo-1581091012184-5c57e669f7d5?w=1600",
-    desc: "Secure data suite for hospitals with AI-based patient outcome predictions.",
-  },
+import { useEffect, useRef } from "react";
+
+/* ------------ AUTOSCROLL FUNCTION ------------ */
+function autoScroll(ref: any, direction: "ltr" | "rtl") {
+  if (!ref.current) return;
+
+  let pos = direction === "ltr" ? 0 : ref.current.scrollWidth;
+  const speed = 1.1;
+
+  const id = setInterval(() => {
+    if (!ref.current) return;
+
+    pos = direction === "ltr" ? pos + speed : pos - speed;
+
+    if (direction === "ltr") {
+      if (pos >= ref.current.scrollWidth - ref.current.clientWidth) pos = 0;
+    } else {
+      if (pos <= 0) pos = ref.current.scrollWidth;
+    }
+
+    ref.current.scrollTo({ left: pos });
+  }, 20);
+
+  return () => clearInterval(id);
+}
+
+/* ------------ DEMO IMAGES (RELIABLE) ------------ */
+const DEMO_IMAGES = [
+  "https://images.pexels.com/photos/1181275/pexels-photo-1181275.jpeg",
+  "https://images.pexels.com/photos/3184307/pexels-photo-3184307.jpeg",
+  "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+  "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg",
+  "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg",
+  "https://images.pexels.com/photos/3861965/pexels-photo-3861965.jpeg",
+  "https://images.pexels.com/photos/3182765/pexels-photo-3182765.jpeg",
+  "https://images.pexels.com/photos/3182755/pexels-photo-3182755.jpeg",
+  "https://images.pexels.com/photos/3862632/pexels-photo-3862632.jpeg",
+  "https://images.pexels.com/photos/3862613/pexels-photo-3862613.jpeg",
 ];
 
+/* ------------ PROJECT TITLES ------------ */
+const categories = {
+  web: [
+    "Booking Management Platform",
+    "SaaS Analytics Dashboard",
+    "E-Commerce Storefront",
+    "Real Estate Portal",
+    "Corporate Website Revamp",
+    "LMS Education Platform",
+    "Marketing Landing System",
+    "Finance Dashboard",
+    "Event Ticketing Web App",
+    "Portfolio CMS",
+  ],
+  app: [
+    "Fitness Mobile App",
+    "Wellness Habit Tracker",
+    "Food Delivery App",
+    "Crypto Portfolio App",
+    "Appointment Scheduling App",
+    "Travel Planner App",
+    "Messenger Mobile App",
+    "Hotel Booking App",
+    "Productivity App",
+    "Marketplace App",
+  ],
+  ai: [
+    "AI Support Chatbot",
+    "Document Summarizer AI",
+    "Product Recommendation Engine",
+    "Fraud Detection AI",
+    "Predictive Insights Model",
+    "AI Resume Analyzer",
+    "Workflow Automation AI",
+    "Voice-to-Text AI",
+    "Sales Prediction AI",
+    "Smart Content Generator",
+  ],
+  data: [
+    "Sales Forecast Dashboard",
+    "Executive Analytics Suite",
+    "Real-Time KPI Dashboard",
+    "Log Monitoring Analytics",
+    "Healthcare Insights Panel",
+    "Marketing Performance Studio",
+    "Revenue Data Explorer",
+    "Team Productivity Insights",
+    "Operational Metrics Board",
+    "Data Warehouse Visualizer",
+  ],
+};
+
+/* ------------ WORKS PAGE ------------ */
 export default function WorksPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [modal, setModal] = useState<any>(null);
-
-  const categories = ["All", "Web", "App", "AI", "Data"];
-
-  const filtered =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
-
   return (
     <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
 
-      {/* Background */}
+      {/* GLOBAL BACKGROUND GRID */}
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
         <div
           className="absolute inset-0"
@@ -78,101 +109,79 @@ export default function WorksPage() {
         />
       </div>
 
-      {/* Glow */}
-      <div className="absolute -top-40 left-0 w-[1200px] h-[300px] bg-gradient-to-r from-blue-600/40 to-purple-500/40 blur-[140px]" />
-      <div className="absolute bottom-[-240px] right-[-160px] w-[1300px] h-[300px] bg-gradient-to-r from-purple-600/40 to-blue-400/40 blur-[140px]" />
+      {/* HERO GLOW */}
+      <div className="absolute -top-40 left-0 w-[1200px] h-[300px] bg-gradient-to-r from-purple-600/40 to-blue-500/40 blur-[110px]" />
+      <div className="absolute bottom-[-200px] right-0 w-[1200px] h-[300px] bg-gradient-to-r from-blue-600/40 to-purple-500/40 blur-[110px]" />
 
-      {/* Main Wrapper */}
-      <div className="relative z-10 max-w-[1300px] mx-auto px-6 py-[140px]">
+      {/* CONTENT WRAPPER */}
+      <div className="relative z-10 max-w-[1300px] mx-auto px-6 py-[160px]">
 
-        {/* Heading */}
-        <div className="text-center mb-20">
-          <h1 className="text-[70px] md:text-[95px] font-extrabold leading-[1.05] tracking-tight mb-4">
-            Our{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500">
-              Work
-            </span>
+        {/* PAGE TITLE */}
+        <div className="text-center mb-[120px]">
+          <h1 className="text-[70px] md:text-[90px] font-extrabold mb-6 leading-[1.05]">
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500">Works</span>
           </h1>
-
           <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-            A curated selection of intelligent systems, apps, AI solutions and
-            digital experiences built for fast-growing brands.
+            Explore our projects across Web, App, AI and Data Engineering — built for performance, scale and design precision.
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex justify-center gap-6 mb-16">
-          {categories.map((c) => (
-            <button
-              key={c}
-              onClick={() => setActiveCategory(c)}
-              className={`px-6 py-2 rounded-xl text-lg transition border ${
-                activeCategory === c
-                  ? "bg-gradient-to-r from-blue-600/40 to-purple-600/40 border-white/20"
-                  : "border-white/10 hover:bg-white/10"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
+        {/* CATEGORIES */}
+        <PortfolioGroup title="Web Development" items={categories.web} direction="ltr" />
+        <PortfolioGroup title="App Development" items={categories.app} direction="rtl" />
+        <PortfolioGroup title="AI Development" items={categories.ai} direction="ltr" />
+        <PortfolioGroup title="Data Analytics" items={categories.data} direction="rtl" />
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {filtered.map((p, i) => (
-            <div
-              key={i}
-              onClick={() => setModal(p)}
-              className="cursor-pointer group relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 backdrop-blur-xl
-                         transition-all hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(0,0,0,0.5)]"
-            >
-              <div className="overflow-hidden rounded-2xl">
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  className="w-full h-[240px] object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="p-6">
-                <p className="text-2xl font-bold mb-2">{p.title}</p>
-                <p className="text-blue-300 text-sm mb-2">{p.category}</p>
-                <p className="text-soft text-sm opacity-80">{p.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Modal */}
-        {modal && (
-          <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-xl flex items-center justify-center z-50"
-            onClick={() => setModal(null)}
-          >
-            <div
-              className="bg-[#0A0A14] p-8 rounded-3xl max-w-[700px] w-full border border-white/10 relative"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={modal.img}
-                alt={modal.title}
-                className="w-full h-[350px] object-cover rounded-2xl mb-6"
-              />
-
-              <h2 className="text-3xl font-bold mb-2">{modal.title}</h2>
-              <p className="text-blue-300 mb-3">{modal.category}</p>
-              <p className="text-soft opacity-90">{modal.desc}</p>
-
-              <button
-                className="absolute top-4 right-4 text-white hover:text-red-400 text-2xl"
-                onClick={() => setModal(null)}
-              >
-                ×
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </section>
+  );
+}
+
+/* ------------ GROUP COMPONENT ------------ */
+function PortfolioGroup({ title, items, direction }: any) {
+  const ref = useRef<any>(null);
+
+  useEffect(() => autoScroll(ref, direction), []);
+
+  return (
+    <div className="mb-[140px] relative">
+
+      {/* Side Fade Masks */}
+      <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#05050A] to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#05050A] to-transparent z-20 pointer-events-none"></div>
+
+      <h3 className="text-center text-4xl font-bold mb-10">
+        {title}
+      </h3>
+
+      <div
+        ref={ref}
+        className="flex space-x-6 overflow-x-hidden py-6"
+      >
+        {items.map((name: string, i: number) => (
+          <PortfolioCard
+            key={i}
+            title={name}
+            category={title}
+            desc="A high-quality digital product crafted with modern engineering."
+            img={DEMO_IMAGES[i % DEMO_IMAGES.length]}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ------------ CARD COMPONENT ------------ */
+function PortfolioCard({ title, desc, img, category }: any) {
+  return (
+    <div className="min-w-[320px] rounded-2xl bg-[#0A0A0C]/70 backdrop-blur-xl border border-white/10 shadow-[0_0_25px_rgba(0,0,0,0.4)] hover:border-white/20 transition-all overflow-hidden">
+      <img src={img} className="w-full h-[200px] object-cover opacity-95" />
+      <div className="p-5">
+        <p className="text-[#9BA0B0] text-xs uppercase mb-1">{category}</p>
+        <h3 className="text-white text-xl font-semibold">{title}</h3>
+        <p className="text-soft text-sm mt-2 leading-relaxed">{desc}</p>
+      </div>
+    </div>
   );
 }

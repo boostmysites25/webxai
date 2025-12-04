@@ -1,107 +1,215 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const links = [
-    { name: "Services", href: "/services" },
-    { name: "Work", href: "/work" },
-    { name: "Process", href: "/process" },
-    { name: "About", href: "/about" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "/contact" },
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "Works", path: "/work" },
+    { name: "About", path: "/about" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#05050A]/90 backdrop-blur-xl border-b border-white/10">
-      <div className="max-w-[1300px] mx-auto px-6 py-4 flex items-center justify-between">
+    <>
+      {/* NAVBAR */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/10">
+        <nav className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
 
-        {/* BRAND NAME */}
-        <Link 
-          href="/" 
-          className="text-3xl font-semibold tracking-tight 
-                     bg-gradient-to-r from-[#3A6DFF] to-[#232C85] 
-                     bg-clip-text text-transparent"
-        >
-          WebX AI
-        </Link>
-
-        {/* DESKTOP MENU */}
-        <div className="hidden md:flex items-center gap-10">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-gray-300 text-lg font-medium hover:text-white transition relative group"
-            >
-              {link.name}
-
-              {/* Minimal underline */}
-              <span
-                className="
-                  absolute left-0 -bottom-1 h-[2px] w-0
-                  bg-accent group-hover:w-full 
-                  transition-all duration-300
-                "
+          {/* BRAND */}
+          <Link href="/" className="flex items-center gap-3">
+            <div className="p-2 rounded-xl bg-[#ffffff] border border-white/10 shadow">
+              <img
+                src="/logo.png"
+                className="w-12 h-12 object-contain"
+                alt="WebX AI"
               />
-            </Link>
-          ))}
+            </div>
 
-          {/* NEW FUTURISTIC CTA BUTTON */}
-          <Link
-            href="/contact"
-            className="
-              px-5 py-2 rounded-lg
-              bg-accent/15
-              text-accent
-              border border-accent/20
-              backdrop-blur-md
-              transition-all duration-300
-              hover:bg-accent/25
-              hover:border-accent/40
-            "
-          >
-            Start Project
+            <h1 className="text-3xl font-extrabold tracking-tight">
+              WebX{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                AI
+              </span>
+            </h1>
           </Link>
-        </div>
 
-        {/* MOBILE MENU BUTTON */}
-        <button 
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-white text-3xl"
-        >
-          {open ? "✕" : "☰"}
-        </button>
-      </div>
+          {/* DESKTOP MENU */}
+          <div className="hidden md:flex items-center gap-10">
+            {navItems.map((item) => {
+              const active = pathname === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`text-[16px] transition ${
+                    active ? "text-white font-semibold" : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
 
-      {/* MOBILE MENU */}
-      {open && (
-        <div className="md:hidden bg-[#05050A]/95 backdrop-blur-xl px-6 py-5 border-t border-white/10 flex flex-col gap-5">
-
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-gray-300 text-xl hover:text-white transition pb-2 border-b border-white/10"
-              onClick={() => setOpen(false)}
+            {/* CTA BUTTON → OPEN MODAL */}
+            <button
+              onClick={() => setModalOpen(true)}
+              className="px-6 py-3 rounded-xl text-white text-[15px] font-medium
+              bg-gradient-to-r from-blue-600/40 to-purple-600/40
+              border border-white/20 backdrop-blur-xl
+              hover:from-blue-600/60 hover:to-purple-600/60 transition
+              shadow-[0_0_18px_rgba(0,0,0,0.25)]"
             >
-              {link.name}
-            </Link>
-          ))}
+              Start Project
+            </button>
+          </div>
 
-          {/* MOBILE CTA */}
-          <Link
-            href="/contact"
-            className="bg-accent/20 text-accent text-center py-3 rounded-md font-medium border border-accent/30"
+          {/* MOBILE MENU BUTTON */}
+          <button className="md:hidden text-white text-2xl" onClick={() => setOpen(!open)}>
+            {open ? "✖" : "☰"}
+          </button>
+        </nav>
+
+        {/* MOBILE MENU */}
+        {open && (
+          <div className="md:hidden bg-[#05050A]/90 backdrop-blur-xl border-t border-white/10 px-6 py-6 space-y-5">
+            {navItems.map((item) => {
+              const active = pathname === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`block text-lg ${
+                    active ? "text-white font-semibold" : "text-white/70"
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+
+            <button
+              onClick={() => {
+                setOpen(false);
+                setModalOpen(true);
+              }}
+              className="block w-full text-center mt-4 px-6 py-3 rounded-xl text-white text-lg font-medium
+              bg-gradient-to-r from-blue-600/40 to-purple-600/40 border border-white/20
+              backdrop-blur-xl hover:from-blue-600/60 hover:to-purple-600/60 transition"
+            >
+              Start Project
+            </button>
+          </div>
+        )}
+      </header>
+
+      {/* PROJECT FORM MODAL */}
+      {modalOpen && <ProjectModal close={() => setModalOpen(false)} />}
+    </>
+  );
+}
+
+/* -------------------------------------------------- */
+/* UPDATED PROJECT MODAL WITH COUNTRY CODE            */
+/* -------------------------------------------------- */
+
+function ProjectModal({ close }: any) {
+  return (
+    <div className="fixed inset-0 z-[999] bg-black/70 backdrop-blur-xl flex items-center justify-center px-6">
+      <div className="relative w-full max-w-2xl bg-white/5 border border-white/10 rounded-3xl backdrop-blur-2xl p-10 shadow-[0_0_35px_rgba(0,0,0,0.5)]">
+
+        {/* CLOSE BTN */}
+        <button
+          className="absolute top-4 right-4 text-white text-2xl"
+          onClick={close}
+        >
+          ✖
+        </button>
+
+        <h2 className="text-4xl font-bold mb-6">Start Your Project</h2>
+
+        <form className="space-y-6">
+
+          {/* NAME + EMAIL */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <input className="input" placeholder="Name" />
+            <input className="input" placeholder="Email" />
+          </div>
+
+          {/* COUNTRY CODE + PHONE */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* COUNTRY CODE SELECT */}
+            <select className="input">
+              <option value="">Select Country Code</option>
+              <option value="+91">🇮🇳 India (+91)</option>
+              <option value="+1">🇺🇸 USA (+1)</option>
+              <option value="+44">🇬🇧 UK (+44)</option>
+              <option value="+61">🇦🇺 Australia (+61)</option>
+              <option value="+971">🇦🇪 UAE (+971)</option>
+              <option value="+81">🇯🇵 Japan (+81)</option>
+              <option value="+49">🇩🇪 Germany (+49)</option>
+              <option value="+33">🇫🇷 France (+33)</option>
+              <option value="+34">🇪🇸 Spain (+34)</option>
+              <option value="+39">🇮🇹 Italy (+39)</option>
+              <option value="+65">🇸🇬 Singapore (+65)</option>
+              <option value="+94">🇱🇰 Sri Lanka (+94)</option>
+              <option value="+92">🇵🇰 Pakistan (+92)</option>
+              <option value="+880">🇧🇩 Bangladesh (+880)</option>
+              <option value="+973">🇧🇭 Bahrain (+973)</option>
+              <option value="+974">🇶🇦 Qatar (+974)</option>
+              <option value="+966">🇸🇦 Saudi (+966)</option>
+              <option value="+60">🇲🇾 Malaysia (+60)</option>
+              <option value="+62">🇮🇩 Indonesia (+62)</option>
+              <option value="+82">🇰🇷 South Korea (+82)</option>
+              <option value="+55">🇧🇷 Brazil (+55)</option>
+              <option value="+52">🇲🇽 Mexico (+52)</option>
+              <option value="+27">🇿🇦 South Africa (+27)</option>
+              <option value="+31">🇳🇱 Netherlands (+31)</option>
+              <option value="+46">🇸🇪 Sweden (+46)</option>
+              <option value="+47">🇳🇴 Norway (+47)</option>
+              <option value="+358">🇫🇮 Finland (+358)</option>
+              {/* (Add more if needed) */}
+            </select>
+
+            {/* PHONE INPUT */}
+            <input className="input" placeholder="Phone Number" />
+          </div>
+
+          {/* PROJECT TYPE */}
+          <select className="input">
+            <option>Project Type</option>
+            <option>Website</option>
+            <option>Web App</option>
+            <option>AI Development</option>
+            <option>Mobile App</option>
+            <option>Automation / Tools</option>
+            <option>Data Engineering</option>
+          </select>
+
+          {/* DETAILS */}
+          <textarea className="input h-32" placeholder="Project Details"></textarea>
+
+          {/* SUBMIT */}
+          <button
+            className="w-full py-4 rounded-xl text-lg font-medium
+            bg-gradient-to-r from-blue-600/40 to-purple-600/40
+            border border-white/20 backdrop-blur-xl
+            hover:from-blue-600/60 hover:to-purple-600/60 transition"
           >
-            Start Project
-          </Link>
-
-        </div>
-      )}
-    </nav>
+            Submit Inquiry
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
