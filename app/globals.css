@@ -2,9 +2,12 @@
 @import "tailwindcss/utilities";
 
 html, body {
-  background: #000;
-  color: #fff;
+  background-color: #05050A;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
 }
+
 
 @keyframes sweep {
   0% { transform: translateX(-100%) rotate(12deg); }
@@ -22,4 +25,18 @@ html, body {
 
 .animate-sweep-slow {
   animation: sweepSlow 12s linear infinite;
+}
+
+
+
+@keyframes scrollSlow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-scrollSlow {
+  animation: scrollSlow 25s linear infinite;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

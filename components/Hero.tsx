@@ -1,124 +1,127 @@
 export default function Hero() {
   return (
-    <section className="
-      relative min-h-screen w-full overflow-hidden bg-[#05050A]
-      flex items-center justify-center
-      pt-[160px] pb-[140px]
-      md:pt-[220px] md:pb-[200px]
-    ">
+    <section className="relative min-h-screen w-full overflow-hidden bg-[#05050A] flex items-center justify-center pt-[180px] md:pt-[220px] pb-[160px] md:pb-[200px]">
 
-      {/* GRID */}
-      <div className="absolute inset-0 opacity-[0.06]">
+      {/* --- FUTURISTIC GRID (responsive) --- */}
+      <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-            backgroundSize: "65px 65px",
+              "linear-gradient(to right, rgba(255,255,255,0.09) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
+            backgroundSize: "70px 70px",
           }}
         />
       </div>
 
-      {/* MOBILE-FRIENDLY GLOW BARS */}
-      <div className="absolute inset-0 pointer-events-none md:hidden">
-        <div className="absolute top-[10%] left-[-20%] w-[350px] h-[180px] rotate-[-18deg] bg-gradient-to-r from-blue-600/25 to-purple-500/20 blur-[60px]" />
-        <div className="absolute bottom-[8%] right-[-15%] w-[330px] h-[170px] rotate-[16deg] bg-gradient-to-r from-purple-600/25 to-blue-400/20 blur-[60px]" />
+      {/* --- NEON LINES --- */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+        <div className="hidden md:block absolute left-1/4 top-0 w-[2px] h-full bg-gradient-to-b from-purple-400/50 to-transparent blur-sm" />
+        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-gradient-to-b from-blue-400/50 to-transparent blur-sm" />
+        <div className="hidden md:block absolute left-[70%] top-0 w-[2px] h-full bg-gradient-to-b from-purple-400/40 to-transparent blur-sm" />
       </div>
 
-      {/* DESKTOP GLOW BARS */}
-      <div className="hidden md:block absolute -top-72 -left-40 w-[1500px] h-[340px] rotate-[-22deg] bg-gradient-to-r from-blue-600/50 to-purple-500/40 blur-[110px]" />
-      <div className="hidden md:block absolute bottom-[-240px] right-[-200px] w-[1500px] h-[340px] rotate-[18deg] bg-gradient-to-r from-purple-600/40 to-blue-400/40 blur-[110px]" />
+      {/* --- DIAGONAL GLOW BARS (scaled for mobile) --- */}
+      <div className="absolute -top-40 md:-top-72 -left-20 md:-left-40 w-[800px] md:w-[1500px] h-[200px] md:h-[340px] rotate-[-20deg] bg-gradient-to-r from-blue-600/40 to-purple-500/30 blur-[100px]" />
+      <div className="absolute bottom-[-160px] md:bottom-[-240px] right-[-100px] md:-right-40 w-[800px] md:w-[1500px] h-[200px] md:h-[340px] rotate-[18deg] bg-gradient-to-r from-purple-600/35 to-blue-400/30 blur-[100px]" />
 
-      {/* NEON LINES */}
-      <div className="absolute inset-0 opacity-[0.04] md:opacity-[0.05]">
-        <div className="absolute left-1/2 top-0 w-[1px] md:w-[2px] h-full bg-gradient-to-b from-blue-400/50 to-transparent blur-sm" />
+      {/* --- LIGHT STREAKS (disabled on small screens) --- */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
+        <div className="absolute top-[25%] left-[-10%] w-[40%] h-[6px] bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-[20deg] blur-md opacity-40 animate-sweep" />
+        <div className="absolute top-[60%] right-[-10%] w-[45%] h-[6px] bg-gradient-to-r from-transparent via-white/15 to-transparent rotate-[-18deg] blur-md opacity-30 animate-sweep-slow" />
       </div>
 
-      {/* PARTICLES */}
+      {/* --- PARTICLES --- */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[30%] left-[35%] w-[2px] h-[2px] bg-white/70 rounded-full animate-pulse"></div>
-        <div className="absolute top-[45%] left-[70%] w-[2px] h-[2px] bg-blue-300 rounded-full animate-ping"></div>
-        <div className="absolute top-[60%] left-[50%] w-[3px] h-[3px] bg-purple-300 rounded-full animate-ping"></div>
+        <div className="absolute top-[30%] left-[28%] w-1 h-1 bg-white/70 rounded-full animate-pulse" />
+        <div className="absolute top-[40%] left-[68%] w-1 h-1 bg-blue-300 rounded-full animate-ping" />
+        <div className="absolute top-[57%] left-[45%] w-[3px] h-[3px] bg-purple-300 rounded-full animate-ping" />
+        <div className="absolute top-[67%] left-[50%] w-1 h-1 bg-white/40 rounded-full animate-pulse" />
       </div>
 
-      {/* MAIN CONTENT */}
-      <div className="relative z-10 text-center px-5 md:px-6 max-w-[1050px]">
+      {/* --- MAIN CONTENT --- */}
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-[1000px]">
 
-        {/* Heading */}
-        <h1 className="text-white font-extrabold leading-[1.12] md:leading-[1.05] tracking-tight mb-10 md:mb-12">
-          <span className="block text-[38px] sm:text-[55px] md:text-[82px]">
+        {/* MAIN HEADING */}
+        <h1 className="text-white font-extrabold leading-[1.1] tracking-tight mb-8">
+          <span className="block text-[42px] sm:text-[52px] md:text-[72px] lg:text-[92px]">
             We Build Intelligent
           </span>
-          <span className="
-            block 
-            text-[44px] sm:text-[62px] md:text-[102px]
-            bg-clip-text text-transparent 
+          <span className="block text-transparent bg-clip-text 
             bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500
-          ">
+            text-[48px] sm:text-[58px] md:text-[82px] lg:text-[102px]">
             Digital Experiences
           </span>
         </h1>
 
-        {/* Subline */}
-        <p className="
-          text-soft 
-          text-[16px] sm:text-[18px] md:text-[26px]
-          leading-relaxed mx-auto max-w-[90%] md:max-w-3xl
-          mb-12 md:mb-20 opacity-90
-        ">
+        {/* SUBLINE */}
+        <p className="text-soft text-[16px] sm:text-[18px] md:text-[22px] leading-relaxed max-w-3xl mx-auto mb-12 md:mb-16 opacity-95">
           AI, Apps, Web & Data engineering crafted for ambitious modern brands.
         </p>
 
-        {/* BUTTONS FIXED FOR MOBILE */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 mb-20">
+        {/* BUTTONS (responsive layout) */}
+       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-20">
 
-          {/* PRIMARY BUTTON */}
-          <button className="
-            w-full sm:w-auto
-            px-8 py-3 sm:px-14 sm:py-4
-            rounded-xl text-white text-[15px] sm:text-lg font-medium
-            bg-gradient-to-r from-blue-600/30 to-purple-600/30
-            border border-white/20 backdrop-blur-xl
-            hover:from-blue-600/40 hover:to-purple-600/40 
-            transition shadow-[0_0_20px_rgba(0,0,0,0.35)]
-            max-w-[260px] mx-auto
-          ">
-            Start Project
-          </button>
+  {/* Start Project */}
+  <button
+    className="
+      w-auto 
+      max-w-[180px]           /* mobile limit */
+      sm:max-w-none           /* desktop unlimited */
+      px-7 py-2.5
+      sm:px-12 sm:py-4
+      rounded-lg sm:rounded-xl
+      bg-gradient-to-r from-blue-600/30 to-purple-600/30
+      border border-white/20
+      text-white text-sm sm:text-lg font-medium
+      backdrop-blur-xl
+      transition
+      hover:from-blue-600/40 hover:to-purple-600/40
+    "
+  >
+    Start Project
+  </button>
 
-          {/* SECONDARY BUTTON */}
-          <button className="
-            w-full sm:w-auto
-            px-8 py-3 sm:px-14 sm:py-4
-            rounded-xl text-white text-[15px] sm:text-lg font-medium
-            bg-white/5 backdrop-blur-xl border border-white/15
-            hover:bg-white/10 hover:border-white/25 transition
-            max-w-[260px] mx-auto
-          ">
-            View Work
-          </button>
+  {/* View Work */}
+  <button
+    className="
+      w-auto 
+      max-w-[180px]           /* mobile limit */
+      sm:max-w-none           /* desktop unlimited */
+      px-7 py-2.5
+      sm:px-12 sm:py-4
+      rounded-lg sm:rounded-xl
+      bg-white/5 border border-white/15
+      text-white text-sm sm:text-lg
+      hover:bg-white/10 hover:border-white/25
+      transition backdrop-blur-xl
+    "
+  >
+    View Work
+  </button>
 
-        </div>
+</div>
 
-        {/* Metrics */}
-        <div className="
-          flex flex-col sm:flex-row justify-center 
-          gap-8 sm:gap-20 text-white/90
-        ">
-          <div className="text-center">
-            <p className="text-4xl sm:text-6xl font-bold text-white">40+</p>
-            <p className="text-soft text-base sm:text-lg mt-2">Projects</p>
+
+
+        {/* METRICS */}
+        <div className="flex justify-center gap-10 md:gap-20 text-white/90 flex-wrap">
+
+          <div className="text-center mb-6">
+            <p className="text-4xl sm:text-5xl font-bold text-white">40+</p>
+            <p className="text-soft text-sm sm:text-base mt-1">Projects</p>
           </div>
 
-          <div className="text-center">
-            <p className="text-4xl sm:text-6xl font-bold text-white">15+</p>
-            <p className="text-soft text-base sm:text-lg mt-2">AI Systems</p>
+          <div className="text-center mb-6">
+            <p className="text-4xl sm:text-5xl font-bold text-white">15+</p>
+            <p className="text-soft text-sm sm:text-base mt-1">AI Systems</p>
           </div>
 
-          <div className="text-center">
-            <p className="text-4xl sm:text-6xl font-bold text-white">99%</p>
-            <p className="text-soft text-base sm:text-lg mt-2">Satisfaction</p>
+          <div className="text-center mb-6">
+            <p className="text-4xl sm:text-5xl font-bold text-white">99%</p>
+            <p className="text-soft text-sm sm:text-base mt-1">Satisfaction</p>
           </div>
+
         </div>
       </div>
     </section>
