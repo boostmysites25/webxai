@@ -8,25 +8,31 @@ export default function Footer() {
         {/* COLUMN 1 — Logo + Text */}
         <div>
           <div className="flex items-center gap-3 mb-5">
-            <div className="p-2 rounded-xl bg-white">
-              <img
-                src="/logo.png"
-                className="w-12 h-12 object-contain"
-                alt="WebX AI Logo"
-              />
-            </div>
 
-            <h1 className="text-3xl font-bold">
-              WebX{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                AI
-              </span>
-            </h1>
-          </div>
+    {/* Glossy Logo Container */}
+    <div className="relative p-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
 
-          <p className="text-soft text-[15px] leading-relaxed max-w-xs mb-6">
-            Engineering intelligent digital systems with precision, speed and futuristic design thinking.
-          </p>
+      {/* Gloss highlight */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/40/10 to-transparent opacity-20 pointer-events-none" />
+
+      <img
+        src="/logo.png"
+        className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]"
+        alt="WebX AI Logo"
+      />
+    </div>
+
+    <h1 className="text-2xl font-semibold tracking-tight">
+      WebX{" "}
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+        AI
+      </span>
+    </h1>
+  </div>
+
+  <p className="text-soft text-[15px] leading-relaxed max-w-xs mb-6">
+    Engineering intelligent digital systems with precision, speed and futuristic design thinking.
+  </p>
 
           {/* SOCIAL ICONS — ONLY INSTAGRAM + LINKEDIN */}
           <div className="flex items-center gap-4">

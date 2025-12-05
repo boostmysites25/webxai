@@ -23,25 +23,23 @@ export default function Navbar() {
       {/* NAVBAR */}
       <header className="fixed top-0 left-0 w-full z-50 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/10">
         <nav className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
-
           {/* BRAND */}
-<Link href="/" className="flex items-center gap-2">
-  <div className="p-1.5 rounded-xl bg-white/5 border border-white/10">
-    <img
-      src="/logo.png"
-      className="w-10 h-10 object-contain"   // slightly bigger than before
-      alt="WebX AI"
-    />
-  </div>
+          <Link href="/" className="flex items-center gap-2">
+            <div className="p-1.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <img
+                src="/logo.png"
+                className="w-10 h-10 object-contain"
+                alt="WebX AI"
+              />
+            </div>
 
-  <h1 className="text-2xl font-bold tracking-tight">
-    WebX{" "}
-    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-      AI
-    </span>
-  </h1>
-</Link>
-
+            <h1 className="text-2xl font-semibold tracking-tight">
+              WebX{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                AI
+              </span>
+            </h1>
+          </Link>
 
           {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-10">
@@ -52,7 +50,9 @@ export default function Navbar() {
                   key={item.name}
                   href={item.path}
                   className={`text-[16px] transition ${
-                    active ? "text-white font-semibold" : "text-white/60 hover:text-white"
+                    active
+                      ? "text-white font-semibold"
+                      : "text-white/60 hover:text-white"
                   }`}
                 >
                   {item.name}
@@ -74,7 +74,10 @@ export default function Navbar() {
           </div>
 
           {/* MOBILE MENU BUTTON */}
-          <button className="md:hidden text-white text-2xl" onClick={() => setOpen(!open)}>
+          <button
+            className="md:hidden text-white text-2xl"
+            onClick={() => setOpen(!open)}
+          >
             {open ? "✖" : "☰"}
           </button>
         </nav>
@@ -127,7 +130,6 @@ function ProjectModal({ close }: any) {
   return (
     <div className="fixed inset-0 z-[999] bg-black/70 backdrop-blur-xl flex items-center justify-center px-6">
       <div className="relative w-full max-w-2xl bg-white/5 border border-white/10 rounded-3xl backdrop-blur-2xl p-10 shadow-[0_0_35px_rgba(0,0,0,0.5)]">
-
         {/* CLOSE BTN */}
         <button
           className="absolute top-4 right-4 text-white text-2xl"
@@ -139,7 +141,6 @@ function ProjectModal({ close }: any) {
         <h2 className="text-4xl font-bold mb-6">Start Your Project</h2>
 
         <form className="space-y-6">
-
           {/* NAME + EMAIL */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input className="input" placeholder="Name" />
@@ -148,7 +149,6 @@ function ProjectModal({ close }: any) {
 
           {/* COUNTRY CODE + PHONE */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
             {/* COUNTRY CODE SELECT */}
             <select className="input">
               <option value="">Select Country Code</option>
@@ -198,7 +198,10 @@ function ProjectModal({ close }: any) {
           </select>
 
           {/* DETAILS */}
-          <textarea className="input h-32" placeholder="Project Details"></textarea>
+          <textarea
+            className="input h-32"
+            placeholder="Project Details"
+          ></textarea>
 
           {/* SUBMIT */}
           <button
