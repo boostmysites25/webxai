@@ -1,6 +1,11 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#05050A] flex items-center justify-center pt-[180px] md:pt-[220px] pb-[160px] md:pb-[200px]">
+
+      {/* ---- BOTTOM FADE ONLY ---- */}
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#05050A] to-transparent pointer-events-none z-20"></div>
 
       {/* --- FUTURISTIC GRID (responsive) --- */}
       <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
@@ -21,11 +26,11 @@ export default function Hero() {
         <div className="hidden md:block absolute left-[70%] top-0 w-[2px] h-full bg-gradient-to-b from-purple-400/40 to-transparent blur-sm" />
       </div>
 
-      {/* --- DIAGONAL GLOW BARS (scaled for mobile) --- */}
+      {/* --- DIAGONAL GLOW BARS --- */}
       <div className="absolute -top-40 md:-top-72 -left-20 md:-left-40 w-[800px] md:w-[1500px] h-[200px] md:h-[340px] rotate-[-20deg] bg-gradient-to-r from-blue-600/40 to-purple-500/30 blur-[100px]" />
       <div className="absolute bottom-[-160px] md:bottom-[-240px] right-[-100px] md:-right-40 w-[800px] md:w-[1500px] h-[200px] md:h-[340px] rotate-[18deg] bg-gradient-to-r from-purple-600/35 to-blue-400/30 blur-[100px]" />
 
-      {/* --- LIGHT STREAKS (disabled on small screens) --- */}
+      {/* --- LIGHT STREAKS --- */}
       <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="absolute top-[25%] left-[-10%] w-[40%] h-[6px] bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-[20deg] blur-md opacity-40 animate-sweep" />
         <div className="absolute top-[60%] right-[-10%] w-[45%] h-[6px] bg-gradient-to-r from-transparent via-white/15 to-transparent rotate-[-18deg] blur-md opacity-30 animate-sweep-slow" />
@@ -42,7 +47,6 @@ export default function Hero() {
       {/* --- MAIN CONTENT --- */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-[1000px]">
 
-        {/* MAIN HEADING */}
         <h1 className="text-white font-extrabold leading-[1.1] tracking-tight mb-8">
           <span className="block text-[42px] sm:text-[52px] md:text-[72px] lg:text-[92px]">
             We Build Intelligent
@@ -54,59 +58,49 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* SUBLINE */}
         <p className="text-soft text-[16px] sm:text-[18px] md:text-[22px] leading-relaxed max-w-3xl mx-auto mb-12 md:mb-16 opacity-95">
           AI, Apps, Web & Data engineering crafted for ambitious modern brands.
         </p>
 
-        {/* BUTTONS (responsive layout) */}
-       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-20">
+        {/* BUTTONS */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-20">
 
-  {/* Start Project */}
-  <button
-    className="
-      w-auto 
-      max-w-[180px]           /* mobile limit */
-      sm:max-w-none           /* desktop unlimited */
-      px-7 py-2.5
-      sm:px-12 sm:py-4
-      rounded-lg sm:rounded-xl
-      bg-gradient-to-r from-blue-600/30 to-purple-600/30
-      border border-white/20
-      text-white text-sm sm:text-lg font-medium
-      backdrop-blur-xl
-      transition
-      hover:from-blue-600/40 hover:to-purple-600/40
-    "
-  >
-    Start Project
-  </button>
+          {/* Start Project */}
+          <Link
+            href="/contact"
+            className="
+              w-auto max-w-[180px] sm:max-w-none
+              px-7 py-2.5 sm:px-12 sm:py-4
+              rounded-lg sm:rounded-xl
+              bg-gradient-to-r from-blue-600/30 to-purple-600/30
+              border border-white/20 text-white text-sm sm:text-lg font-medium
+              backdrop-blur-xl transition
+              hover:from-blue-600/40 hover:to-purple-600/40 text-center
+            "
+          >
+            Start Project
+          </Link>
 
-  {/* View Work */}
-  <button
-    className="
-      w-auto 
-      max-w-[180px]           /* mobile limit */
-      sm:max-w-none           /* desktop unlimited */
-      px-7 py-2.5
-      sm:px-12 sm:py-4
-      rounded-lg sm:rounded-xl
-      bg-white/5 border border-white/15
-      text-white text-sm sm:text-lg
-      hover:bg-white/10 hover:border-white/25
-      transition backdrop-blur-xl
-    "
-  >
-    View Work
-  </button>
+          {/* View Work */}
+          <Link
+            href="/work"
+            className="
+              w-auto max-w-[180px] sm:max-w-none
+              px-7 py-2.5 sm:px-12 sm:py-4
+              rounded-lg sm:rounded-xl
+              bg-white/5 border border-white/15
+              text-white text-sm sm:text-lg
+              hover:bg-white/10 hover:border-white/25
+              transition backdrop-blur-xl text-center
+            "
+          >
+            View Work
+          </Link>
 
-</div>
-
-
+        </div>
 
         {/* METRICS */}
         <div className="flex justify-center gap-10 md:gap-20 text-white/90 flex-wrap">
-
           <div className="text-center mb-6">
             <p className="text-4xl sm:text-5xl font-bold text-white">40+</p>
             <p className="text-soft text-sm sm:text-base mt-1">Projects</p>
@@ -121,8 +115,8 @@ export default function Hero() {
             <p className="text-4xl sm:text-5xl font-bold text-white">99%</p>
             <p className="text-soft text-sm sm:text-base mt-1">Satisfaction</p>
           </div>
-
         </div>
+
       </div>
     </section>
   );

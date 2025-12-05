@@ -5,6 +5,7 @@ import Approach from "@/components/Approach";
 import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
+import Timeline from "@/components/Timeline";
 
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <Services />
       <WhyWebXAI />
       <Approach />
+      {/* <Timeline/> */}
       <Portfolio />
       <Testimonials />
       <CTA /> 

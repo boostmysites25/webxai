@@ -1,34 +1,23 @@
 export default function Services() {
   return (
-    <section className="relative w-full pt-[160px] pb-[160px] px-6 overflow-hidden">
+    <section className="relative w-full pt-[160px] pb-[160px] px-6 overflow-hidden bg-[#05050A]">
 
-      {/* TOP FADE FROM HERO */}
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#05050A] to-transparent pointer-events-none"></div>
+      {/* ---- TOP FADE ---- */}
+      <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-[#05050A] to-transparent pointer-events-none z-20"></div>
 
-      {/* GRID BACKGROUND (same as hero) */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.09) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-            backgroundSize: "85px 85px",
-          }}
-        />
-      </div>
+      {/* ---- BOTTOM FADE ---- */}
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#05050A] to-transparent pointer-events-none z-20"></div>
 
-      {/* SOFT VERTICAL NEON LINES */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-        <div className="absolute left-[25%] top-0 w-[2px] h-full bg-gradient-to-b from-purple-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-gradient-to-b from-blue-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-[70%] top-0 w-[2px] h-full bg-gradient-to-b from-purple-400/30 to-transparent blur-sm"></div>
-      </div>
+      {/* ---- PREMIUM SOFT GLOWS (NO GRID / NO LINES) ---- */}
+      <div className="absolute -top-52 left-[10%] w-[1400px] h-[350px] 
+        bg-gradient-to-r from-blue-600/25 via-purple-500/20 to-blue-400/20 
+        blur-[150px] opacity-60"></div>
 
-      {/* DIAGONAL GLOW BARS */}
-      <div className="absolute -top-40 -left-40 w-[1200px] h-[260px] rotate-[-22deg] bg-gradient-to-r from-blue-600/40 to-purple-500/30 blur-[100px]" />
-      <div className="absolute bottom-[-150px] right-[-180px] w-[1200px] h-[260px] rotate-[18deg] bg-gradient-to-r from-purple-600/30 to-blue-400/30 blur-[100px]" />
+      <div className="absolute bottom-[-250px] right-[10%] w-[1500px] h-[350px] 
+        bg-gradient-to-l from-purple-600/25 via-blue-500/20 to-purple-400/20 
+        blur-[150px] opacity-60"></div>
 
-      {/* CONTENT */}
+      {/* ---- CONTENT ---- */}
       <div className="relative z-10 max-w-[1250px] mx-auto">
 
         {/* TITLE */}
@@ -43,7 +32,7 @@ export default function Services() {
           We build modern, scalable and intelligent digital systems that accelerate business growth.
         </p>
 
-        {/* RESPONSIVE GRID */}
+        {/* SERVICES GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 md:gap-14">
 
           <ServiceCard
@@ -81,16 +70,20 @@ function ServiceCard({ icon, title, desc }: any) {
     <div
       className="
         relative group p-8 md:p-10 rounded-2xl
-        bg-gradient-to-br from-[#0D0F17]/80 to-[#0A0B12]/80
+        bg-gradient-to-br from-[#0D0F17]/85 to-[#0A0B12]/85
         backdrop-blur-xl border border-white/5
-        shadow-[0_0_40px_rgba(0,0,0,0.4)]
-        hover:shadow-[0_0_50px_rgba(100,100,255,0.35)]
+        shadow-[0_0_40px_rgba(0,0,0,0.45)]
+        hover:shadow-[0_0_55px_rgba(120,80,255,0.35)]
         transition-all duration-300
       "
     >
 
-      {/* Hover glow */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-all duration-500 bg-gradient-to-r from-blue-500 to-purple-500 blur-xl"></div>
+      {/* Hover Glow */}
+      <div className="
+        absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20
+        bg-gradient-to-r from-blue-500/20 to-purple-500/20
+        blur-xl transition-all duration-500
+      "></div>
 
       <img src={icon} alt="" className="w-12 h-12 mb-6 opacity-90" />
 
