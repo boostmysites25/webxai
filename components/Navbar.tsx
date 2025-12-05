@@ -25,22 +25,23 @@ export default function Navbar() {
         <nav className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
 
           {/* BRAND */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="p-2 rounded-xl   shadow">
-              <img
-                src="/logo.png"
-                className="w-12 h-12 object-contain"
-                alt="WebX AI"
-              />
-            </div>
+<Link href="/" className="flex items-center gap-2">
+  <div className="p-1.5 rounded-xl bg-white/5 border border-white/10">
+    <img
+      src="/logo.png"
+      className="w-10 h-10 object-contain"   // slightly bigger than before
+      alt="WebX AI"
+    />
+  </div>
 
-            <h1 className="text-3xl font-extrabold tracking-tight">
-              WebX{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                AI
-              </span>
-            </h1>
-          </Link>
+  <h1 className="text-2xl font-bold tracking-tight">
+    WebX{" "}
+    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+      AI
+    </span>
+  </h1>
+</Link>
+
 
           {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-10">
