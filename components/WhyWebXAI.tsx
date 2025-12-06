@@ -32,7 +32,7 @@ export default function WhyWebXAI() {
       <div className="relative z-10 max-w-[1250px] mx-auto">
 
         {/* SECTION TITLE */}
-        <div className="text-center mb-24">
+        <div className="text-center mb-24" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-white">
             Why{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500">
@@ -101,7 +101,7 @@ function WhyItem({
   const isLeft = side === "left";
 
   return (
-    <div className={`relative flex ${isLeft ? "justify-start" : "justify-end"} w-full`}>
+    <div className={`relative flex ${isLeft ? "justify-start" : "justify-end"} w-full`} data-aos="fade-up" data-aos-delay="200">
       <div
         className="
           w-[92%] md:w-[46%] p-10 rounded-2xl

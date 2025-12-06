@@ -6,33 +6,33 @@ export default function Footer() {
       <div className="max-w-[1300px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-14">
 
         {/* COLUMN 1 — Logo + Text */}
-        <div>
+        <div data-aos="fade-up">
           <div className="flex items-center gap-3 mb-5">
 
-    {/* Glossy Logo Container */}
-    <div className="relative p-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            {/* Glossy Logo Container */}
+            <div className="relative p-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
 
-      {/* Gloss highlight */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/40/10 to-transparent opacity-20 pointer-events-none" />
+              {/* Gloss highlight */}
+              <div className="absolute inset-0 rounded-xl bg-linear-to-br from-white/40/10 to-transparent opacity-20 pointer-events-none" />
 
-      <img
-        src="/logo.png"
-        className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]"
-        alt="WebX AI Logo"
-      />
-    </div>
+              <img
+                src="/logo.png"
+                className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]"
+                alt="WebX AI Logo"
+              />
+            </div>
 
-    <h1 className="text-2xl font-semibold tracking-tight">
-      WebX{" "}
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-        AI
-      </span>
-    </h1>
-  </div>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              WebX{" "}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
+                AI
+              </span>
+            </h1>
+          </div>
 
-  <p className="text-soft text-[15px] leading-relaxed max-w-xs mb-6">
-    Engineering intelligent digital systems with precision, speed and futuristic design thinking.
-  </p>
+          <p className="text-soft text-[15px] leading-relaxed max-w-xs mb-6">
+            Engineering intelligent digital systems with precision, speed and futuristic design thinking.
+          </p>
 
           {/* SOCIAL ICONS — ONLY INSTAGRAM + LINKEDIN */}
           <div className="flex items-center gap-4">
@@ -45,7 +45,7 @@ export default function Footer() {
               className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="opacity-80">
-                <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm4.75-.88a1.12 1.12 0 11-2.24 0 1.12 1.12 0 012.24 0z"/>
+                <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm4.75-.88a1.12 1.12 0 11-2.24 0 1.12 1.12 0 012.24 0z" />
               </svg>
             </a>
 
@@ -57,7 +57,7 @@ export default function Footer() {
               className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="opacity-80">
-                <path d="M4.98 3.5a2.5 2.5 0 11-.01 5.01 2.5 2.5 0 01.01-5.01zM3 9h4v12H3zM15.5 9c-2.33 0-3.5 1.17-4 2v-2H7v12h4v-6.5c0-1.5.5-3 2.5-3 2 0 2 1.67 2 3.25V21h4v-6.75C19.5 10.67 17.5 9 15.5 9z"/>
+                <path d="M4.98 3.5a2.5 2.5 0 11-.01 5.01 2.5 2.5 0 01.01-5.01zM3 9h4v12H3zM15.5 9c-2.33 0-3.5 1.17-4 2v-2H7v12h4v-6.5c0-1.5.5-3 2.5-3 2 0 2 1.67 2 3.25V21h4v-6.75C19.5 10.67 17.5 9 15.5 9z" />
               </svg>
             </a>
 
@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
 
         {/* COLUMN 2 */}
-        <div>
+        <div data-aos="fade-up" data-aos-delay="100">
           <h3 className="text-lg font-semibold mb-4">Company</h3>
           <ul className="space-y-3 text-soft text-[15px]">
             <li>About</li>
@@ -75,7 +75,7 @@ export default function Footer() {
         </div>
 
         {/* COLUMN 3 */}
-        <div>
+        <div data-aos="fade-up" data-aos-delay="200">
           <h3 className="text-lg font-semibold mb-4">Services</h3>
           <ul className="space-y-3 text-soft text-[15px]">
             <li>Web Development</li>
@@ -86,7 +86,7 @@ export default function Footer() {
         </div>
 
         {/* COLUMN 4 */}
-        <div>
+        <div data-aos="fade-up" data-aos-delay="300">
           <h3 className="text-lg font-semibold mb-4">Resources</h3>
           <ul className="space-y-3 text-soft text-[15px]">
             <li>Portfolio</li>
@@ -100,7 +100,7 @@ export default function Footer() {
       <div className="w-full h-px bg-white/10 mt-16 mb-8" />
 
       {/* BOTTOM AREA */}
-      <div className="max-w-[1300px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-soft text-sm gap-4">
+      <div className="max-w-[1300px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-soft text-sm gap-4" data-aos="fade-up" data-aos-delay="400">
         <p>© 2025 WebX AI. All rights reserved.</p>
 
         <div className="flex gap-6">

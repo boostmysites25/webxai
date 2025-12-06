@@ -3,8 +3,8 @@ export default function Approach() {
     <section className="relative w-full py-[200px] px-6 overflow-hidden bg-[#05050A]">
 
       {/* TOP + BOTTOM FADE */}
-      <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-[#05050A] to-transparent z-20"></div>
-      <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#05050A] to-transparent z-20"></div>
+      <div className="absolute top-0 left-0 w-full h-48 bg-linear-to-b from-[#05050A] to-transparent z-20"></div>
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-linear-to-t from-[#05050A] to-transparent z-20"></div>
 
       {/* DEEP GRID */}
       <div className="absolute inset-0 opacity-[0.10] pointer-events-none">
@@ -22,14 +22,14 @@ export default function Approach() {
 
       {/* NEON VERTICAL LINES */}
       <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
-        <div className="absolute left-[15%] w-[3px] h-full bg-gradient-to-b from-blue-500/40 to-transparent blur-sm"></div>
-        <div className="absolute left-1/2 w-[3px] h-full bg-gradient-to-b from-purple-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-[80%] w-[3px] h-full bg-gradient-to-b from-blue-300/35 to-transparent blur-sm"></div>
+        <div className="absolute left-[15%] w-[3px] h-full bg-linear-to-b from-blue-500/40 to-transparent blur-sm"></div>
+        <div className="absolute left-1/2 w-[3px] h-full bg-linear-to-b from-purple-400/40 to-transparent blur-sm"></div>
+        <div className="absolute left-[80%] w-[3px] h-full bg-linear-to-b from-blue-300/35 to-transparent blur-sm"></div>
       </div>
 
       {/* DIAGONAL GLOWS */}
-      <div className="absolute -top-52 -left-40 w-[1400px] h-[350px] bg-gradient-to-r from-blue-600/25 to-purple-500/15 blur-[160px]"></div>
-      <div className="absolute bottom-[-200px] -right-40 w-[1400px] h-[350px] bg-gradient-to-r from-purple-600/25 to-blue-400/15 blur-[160px]"></div>
+      <div className="absolute -top-52 -left-40 w-[1400px] h-[350px] bg-linear-to-r from-blue-600/25 to-purple-500/15 blur-[160px]"></div>
+      <div className="absolute bottom-[-200px] -right-40 w-[1400px] h-[350px] bg-linear-to-r from-purple-600/25 to-blue-400/15 blur-[160px]"></div>
 
       {/* FLOATING PARTICLES */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.45]">
@@ -39,10 +39,10 @@ export default function Approach() {
       </div>
 
       {/* HEADER */}
-      <div className="relative z-10 max-w-[1200px] mx-auto text-center mb-24">
+      <div className="relative z-10 max-w-[1200px] mx-auto text-center mb-24" data-aos="fade-up">
         <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
           Our{" "}
-          <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 text-transparent bg-clip-text">
+          <span className="bg-linear-to-r from-blue-400 via-purple-400 to-blue-500 text-transparent bg-clip-text">
             Approach
           </span>
         </h2>
@@ -99,11 +99,13 @@ function Tile({
         hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_55px_rgba(120,80,255,0.4)]
         group
       "
+      data-aos="fade-up"
+      data-aos-delay="200"
     >
       <div
         className="
           absolute inset-0 rounded-2xl opacity-0 
-          bg-gradient-to-r from-blue-400/20 to-purple-500/20 
+          bg-linear-to-r from-blue-400/20 to-purple-500/20 
           blur-xl transition-all duration-500
           group-hover:opacity-30
         "

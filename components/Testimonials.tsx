@@ -93,16 +93,16 @@ export default function Testimonials() {
 
       {/* ---------------- CONTENT ---------------- */}
       <div className="relative z-10 max-w-[1300px] mx-auto">
-        <h2 className="text-center text-white text-5xl font-extrabold mb-5">
+        <h2 className="text-center text-white text-5xl font-extrabold mb-5" data-aos="fade-up">
           What Clients Say
         </h2>
 
-        <p className="text-center text-soft text-lg max-w-2xl mx-auto mb-20">
+        <p className="text-center text-soft text-lg max-w-2xl mx-auto mb-20" data-aos="fade-up" data-aos-delay="100">
           Real experiences from brands we've worked with — delivered with precision, clarity and trust.
         </p>
 
         {/* Edge fade masks */}
-        <div className="relative mb-10">
+        <div className="relative mb-10" data-aos="fade-up" data-aos-delay="200">
           <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#05050A] to-transparent pointer-events-none z-20"></div>
           <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#05050A] to-transparent pointer-events-none z-20"></div>
 

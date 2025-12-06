@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: "Engineering digital systems with clarity and precision",
 };
 
+import { AOSInit } from "@/components/AOSInit";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,9 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <AOSInit />
         <Navbar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

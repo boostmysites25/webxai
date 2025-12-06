@@ -6,6 +6,7 @@ import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Timeline from "@/components/Timeline";
+import FAQ from "@/components/FAQ";
 
 
 export default function Home() {
@@ -18,7 +19,8 @@ export default function Home() {
       {/* <Timeline/> */}
       <Portfolio />
       <Testimonials />
-      <CTA /> 
+      <FAQ />
+      <CTA />
     </>
   );
 }

@@ -2,45 +2,45 @@
 
 export default function BlogPage() {
   const posts = [
-  {
-    title: "How AI Is Transforming Modern Businesses",
-    desc: "A deep dive into how AI systems improve efficiency, automate workflows, and create new opportunities.",
-    img: "https://images.pexels.com/photos/6476257/pexels-photo-6476257.jpeg",
-    date: "Feb 2025",
-  },
-  {
-    title: "Why WebX AI Builds With Next.js",
-    desc: "A breakdown of our engineering approach and why we choose Next.js for scalable projects.",
-    img: "https://images.pexels.com/photos/3184323/pexels-photo-3184323.jpeg",
-    date: "Jan 2025",
-  },
-  {
-    title: "Future of Mobile Apps in the AI Era",
-    desc: "What mobile experiences will look like when AI is integrated into every layer.",
-    img: "https://images.pexels.com/photos/1181319/pexels-photo-1181319.jpeg",
-    date: "Dec 2024",
-  },
+    {
+      title: "How AI Is Transforming Modern Businesses",
+      desc: "A deep dive into how AI systems improve efficiency, automate workflows, and create new opportunities.",
+      img: "https://images.pexels.com/photos/6476257/pexels-photo-6476257.jpeg",
+      date: "Feb 2025",
+    },
+    {
+      title: "Why WebX AI Builds With Next.js",
+      desc: "A breakdown of our engineering approach and why we choose Next.js for scalable projects.",
+      img: "https://images.pexels.com/photos/3184323/pexels-photo-3184323.jpeg",
+      date: "Jan 2025",
+    },
+    {
+      title: "Future of Mobile Apps in the AI Era",
+      desc: "What mobile experiences will look like when AI is integrated into every layer.",
+      img: "https://images.pexels.com/photos/1181319/pexels-photo-1181319.jpeg",
+      date: "Dec 2024",
+    },
 
-  /* ---------- NEW ROW 1 ---------- */
-  {
-    title: "The Rise of Automation-Driven Products",
-    desc: "Why automation will define the next decade of product engineering and digital transformation.",
-    img: "https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg",
-    date: "Dec 2024",
-  },
-  {
-    title: "Data Engineering For Fast-Growing Startups",
-    desc: "A guide to building stable, scalable data pipelines without over-engineering.",
-    img: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg",
-    date: "Nov 2024",
-  },
-  {
-    title: "Designing For High-Performance UX",
-    desc: "How WebX AI creates clean, modern, conversion-focused interfaces.",
-    img: "https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg",
-    date: "Oct 2024",
-  },
-];
+    /* ---------- NEW ROW 1 ---------- */
+    {
+      title: "The Rise of Automation-Driven Products",
+      desc: "Why automation will define the next decade of product engineering and digital transformation.",
+      img: "https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg",
+      date: "Dec 2024",
+    },
+    {
+      title: "Data Engineering For Fast-Growing Startups",
+      desc: "A guide to building stable, scalable data pipelines without over-engineering.",
+      img: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg",
+      date: "Nov 2024",
+    },
+    {
+      title: "Designing For High-Performance UX",
+      desc: "How WebX AI creates clean, modern, conversion-focused interfaces.",
+      img: "https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg",
+      date: "Oct 2024",
+    },
+  ];
 
 
   return (
@@ -73,7 +73,7 @@ export default function BlogPage() {
       <div className="relative z-10 max-w-[1350px] mx-auto px-6 py-[160px]">
 
         {/* SECTION TITLE */}
-        <div className="text-center mb-[120px]">
+        <div className="text-center mb-[120px]" data-aos="fade-up">
           <h1 className="text-[70px] md:text-[95px] font-extrabold leading-[1.05] mb-6">
             WebX AI{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500">
@@ -81,7 +81,7 @@ export default function BlogPage() {
             </span>
           </h1>
 
-          <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
+          <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">
             Insights, engineering breakdowns, AI strategy, and deep technical analysis from the WebX AI team.
           </p>
         </div>
@@ -92,6 +92,8 @@ export default function BlogPage() {
             <div
               key={i}
               className="rounded-2xl overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.4)] hover:bg-white/10 transition p-0"
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
             >
               <img
                 src={post.img}

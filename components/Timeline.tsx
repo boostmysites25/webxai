@@ -21,7 +21,7 @@ export default function Timeline() {
       <div className="absolute bottom-0 right-0 w-[1200px] h-[300px] bg-blue-500/25 blur-[150px]"></div>
 
       {/* SECTION HEADER */}
-      <div className="relative z-10 max-w-[1200px] mx-auto text-center mb-32">
+      <div className="relative z-10 max-w-[1200px] mx-auto text-center mb-32" data-aos="fade-up">
         <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5">
           How We Work
         </h2>
@@ -89,7 +89,7 @@ function TimelineStep({
   desc: string;
 }) {
   return (
-    <div className="relative flex flex-col items-center text-center group">
+    <div className="relative flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="200">
 
       {/* FLOATING NODE */}
       <div className="

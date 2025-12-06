@@ -1,187 +1,188 @@
 "use client";
-
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+import FAQ from "@/components/FAQ";
+import {
+  webPortfolio,
+  ecommercePortfolio,
+  appPortfolio,
+  aiPortfolio,
+  blockchainPortfolio,
+  chatbotPortfolio,
+  gamePortfolio,
+  recentPortfolio
+} from "@/data/portfolioContent";
 
-/* ------------ AUTOSCROLL FUNCTION ------------ */
-function autoScroll(ref: any, direction: "ltr" | "rtl") {
+/* --------------------------------------------- */
+/* SCROLL UTILS                                  */
+/* --------------------------------------------- */
+function setupAutoScroll(ref: any, speed = 0.5) {
   if (!ref.current) return;
+  let pos = 0;
+  let interval: any = null;
 
-  let pos = direction === "ltr" ? 0 : ref.current.scrollWidth;
-  const speed = 1.1;
-
-  const id = setInterval(() => {
-    if (!ref.current) return;
-
-    pos = direction === "ltr" ? pos + speed : pos - speed;
-
-    if (direction === "ltr") {
+  const start = () => {
+    interval = setInterval(() => {
+      if (!ref.current) return;
+      pos += speed;
       if (pos >= ref.current.scrollWidth - ref.current.clientWidth) pos = 0;
-    } else {
-      if (pos <= 0) pos = ref.current.scrollWidth;
-    }
+      ref.current.scrollTo({ left: pos, behavior: "auto" });
+    }, 20);
+  };
 
-    ref.current.scrollTo({ left: pos });
-  }, 20);
+  const stop = () => clearInterval(interval);
+  start();
 
-  return () => clearInterval(id);
+  ref.current.addEventListener("mouseenter", stop);
+  ref.current.addEventListener("mouseleave", start);
+
+  return () => {
+    stop();
+    ref.current?.removeEventListener("mouseenter", stop);
+    ref.current?.removeEventListener("mouseleave", start);
+  };
 }
 
-/* ------------ DEMO IMAGES (RELIABLE) ------------ */
-const DEMO_IMAGES = [
-  "https://images.pexels.com/photos/1181275/pexels-photo-1181275.jpeg",
-  "https://images.pexels.com/photos/3184307/pexels-photo-3184307.jpeg",
-  "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
-  "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg",
-  "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg",
-  "https://images.pexels.com/photos/3861965/pexels-photo-3861965.jpeg",
-  "https://images.pexels.com/photos/3182765/pexels-photo-3182765.jpeg",
-  "https://images.pexels.com/photos/3182755/pexels-photo-3182755.jpeg",
-  "https://images.pexels.com/photos/3862632/pexels-photo-3862632.jpeg",
-  "https://images.pexels.com/photos/3862613/pexels-photo-3862613.jpeg",
-];
-
-/* ------------ PROJECT TITLES ------------ */
-const categories = {
-  web: [
-    "Booking Management Platform",
-    "SaaS Analytics Dashboard",
-    "E-Commerce Storefront",
-    "Real Estate Portal",
-    "Corporate Website Revamp",
-    "LMS Education Platform",
-    "Marketing Landing System",
-    "Finance Dashboard",
-    "Event Ticketing Web App",
-    "Portfolio CMS",
-  ],
-  app: [
-    "Fitness Mobile App",
-    "Wellness Habit Tracker",
-    "Food Delivery App",
-    "Crypto Portfolio App",
-    "Appointment Scheduling App",
-    "Travel Planner App",
-    "Messenger Mobile App",
-    "Hotel Booking App",
-    "Productivity App",
-    "Marketplace App",
-  ],
-  ai: [
-    "AI Support Chatbot",
-    "Document Summarizer AI",
-    "Product Recommendation Engine",
-    "Fraud Detection AI",
-    "Predictive Insights Model",
-    "AI Resume Analyzer",
-    "Workflow Automation AI",
-    "Voice-to-Text AI",
-    "Sales Prediction AI",
-    "Smart Content Generator",
-  ],
-  data: [
-    "Sales Forecast Dashboard",
-    "Executive Analytics Suite",
-    "Real-Time KPI Dashboard",
-    "Log Monitoring Analytics",
-    "Healthcare Insights Panel",
-    "Marketing Performance Studio",
-    "Revenue Data Explorer",
-    "Team Productivity Insights",
-    "Operational Metrics Board",
-    "Data Warehouse Visualizer",
-  ],
-};
-
-/* ------------ WORKS PAGE ------------ */
-export default function WorksPage() {
+export default function WorkPage() {
   return (
     <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
 
-      {/* GLOBAL BACKGROUND GRID */}
+      {/* GLOBAL BACKGROUND */}
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.09) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
+              "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
             backgroundSize: "85px 85px",
           }}
         />
       </div>
 
-      {/* HERO GLOW */}
-      <div className="absolute -top-40 left-0 w-[1200px] h-[300px] bg-gradient-to-r from-purple-600/40 to-blue-500/40 blur-[110px]" />
-      <div className="absolute bottom-[-200px] right-0 w-[1200px] h-[300px] bg-gradient-to-r from-blue-600/40 to-purple-500/40 blur-[110px]" />
+      {/* NEON LINES */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+        <div className="absolute left-1/4 top-0 w-[2px] h-full bg-linear-to-b from-purple-400/40 to-transparent blur-sm"></div>
+        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-linear-to-b from-blue-400/40 to-transparent blur-sm"></div>
+        <div className="absolute left-[70%] top-0 w-[2px] h-full bg-linear-to-b from-purple-400/30 to-transparent blur-sm"></div>
+      </div>
 
-      {/* CONTENT WRAPPER */}
-      <div className="relative z-10 max-w-[1300px] mx-auto px-6 py-[160px]">
+      {/* GLOWS */}
+      <div className="absolute -top-40 left-0 w-[1200px] h-[300px] bg-linear-to-r from-blue-600/30 to-purple-500/30 blur-[120px]" />
+      <div className="absolute bottom-[-250px] right-[-150px] w-[1300px] h-[300px] bg-linear-to-r from-purple-600/30 to-blue-400/30 blur-[120px]" />
 
-        {/* PAGE TITLE */}
-        <div className="text-center mb-[120px]">
-          <h1 className="text-[70px] md:text-[90px] font-extrabold mb-6 leading-[1.05]">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500">Works</span>
+      {/* MAIN CONTENT */}
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 py-[160px]">
+
+        {/* HERO TITLE - Matches About/Contact Style */}
+        <div className="text-center mb-[140px]" data-aos="fade-up">
+          <h1 className="text-[70px] md:text-[95px] font-extrabold leading-[1.05] mb-6">
+            Our{" "}
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-purple-400 to-blue-500">
+              Work
+            </span>
           </h1>
-          <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-            Explore our projects across Web, App, AI and Data Engineering — built for performance, scale and design precision.
+
+          <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">
+            Selected digital products built for scale, performance, and impact.
           </p>
         </div>
 
-        {/* CATEGORIES */}
-        <PortfolioGroup title="Web Development" items={categories.web} direction="ltr" />
-        <PortfolioGroup title="App Development" items={categories.app} direction="rtl" />
-        <PortfolioGroup title="AI Development" items={categories.ai} direction="ltr" />
-        <PortfolioGroup title="Data Analytics" items={categories.data} direction="rtl" />
+        {/* PORTFOLIO CONTENT - Groups */}
+        <PortfolioGroup title="Recent & Featured" items={recentPortfolio} />
+        <PortfolioGroup title="Web Development" items={webPortfolio} />
+        <PortfolioGroup title="E-Commerce" items={ecommercePortfolio} />
+        <PortfolioGroup title="App Development" items={appPortfolio} />
+        <PortfolioGroup title="AI Solutions" items={aiPortfolio} />
+        <PortfolioGroup title="Blockchain" items={blockchainPortfolio} />
+        <PortfolioGroup title="Chatbots" items={chatbotPortfolio} />
+        <PortfolioGroup title="Game Development" items={gamePortfolio} />
+
+        {/* FAQ */}
+        <div className="mt-[160px] mb-[160px]">
+          <FAQ />
+        </div>
+
+        {/* CTA */}
+        <div className="text-center py-[100px]" data-aos="fade-up">
+          <h3 className="text-4xl md:text-5xl font-bold mb-8">
+            Ready to Build Your Project?
+          </h3>
+          <button className="px-14 py-5 rounded-xl text-white text-lg font-medium 
+            bg-linear-to-r from-blue-600/40 to-purple-600/40 
+            border border-white/20 backdrop-blur-xl 
+            hover:from-blue-600/50 hover:to-purple-600/50 transition">
+            Start Your Project
+          </button>
+        </div>
 
       </div>
     </section>
   );
 }
 
-/* ------------ GROUP COMPONENT ------------ */
-function PortfolioGroup({ title, items, direction }: any) {
-  const ref = useRef<any>(null);
+/* --------------------------------------------- */
+/* SUB COMPONENTS (Duplicated from Portfolio.tsx)*/
+/* --------------------------------------------- */
 
-  useEffect(() => autoScroll(ref, direction), []);
+function PortfolioGroup({ title, items }: any) {
+  const scrollRef = useRef<any>(null);
+
+  useEffect(() => setupAutoScroll(scrollRef, 0.8), []);
 
   return (
-    <div className="mb-[140px] relative">
-
-      {/* Side Fade Masks */}
-      <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#05050A] to-transparent z-20 pointer-events-none"></div>
-      <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#05050A] to-transparent z-20 pointer-events-none"></div>
-
-      <h3 className="text-center text-4xl font-bold mb-10">
+    <div className="mb-24 relative" data-aos="fade-up" data-aos-delay="200">
+      <h3 className="text-white text-3xl font-semibold mb-8 px-4 border-l-4 border-blue-500 ml-4">
         {title}
       </h3>
 
       <div
-        ref={ref}
-        className="flex space-x-6 overflow-x-hidden py-6"
+        ref={scrollRef}
+        className="flex space-x-8 overflow-x-hidden py-8 px-4 cursor-pointer no-scrollbar"
       >
-        {items.map((name: string, i: number) => (
-          <PortfolioCard
-            key={i}
-            title={name}
-            category={title}
-            desc="A high-quality digital product crafted with modern engineering."
-            img={DEMO_IMAGES[i % DEMO_IMAGES.length]}
-          />
+        {items.map((item: any) => (
+          <PortfolioCard key={item.id} item={item} />
         ))}
       </div>
     </div>
   );
 }
 
-/* ------------ CARD COMPONENT ------------ */
-function PortfolioCard({ title, desc, img, category }: any) {
+function PortfolioCard({ item }: any) {
+  const linkUrl = `/portfolio/${item.id}`;
+
   return (
-    <div className="min-w-[320px] rounded-2xl bg-[#0A0A0C]/70 backdrop-blur-xl border border-white/10 shadow-[0_0_25px_rgba(0,0,0,0.4)] hover:border-white/20 transition-all overflow-hidden">
-      <img src={img} className="w-full h-[200px] object-cover opacity-95" />
-      <div className="p-5">
-        <p className="text-[#9BA0B0] text-xs uppercase mb-1">{category}</p>
-        <h3 className="text-white text-xl font-semibold">{title}</h3>
-        <p className="text-soft text-sm mt-2 leading-relaxed">{desc}</p>
+    <a
+      href={linkUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block min-w-[360px] max-w-[360px] rounded-2xl bg-[#0A0A0C]/80 backdrop-blur-xl 
+      border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.3)]
+      hover:border-white/25 hover:shadow-[0_0_40px_rgba(100,200,255,0.15)]
+      transform hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
+    >
+      <div className="relative w-full h-[220px] overflow-hidden">
+        <Image
+          src={item.image}
+          alt={item.title}
+          width={400}
+          height={300}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          unoptimized
+        />
       </div>
-    </div>
+
+      <div className="p-6">
+        <h3 className="text-white text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">
+          {item.title}
+        </h3>
+        <p className="text-soft text-sm leading-relaxed opacity-80 h-[60px] overflow-hidden">
+          {item.description}
+        </p>
+
+        <div className="mt-4 flex items-center text-blue-400 text-sm font-medium">
+          View Case Study <span className="ml-2">→</span>
+        </div>
+      </div>
+    </a>
   );
 }

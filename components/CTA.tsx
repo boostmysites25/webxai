@@ -5,8 +5,8 @@ export default function CTA() {
     <section className="relative w-full py-[200px] px-6 overflow-hidden bg-[#05050A]">
 
       {/* -------------------- TOP + BOTTOM FADE OVERLAYS -------------------- */}
-      <div className="pointer-events-none absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#05050A] to-transparent z-20"></div>
-      <div className="pointer-events-none absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#05050A] to-transparent z-20"></div>
+      <div className="pointer-events-none absolute top-0 left-0 w-full h-40 bg-linear-to-b from-[#05050A] to-transparent z-20"></div>
+      <div className="pointer-events-none absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-[#05050A] to-transparent z-20"></div>
 
       {/* -------------------- THICKER GRID LINES -------------------- */}
       <div className="absolute inset-0 opacity-[0.10] pointer-events-none">
@@ -25,15 +25,15 @@ export default function CTA() {
 
       {/* -------------------- VERTICAL THICK NEON LINES -------------------- */}
       <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
-        <div className="absolute left-[25%] top-0 w-[3px] h-full bg-gradient-to-b from-purple-400/50 to-transparent blur-[2px]" />
-        <div className="absolute left-1/2 top-0 w-[3px] h-full bg-gradient-to-b from-blue-400/50 to-transparent blur-[2px]" />
-        <div className="absolute left-[75%] top-0 w-[3px] h-full bg-gradient-to-b from-purple-400/40 to-transparent blur-[2px]" />
+        <div className="absolute left-[25%] top-0 w-[3px] h-full bg-linear-to-b from-purple-400/50 to-transparent blur-[2px]" />
+        <div className="absolute left-1/2 top-0 w-[3px] h-full bg-linear-to-b from-blue-400/50 to-transparent blur-[2px]" />
+        <div className="absolute left-[75%] top-0 w-[3px] h-full bg-linear-to-b from-purple-400/40 to-transparent blur-[2px]" />
       </div>
 
       {/* -------------------- STRONGER BG GLOWS -------------------- */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-25%] left-1/2 -translate-x-1/2 w-[1200px] h-[450px] bg-gradient-to-b from-blue-600/35 to-transparent blur-[180px]" />
-        <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[350px] bg-gradient-to-t from-purple-500/35 to-transparent blur-[160px]" />
+        <div className="absolute top-[-25%] left-1/2 -translate-x-1/2 w-[1200px] h-[450px] bg-linear-to-b from-blue-600/35 to-transparent blur-[180px]" />
+        <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[350px] bg-linear-to-t from-purple-500/35 to-transparent blur-[160px]" />
       </div>
 
       {/* -------------------- HOLOGRAPHIC RINGS -------------------- */}
@@ -53,7 +53,7 @@ export default function CTA() {
       {/* -------------------- MAIN CONTENT -------------------- */}
       <div className="relative z-10 max-w-[900px] mx-auto text-center">
 
-        <h2 className="text-white font-extrabold leading-[1.1] tracking-tight mb-6">
+        <h2 className="text-white font-extrabold leading-[1.1] tracking-tight mb-6" data-aos="fade-up">
           <span className="block text-5xl md:text-6xl">
             Let's Create Something
           </span>
@@ -63,12 +63,12 @@ export default function CTA() {
           </span>
         </h2>
 
-        <p className="text-soft text-lg md:text-xl max-w-2xl mx-auto mb-16 opacity-90">
+        <p className="text-soft text-lg md:text-xl max-w-2xl mx-auto mb-16 opacity-90" data-aos="fade-up" data-aos-delay="100">
           Partner with us to design AI-powered digital systems that move your business forward.
         </p>
 
         {/* BUTTONS */}
-        <div className="flex justify-center gap-8">
+        <div className="flex justify-center gap-8" data-aos="fade-up" data-aos-delay="200">
 
           <Link
             href="/contact"
