@@ -63,7 +63,7 @@ export default function Hero() {
         </p>
 
         {/* BUTTONS */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-20" data-aos="fade-up" data-aos-delay="200">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-16" data-aos="fade-up" data-aos-delay="200">
 
           {/* Start Project */}
           <Link
@@ -100,21 +100,29 @@ export default function Hero() {
         </div>
 
         {/* METRICS */}
-        <div className="flex justify-center gap-10 md:gap-20 text-white/90 flex-wrap" data-aos="fade-up" data-aos-delay="300">
-          <div className="text-center mb-6">
-            <p className="text-4xl sm:text-5xl font-bold text-white">40+</p>
-            <p className="text-soft text-sm sm:text-base mt-1">Projects</p>
+        <div className="w-full border-t border-white/10 pt-10 flex flex-wrap justify-center items-center gap-10 md:gap-20" data-aos="fade-up" data-aos-delay="300">
+
+          <div className="flex flex-col items-center">
+            <p className="text-4xl sm:text-5xl font-bold text-white mb-2">40+</p>
+            <p className="text-soft text-sm uppercase tracking-widest">Projects</p>
           </div>
 
-          <div className="text-center mb-6">
-            <p className="text-4xl sm:text-5xl font-bold text-white">15+</p>
-            <p className="text-soft text-sm sm:text-base mt-1">AI Systems</p>
+          {/* Divider */}
+          <div className="hidden md:block w-px h-10 bg-white/10"></div>
+
+          <div className="flex flex-col items-center">
+            <p className="text-4xl sm:text-5xl font-bold text-white mb-2">15+</p>
+            <p className="text-soft text-sm uppercase tracking-widest">AI Systems</p>
           </div>
 
-          <div className="text-center mb-6">
-            <p className="text-4xl sm:text-5xl font-bold text-white">99%</p>
-            <p className="text-soft text-sm sm:text-base mt-1">Satisfaction</p>
+          {/* Divider */}
+          <div className="hidden md:block w-px h-10 bg-white/10"></div>
+
+          <div className="flex flex-col items-center">
+            <p className="text-4xl sm:text-5xl font-bold text-white mb-2">99%</p>
+            <p className="text-soft text-sm uppercase tracking-widest">Satisfaction</p>
           </div>
+
         </div>
 
       </div>

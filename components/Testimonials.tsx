@@ -19,28 +19,40 @@ function autoScroll(ref: any, speed = 1) {
 
 const testimonials = [
   {
-    name: "Rohit Verma",
-    company: "Fintech Labs",
-    text: "WebX AI delivered our entire platform with exceptional clarity and engineering discipline. This is the best development partner we’ve ever worked with.",
-    img: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+    name: "Arjun Mehta",
+    company: "CTO, Cold Creek Capital",
+    text: "Reviewing WebX AI's work on our financial platform, I was struck by their ability to simplify complex data into an elegant, user-friendly interface. A truly premium experience.",
+    img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
   },
   {
-    name: "Sarah Johnson",
-    company: "Nova Systems",
-    text: "Their AI automation reduced our manual workload by 63%. Precise, reliable and incredibly fast team.",
-    img: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
+    name: "Dr. Priya Iyer",
+    company: "Director, Vetlab Diagnostics",
+    text: "The mobile app they developed for our diagnostic labs is flawless. It handles thousands of patient records securely and has streamlined our reporting process significantly.",
+    img: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
   },
   {
-    name: "Aman Gupta",
-    company: "HealthSync",
-    text: "App development quality is world-class. Smooth UI, stable backend, and great communication throughout the project.",
-    img: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+    name: "Vikram Khanna",
+    company: "Founder, Alphachina B2B",
+    text: "We needed a scalable e-commerce solution for international trade, and WebX AI delivered beyond expectations. Their expertise in headless commerce architecture is evident.",
+    img: "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
   },
   {
-    name: "Elena Petrova",
-    company: "DataCore",
-    text: "Their data engineering gave us real insights for the first time. The dashboards are visually perfect and technically robust.",
-    img: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg",
+    name: "Sneha Patel",
+    company: "Product Lead, Vyro AI",
+    text: "Integrating AI art generation into a consumer app is no small feat. The team's understanding of both model optimization and UX design was critical to our launch's success.",
+    img: "https://images.unsplash.com/photo-1615022702095-ff2c036f3360?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+  },
+  {
+    name: "Rohan Das",
+    company: "CEO, Project Butterfly",
+    text: "In the blockchain space, security and transparency are everything. WebX AI built our NFT platform with robust smart contracts and a UI that actually makes Web3 accessible.",
+    img: "https://images.unsplash.com/photo-1629425733761-caae3b5f2e50?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+  },
+  {
+    name: "Ananya Singh",
+    company: "Marketing Head, ThinkRealty",
+    text: "Our real estate portal required a complete overhaul. The new Next.js site is incredibly fast, and the SEO improvements have already started driving organic traffic.",
+    img: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
   },
 ];
 

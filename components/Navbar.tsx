@@ -3,8 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { sendEmail } from "@/utils/sendEmail";
+import CustomDropdown from "@/components/CustomDropdown";
+import { countryCodes, projectTypes } from "@/data/formOptions";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -26,22 +28,24 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 w-full z-50 bg-[#05050A]/70 backdrop-blur-xl border-b border-white/10">
         <nav className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
           {/* BRAND */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="p-1.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <img
-                src="/logo.png"
-                className="w-10 h-10 object-contain"
-                alt="WebX AI"
-              />
-            </div>
+          <div className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 w-fit">
+              <div className="p-1.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                <img
+                  src="/logo.png"
+                  className="w-10 h-10 object-contain"
+                  alt="WebX AI"
+                />
+              </div>
+            </Link>
 
             <h1 className="text-2xl font-semibold tracking-tight">
-              WebX{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
-                AI
-              </span>
+              {pathname === "/" ? <>WebX{" "}
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
+                  AI
+                </span></> : navItems.find((item) => item.path === pathname)?.name}
             </h1>
-          </Link>
+          </div>
 
           {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-10">
@@ -137,7 +141,7 @@ interface FormData {
 
 function ProjectModal({ close }: any) {
   const router = useRouter();
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormData>({
     defaultValues: {
       countryCode: "+91"
     }
@@ -197,36 +201,20 @@ function ProjectModal({ close }: any) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* COUNTRY CODE SELECT */}
             <div>
-              <select {...register("countryCode", { required: true })} className="input">
-                <option value="">Select Country Code</option>
-                <option value="+91">🇮🇳 India (+91)</option>
-                <option value="+1">🇺🇸 USA (+1)</option>
-                <option value="+44">🇬🇧 UK (+44)</option>
-                <option value="+61">🇦🇺 Australia (+61)</option>
-                <option value="+971">🇦🇪 UAE (+971)</option>
-                <option value="+81">🇯🇵 Japan (+81)</option>
-                <option value="+49">🇩🇪 Germany (+49)</option>
-                <option value="+33">🇫🇷 France (+33)</option>
-                <option value="+34">🇪🇸 Spain (+34)</option>
-                <option value="+39">🇮🇹 Italy (+39)</option>
-                <option value="+65">🇸🇬 Singapore (+65)</option>
-                <option value="+94">🇱🇰 Sri Lanka (+94)</option>
-                <option value="+92">🇵🇰 Pakistan (+92)</option>
-                <option value="+880">🇧🇩 Bangladesh (+880)</option>
-                <option value="+973">🇧🇭 Bahrain (+973)</option>
-                <option value="+974">🇶🇦 Qatar (+974)</option>
-                <option value="+966">🇸🇦 Saudi (+966)</option>
-                <option value="+60">🇲🇾 Malaysia (+60)</option>
-                <option value="+62">🇮🇩 Indonesia (+62)</option>
-                <option value="+82">🇰🇷 South Korea (+82)</option>
-                <option value="+55">🇧🇷 Brazil (+55)</option>
-                <option value="+52">🇲🇽 Mexico (+52)</option>
-                <option value="+27">🇿🇦 South Africa (+27)</option>
-                <option value="+31">🇳🇱 Netherlands (+31)</option>
-                <option value="+46">🇸🇪 Sweden (+46)</option>
-                <option value="+47">🇳🇴 Norway (+47)</option>
-                <option value="+358">🇫🇮 Finland (+358)</option>
-              </select>
+              <Controller
+                name="countryCode"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <CustomDropdown
+                    options={countryCodes}
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder="Code *"
+                    className="w-full"
+                  />
+                )}
+              />
               {errors.countryCode && <span className="text-red-400 text-sm">Required</span>}
             </div>
 
@@ -249,15 +237,19 @@ function ProjectModal({ close }: any) {
 
           {/* PROJECT TYPE */}
           <div>
-            <select {...register("projectType", { required: true })} className="input">
-              <option value="">Project Type *</option>
-              <option value="Website">Website</option>
-              <option value="Web App">Web App</option>
-              <option value="AI Development">AI Development</option>
-              <option value="Mobile App">Mobile App</option>
-              <option value="Automation / Tools">Automation / Tools</option>
-              <option value="Data Engineering">Data Engineering</option>
-            </select>
+            <Controller
+              name="projectType"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <CustomDropdown
+                  options={projectTypes}
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="Project Type *"
+                />
+              )}
+            />
             {errors.projectType && <span className="text-red-400 text-sm">Please select a project type</span>}
           </div>
 

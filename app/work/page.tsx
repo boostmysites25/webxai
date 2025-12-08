@@ -1,7 +1,12 @@
 "use client";
-import { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import FAQ from "@/components/FAQ";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+
 import {
   webPortfolio,
   ecommercePortfolio,
@@ -10,43 +15,12 @@ import {
   blockchainPortfolio,
   chatbotPortfolio,
   gamePortfolio,
-  recentPortfolio
+  recentPortfolio,
 } from "@/data/portfolioContent";
-
-/* --------------------------------------------- */
-/* SCROLL UTILS                                  */
-/* --------------------------------------------- */
-function setupAutoScroll(ref: any, speed = 0.5) {
-  if (!ref.current) return;
-  let pos = 0;
-  let interval: any = null;
-
-  const start = () => {
-    interval = setInterval(() => {
-      if (!ref.current) return;
-      pos += speed;
-      if (pos >= ref.current.scrollWidth - ref.current.clientWidth) pos = 0;
-      ref.current.scrollTo({ left: pos, behavior: "auto" });
-    }, 20);
-  };
-
-  const stop = () => clearInterval(interval);
-  start();
-
-  ref.current.addEventListener("mouseenter", stop);
-  ref.current.addEventListener("mouseleave", start);
-
-  return () => {
-    stop();
-    ref.current?.removeEventListener("mouseenter", stop);
-    ref.current?.removeEventListener("mouseleave", start);
-  };
-}
 
 export default function WorkPage() {
   return (
     <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
-
       {/* GLOBAL BACKGROUND */}
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
         <div
@@ -72,7 +46,6 @@ export default function WorkPage() {
 
       {/* MAIN CONTENT */}
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 py-[160px]">
-
         {/* HERO TITLE - Matches About/Contact Style */}
         <div className="text-center mb-[140px]" data-aos="fade-up">
           <h1 className="text-[70px] md:text-[95px] font-extrabold leading-[1.05] mb-6">
@@ -82,7 +55,11 @@ export default function WorkPage() {
             </span>
           </h1>
 
-          <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">
+          <p
+            className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             Selected digital products built for scale, performance, and impact.
           </p>
         </div>
@@ -107,14 +84,15 @@ export default function WorkPage() {
           <h3 className="text-4xl md:text-5xl font-bold mb-8">
             Ready to Build Your Project?
           </h3>
-          <button className="px-14 py-5 rounded-xl text-white text-lg font-medium 
+          <button
+            className="px-14 py-5 rounded-xl text-white text-lg font-medium 
             bg-linear-to-r from-blue-600/40 to-purple-600/40 
             border border-white/20 backdrop-blur-xl 
-            hover:from-blue-600/50 hover:to-purple-600/50 transition">
+            hover:from-blue-600/50 hover:to-purple-600/50 transition"
+          >
             Start Your Project
           </button>
         </div>
-
       </div>
     </section>
   );
@@ -125,23 +103,99 @@ export default function WorkPage() {
 /* --------------------------------------------- */
 
 function PortfolioGroup({ title, items }: any) {
-  const scrollRef = useRef<any>(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
-  useEffect(() => setupAutoScroll(scrollRef, 0.8), []);
+  const carouselSettings = {
+    modules: [Autoplay, Navigation],
+    spaceBetween: 30,
+    slidesPerView: 1,
+    loop: true,
+    speed: 1000,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      prevEl: prevRef.current,
+      nextEl: nextRef.current,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+    onBeforeInit: (swiper: any) => {
+      swiper.params.navigation.prevEl = prevRef.current;
+      swiper.params.navigation.nextEl = nextRef.current;
+    },
+  };
 
   return (
     <div className="mb-24 relative" data-aos="fade-up" data-aos-delay="200">
-      <h3 className="text-white text-3xl font-semibold mb-8 px-4 border-l-4 border-blue-500 ml-4">
-        {title}
-      </h3>
+      <div className="flex justify-between items-center mb-8 px-4">
+        <h3 className="text-white text-3xl font-semibold border-l-4 border-blue-500 ml-4 pl-4">
+          {title}
+        </h3>
+        {/* Navigation Buttons */}
+        <div className="flex gap-4">
+          <button
+            ref={prevRef}
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-500/20 flex items-center justify-center transition-all border border-white/20 hover:border-blue-500"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 19L8 12L15 5"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            ref={nextRef}
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-500/20 flex items-center justify-center transition-all border border-white/20 hover:border-blue-500"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 5L16 12L9 19"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-      <div
-        ref={scrollRef}
-        className="flex space-x-8 overflow-x-hidden py-8 px-4 cursor-pointer no-scrollbar"
-      >
-        {items.map((item: any) => (
-          <PortfolioCard key={item.id} item={item} />
-        ))}
+      <div className="px-4">
+        <Swiper {...carouselSettings} className="w-full">
+          {items.map((item: any) => (
+            <SwiperSlide key={item.id}>
+              <PortfolioCard item={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
@@ -155,7 +209,7 @@ function PortfolioCard({ item }: any) {
       href={linkUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="block min-w-[360px] max-w-[360px] rounded-2xl bg-[#0A0A0C]/80 backdrop-blur-xl 
+      className="block w-full rounded-2xl bg-[#0A0A0C]/80 backdrop-blur-xl 
       border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.3)]
       hover:border-white/25 hover:shadow-[0_0_40px_rgba(100,200,255,0.15)]
       transform hover:-translate-y-1 transition-all duration-300 overflow-hidden group"

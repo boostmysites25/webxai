@@ -139,7 +139,16 @@ function getAppImage(id: number) {
     const list = ["VetOnline.png","Sample Collector.png","feelit_app.webp","Eva People App.webp","Eva Internships.webp","Eva Training Certificates.webp","Hayaty.webp","Naseh (iOS - ناصح).webp","Lafi.webp","rentop.webp","ICCBrossard.webp","Evans Francis Christian App.webp","Zigna AutoSnap.webp","klikomics.webp","Dubai Travel Guide by eTips.webp","Planta - Plant & Garden Care.webp","Serviz.webp","Kaamwali Bais.webp","Satisfaction Farm - Psychotech.webp","Fresh and Fresh.webp","Bharat Meds – TrackNow Medicine Delivery & Tracking App.jpg","Crimson Classified Hub – Community-Driven Classifieds Platform.jpg","Dubai Classifieds Pulse – Hyperlocal Classified Listings Platform.jpg","Ember – AI-Powered Soulmate Matching & Conversation Platform.jpg","UrjaOne Nexus – Mobile Energy Services Marketplace.jpg"];
     return list[id-39];
 }
-function getAppTitle(id: number) { return "Mobile App Project"; } 
+function getAppTitle(id: number) {
+    const titles = [
+        "VetOnline", "Sample Collector", "Feelit", "Eva People", "Eva Internships",
+        "Eva Training", "Hayaty", "Naseh", "Lafi", "Rentop",
+        "ICC Brossard", "Evans Francis", "Zigna AutoSnap", "Klikomics", "Dubai Travel Guide",
+        "Planta", "Serviz", "Kaamwali Bais", "Satisfaction Farm", "Fresh and Fresh",
+        "Bharat Meds", "Crimson Classified", "Dubai Classifieds", "Ember", "UrjaOne Nexus"
+    ];
+    return titles[id - 39] || "Mobile App Project";
+} 
 
 // ----------------------------------------------------------------------
 // 4. AI SOLUTIONS
@@ -181,7 +190,7 @@ export const gamePortfolio: PortfolioItem[] = [
 // 8. RECENT
 // ----------------------------------------------------------------------
 export const recentPortfolio: PortfolioItem[] = [
-    { id: 76, image: "/portfolio/recent/Speaksify – AI-Powered Public Speaking Coach.jpg", title: "Speaksify", description: "Speaking coach.", link: "https://speaksify.com", category: "Recent", caseStudy: getRichContent("Recent", "Speaksify") },
+    { id: 76, image: "/portfolio/recent/Speaksify – AI-Powered Public Speaking Coach.jpg", title: "Speaksify", description: "Speaking coach.", link: "https://speaksify.eu", category: "Recent", caseStudy: getRichContent("Recent", "Speaksify") },
     { id: 77, image: "/portfolio/recent/Projectsy.ai – AI-Powered Project & Task Management Platform.jpg", title: "Projectsy.ai", description: "Project management.", link: "https://projectsy.ai", category: "Recent", caseStudy: getRichContent("Recent", "Projectsy.ai") },
     { id: 78, image: "/portfolio/recent/VirtuTeams – Team Management & Remote Operations Platform.jpg", title: "VirtuTeams", description: "Team ops.", link: "https://virtuteams.com", category: "Recent", caseStudy: getRichContent("Recent", "VirtuTeams") }
 ];

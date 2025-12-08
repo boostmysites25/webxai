@@ -91,6 +91,48 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* STRATEGIC COLLABORATION */}
+        <div className="mb-[160px]" data-aos="fade-up">
+          <div className="relative p-8 md:p-14 rounded-3xl bg-linear-to-br from-blue-900/20 to-purple-900/20 border border-white/10 backdrop-blur-2xl overflow-hidden">
+
+            {/* Background Glow */}
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col lg:flex-row gap-12 items-center">
+              <div className="flex-1">
+                <h3 className="text-3xl md:text-4xl font-bold mb-6">Strategic Collaboration</h3>
+                <p className="text-lg text-soft mb-6 leading-relaxed opacity-90">
+                  We are proud to be a key technology partner for <span className="text-white font-semibold">BoostMySites (Triple-Seven BoostMySites AI Solutions LLP)</span>, a premier Business-as-a-Service (BaaS) and AI provider founded in 2016.
+                </p>
+                <p className="text-lg text-soft leading-relaxed opacity-90">
+                  With a global footprint spanning <span className="text-white">Bangalore, Dubai, Hong Kong, and Bangkok</span>, BoostMySites specializes in empowering businesses with robust AI and IT infrastructure. This partnership validates our engineering capability and enables us to deliver enterprise-grade, scalable digital solutions backed by years of industry leadership.
+                </p>
+              </div>
+
+              {/* Info Card */}
+              <div className="flex-shrink-0 w-full lg:w-auto p-8 rounded-2xl bg-black/40 border border-white/10 backdrop-blur-md">
+                <p className="text-2xl font-bold text-white mb-1">BoostMySites</p>
+                <p className="text-sm text-white/50 mb-6 tracking-wide uppercase">Official Development Partner</p>
+
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4 text-soft">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-white text-sm">🌍</span>
+                    <span className="text-[15px]">Global Presence (India, UAE, HK, Thailand)</span>
+                  </div>
+                  <div className="flex items-center gap-4 text-soft">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-white text-sm">🚀</span>
+                    <span className="text-[15px]">Est. 2016 — Industry Leaders</span>
+                  </div>
+                  <div className="flex items-center gap-4 text-soft">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-white text-sm">💼</span>
+                    <span className="text-[15px]">Enterprise AI & BaaS Solutions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* TRUST */}
         <div className="mb-[160px]" data-aos="fade-up">
           <h3 className="text-center text-3xl md:text-4xl font-bold mb-14">
