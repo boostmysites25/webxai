@@ -65,36 +65,36 @@ export default function Footer() {
         </div>
 
         {/* COLUMN 2 */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <h3 className="text-lg font-semibold mb-4">Company</h3>
-          <ul className="space-y-3 text-soft text-[15px]">
-            <li>About</li>
-            <li>Contact</li>
-            <li>Careers</li>
-          </ul>
-        </div>
+<div data-aos="fade-up" data-aos-delay="100">
+  <h3 className="text-lg font-semibold mb-4">Company</h3>
+  <ul className="space-y-3 text-soft text-[15px]">
+    <li><a href="/about" className="hover:text-white transition">About</a></li>
+    <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
+    <li><a href="/careers" className="hover:text-white transition">Careers</a></li>
+  </ul>
+</div>
 
-        {/* COLUMN 3 */}
-        <div data-aos="fade-up" data-aos-delay="200">
-          <h3 className="text-lg font-semibold mb-4">Services</h3>
-          <ul className="space-y-3 text-soft text-[15px]">
-            <li>Web Development</li>
-            <li>App Development</li>
-            <li>AI Development</li>
-            <li>Data Analytics</li>
-          </ul>
-        </div>
+{/* COLUMN 3 */}
+<div data-aos="fade-up" data-aos-delay="200">
+  <h3 className="text-lg font-semibold mb-4">Services</h3>
+  <ul className="space-y-3 text-soft text-[15px]">
+    <li><a href="/services/web-development" className="hover:text-white transition">Web Development</a></li>
+    <li><a href="/services/app-development" className="hover:text-white transition">App Development</a></li>
+    <li><a href="/services/ai-development" className="hover:text-white transition">AI Development</a></li>
+    <li><a href="/services/data-analytics" className="hover:text-white transition">Data Analytics</a></li>
+  </ul>
+</div>
 
-        {/* COLUMN 4 */}
-        <div data-aos="fade-up" data-aos-delay="300">
-          <h3 className="text-lg font-semibold mb-4">Resources</h3>
-          <ul className="space-y-3 text-soft text-[15px]">
-            <li>Portfolio</li>
-            <li>Blog</li>
-            <li>Process</li>
-          </ul>
-        </div>
-      </div>
+{/* COLUMN 4 */}
+<div data-aos="fade-up" data-aos-delay="300">
+  <h3 className="text-lg font-semibold mb-4">Resources</h3>
+  <ul className="space-y-3 text-soft text-[15px]">
+    <li><a href="/portfolio" className="hover:text-white transition">Portfolio</a></li>
+    <li><a href="/blog" className="hover:text-white transition">Blog</a></li>
+    <li><a href="/process" className="hover:text-white transition">Process</a></li>
+  </ul>
+</div>
+
 
       {/* DIVIDER */}
       <div className="w-full h-px bg-white/10 mt-16 mb-8" />
