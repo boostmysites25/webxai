@@ -11,8 +11,6 @@ export default function Footer() {
 
             {/* Glossy Logo Container */}
             <div className="relative p-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
-
-              {/* Gloss highlight */}
               <div className="absolute inset-0 rounded-xl bg-linear-to-br from-white/40/10 to-transparent opacity-20 pointer-events-none" />
 
               <img
@@ -68,9 +66,9 @@ export default function Footer() {
         <div data-aos="fade-up" data-aos-delay="100">
           <h3 className="text-lg font-semibold mb-4">Company</h3>
           <ul className="space-y-3 text-soft text-[15px]">
-            <li>About</li>
-            <li>Contact</li>
-            <li>Careers</li>
+            <li><a href="/about" className="hover:text-white transition">About</a></li>
+            <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
+            <li><a href="/careers" className="hover:text-white transition">Careers</a></li>
           </ul>
         </div>
 
@@ -78,10 +76,10 @@ export default function Footer() {
         <div data-aos="fade-up" data-aos-delay="200">
           <h3 className="text-lg font-semibold mb-4">Services</h3>
           <ul className="space-y-3 text-soft text-[15px]">
-            <li>Web Development</li>
-            <li>App Development</li>
-            <li>AI Development</li>
-            <li>Data Analytics</li>
+            <li><a href="/services/web-development" className="hover:text-white transition">Web Development</a></li>
+            <li><a href="/services/app-development" className="hover:text-white transition">App Development</a></li>
+            <li><a href="/services/ai-development" className="hover:text-white transition">AI Development</a></li>
+            <li><a href="/services/data-analytics" className="hover:text-white transition">Data Analytics</a></li>
           </ul>
         </div>
 
@@ -89,9 +87,9 @@ export default function Footer() {
         <div data-aos="fade-up" data-aos-delay="300">
           <h3 className="text-lg font-semibold mb-4">Resources</h3>
           <ul className="space-y-3 text-soft text-[15px]">
-            <li>Portfolio</li>
-            <li>Blog</li>
-            <li>Process</li>
+            <li><a href="/portfolio" className="hover:text-white transition">Portfolio</a></li>
+            <li><a href="/blog" className="hover:text-white transition">Blog</a></li>
+            <li><a href="/process" className="hover:text-white transition">Process</a></li>
           </ul>
         </div>
       </div>
@@ -104,8 +102,8 @@ export default function Footer() {
         <p>© 2025 WebX AI. All rights reserved.</p>
 
         <div className="flex gap-6">
-          <p>Privacy Policy</p>
-          <p>Terms of Service</p>
+          <a href="/privacy-policy" className="hover:text-white transition">Privacy Policy</a>
+          <a href="/terms" className="hover:text-white transition">Terms of Service</a>
         </div>
       </div>
     </footer>
