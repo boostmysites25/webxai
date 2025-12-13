@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="w-full bg-[#05050A] pt-20 pb-12 text-white relative">
@@ -64,37 +66,36 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* COLUMN 2 */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <h3 className="text-lg font-semibold mb-4">Company</h3>
-          <ul className="space-y-3 text-soft text-[15px]">
-            <li>About</li>
-            <li>Contact</li>
-            <li>Careers</li>
-          </ul>
-        </div>
+       {/* COLUMN 2 */}
+<div data-aos="fade-up" data-aos-delay="100">
+  <h3 className="text-lg font-semibold mb-4">Company</h3>
+  <ul className="space-y-3 text-soft text-[15px]">
+    <li><Link href="/about">About</Link></li>
+    <li><Link href="/contact">Contact</Link></li>
+    <li><Link href="/careers">Careers</Link></li>
+  </ul>
+</div>
 
-        {/* COLUMN 3 */}
-        <div data-aos="fade-up" data-aos-delay="200">
-          <h3 className="text-lg font-semibold mb-4">Services</h3>
-          <ul className="space-y-3 text-soft text-[15px]">
-            <li>Web Development</li>
-            <li>App Development</li>
-            <li>AI Development</li>
-            <li>Data Analytics</li>
-          </ul>
-        </div>
+{/* COLUMN 3 */}
+<div data-aos="fade-up" data-aos-delay="200">
+  <h3 className="text-lg font-semibold mb-4">Services</h3>
+  <ul className="space-y-3 text-soft text-[15px]">
+    <li><Link href="/services/web-development">Web Development</Link></li>
+    <li><Link href="/services/app-development">App Development</Link></li>
+    <li><Link href="/services/ai-development">AI Development</Link></li>
+    <li><Link href="/services/data-analytics">Data Analytics</Link></li>
+  </ul>
+</div>
 
-        {/* COLUMN 4 */}
-        <div data-aos="fade-up" data-aos-delay="300">
-          <h3 className="text-lg font-semibold mb-4">Resources</h3>
-          <ul className="space-y-3 text-soft text-[15px]">
-            <li>Portfolio</li>
-            <li>Blog</li>
-            <li>Process</li>
-          </ul>
-        </div>
-      </div>
+{/* COLUMN 4 */}
+<div data-aos="fade-up" data-aos-delay="300">
+  <h3 className="text-lg font-semibold mb-4">Resources</h3>
+  <ul className="space-y-3 text-soft text-[15px]">
+    <li><Link href="/portfolio">Portfolio</Link></li>
+    <li><Link href="/blog">Blog</Link></li>
+    <li><Link href="/process">Process</Link></li>
+  </ul>
+</div>
 
       {/* DIVIDER */}
       <div className="w-full h-px bg-white/10 mt-16 mb-8" />
