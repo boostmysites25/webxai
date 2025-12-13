@@ -48,9 +48,33 @@ export default function Services() {
           />
 
           <ServiceCard
+            icon="/icons/ecommerce.png"
+            title="E-Commerce Development"
+            desc="Scalable B2B & B2C platforms with seamless checkout, inventory management and high-conversion UI."
+          />
+
+          <ServiceCard
             icon="/icons/ai.svg"
             title="AI Development"
             desc="Custom AI models, automation pipelines, RAG systems and intelligent tools built for real impact."
+          />
+
+          <ServiceCard
+            icon="/icons/chatbot.png"
+            title="AI Chatbots & Assistants"
+            desc="Intelligent conversational agents for customer support, engagement and automated workflows."
+          />
+
+          <ServiceCard
+            icon="/icons/blockchain.png"
+            title="Blockchain Solutions"
+            desc="Secure decentralized solutions, smart contracts, and crypto exchange platforms built on robust chains."
+          />
+
+          <ServiceCard
+            icon="/icons/game.png"
+            title="Game Development"
+            desc="Immersive 2D/3D gaming experiences with Unity/Unreal Engine, multiplayer support and stunning graphics."
           />
 
           <ServiceCard

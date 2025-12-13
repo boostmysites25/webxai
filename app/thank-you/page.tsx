@@ -1,3 +1,21 @@
+import type { Metadata } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxai.com";
+
+export const metadata: Metadata = {
+  title: "Thank You",
+  description: "Thank you for contacting WebX AI. We've received your inquiry and our team will analyze your requirements and get back to you shortly.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    title: "Thank You - WebX AI",
+    description: "Thank you for contacting WebX AI. We've received your inquiry.",
+    url: `${siteUrl}/thank-you`,
+  },
+};
+
 export default function ThankYouPage() {
     return (
         <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden flex items-center justify-center">

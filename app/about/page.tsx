@@ -1,4 +1,34 @@
 import FAQ from "@/components/FAQ";
+import type { Metadata } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxai.com";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Learn about WebX AI - our mission, vision, and values. We're a technology partner specializing in AI-driven digital systems, engineering excellence, and strategic collaboration with BoostMySites. MSME registered company delivering enterprise-grade solutions.",
+  keywords: ["about WebX AI", "AI development company", "web development team", "software engineering company", "BoostMySites partner", "MSME registered", "digital transformation company", "India tech company", "remote development team"],
+  openGraph: {
+    title: "About WebX AI - Engineering Digital Systems with Clarity",
+    description: "Learn about our mission to build intelligent digital systems with precision. We're partners with BoostMySites and MSME registered, delivering enterprise-grade AI and web solutions.",
+    url: `${siteUrl}/about`,
+    images: [
+      {
+        url: `${siteUrl}/logo.png`,
+        width: 1200,
+        height: 630,
+        alt: "About WebX AI",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About WebX AI - Engineering Digital Systems",
+    description: "Learn about our mission to build intelligent digital systems with precision.",
+  },
+  alternates: {
+    canonical: `${siteUrl}/about`,
+  },
+};
 
 export default function AboutPage() {
   return (

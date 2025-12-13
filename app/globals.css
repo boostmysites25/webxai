@@ -8,6 +8,9 @@ html, body {
   padding: 0;
 }
 
+.reset-html *{
+  all:revert;
+}
 
 @keyframes sweep {
   0% { transform: translateX(-100%) rotate(12deg); }

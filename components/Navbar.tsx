@@ -37,14 +37,14 @@ export default function Navbar() {
                   alt="WebX AI"
                 />
               </div>
-            </Link>
-
-            <h1 className="text-2xl font-semibold tracking-tight">
-              {pathname === "/" ? <>WebX{" "}
+              <h1 className="text-2xl font-semibold tracking-tight">
+                WebX{" "}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
                   AI
-                </span></> : navItems.find((item) => item.path === pathname)?.name}
-            </h1>
+                </span>
+              </h1>
+            </Link>
+
           </div>
 
           {/* DESKTOP MENU */}
@@ -56,8 +56,8 @@ export default function Navbar() {
                   key={item.name}
                   href={item.path}
                   className={`text-[16px] transition ${active
-                    ? "text-white font-semibold"
-                    : "text-white/60 hover:text-white"
+                      ? "text-white font-semibold"
+                      : "text-white/60 hover:text-white"
                     }`}
                 >
                   {item.name}
@@ -141,10 +141,15 @@ interface FormData {
 
 function ProjectModal({ close }: any) {
   const router = useRouter();
-  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormData>({
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({
     defaultValues: {
-      countryCode: "+91"
-    }
+      countryCode: "+91",
+    },
   });
 
   const onSubmit = async (data: any) => {
@@ -179,7 +184,9 @@ function ProjectModal({ close }: any) {
                 className="input"
                 placeholder="Name *"
               />
-              {errors.name && <span className="text-red-400 text-sm">Name is required</span>}
+              {errors.name && (
+                <span className="text-red-400 text-sm">Name is required</span>
+              )}
             </div>
             <div>
               <input
@@ -187,13 +194,17 @@ function ProjectModal({ close }: any) {
                   required: "Email is required",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address"
-                  }
+                    message: "Invalid email address",
+                  },
                 })}
                 className="input"
                 placeholder="Email *"
               />
-              {errors.email && <span className="text-red-400 text-sm">{(errors.email.message as string) || "Email is required"}</span>}
+              {errors.email && (
+                <span className="text-red-400 text-sm">
+                  {(errors.email.message as string) || "Email is required"}
+                </span>
+              )}
             </div>
           </div>
 
@@ -215,7 +226,9 @@ function ProjectModal({ close }: any) {
                   />
                 )}
               />
-              {errors.countryCode && <span className="text-red-400 text-sm">Required</span>}
+              {errors.countryCode && (
+                <span className="text-red-400 text-sm">Required</span>
+              )}
             </div>
 
             {/* PHONE INPUT */}
@@ -225,13 +238,18 @@ function ProjectModal({ close }: any) {
                   required: "Phone number is required",
                   pattern: {
                     value: /^[0-9]+$/,
-                    message: "Phone number must contain only digits"
-                  }
+                    message: "Phone number must contain only digits",
+                  },
                 })}
                 className="input"
                 placeholder="Phone Number *"
               />
-              {errors.phone && <span className="text-red-400 text-sm">{(errors.phone.message as string) || "Phone number is required"}</span>}
+              {errors.phone && (
+                <span className="text-red-400 text-sm">
+                  {(errors.phone.message as string) ||
+                    "Phone number is required"}
+                </span>
+              )}
             </div>
           </div>
 
@@ -250,7 +268,11 @@ function ProjectModal({ close }: any) {
                 />
               )}
             />
-            {errors.projectType && <span className="text-red-400 text-sm">Please select a project type</span>}
+            {errors.projectType && (
+              <span className="text-red-400 text-sm">
+                Please select a project type
+              </span>
+            )}
           </div>
 
           {/* DETAILS */}
@@ -260,7 +282,11 @@ function ProjectModal({ close }: any) {
               className="input h-32"
               placeholder="Project Details *"
             ></textarea>
-            {errors.details && <span className="text-red-400 text-sm">Please provide some details</span>}
+            {errors.details && (
+              <span className="text-red-400 text-sm">
+                Please provide some details
+              </span>
+            )}
           </div>
 
           {/* SUBMIT */}

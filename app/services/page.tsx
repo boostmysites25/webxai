@@ -1,4 +1,34 @@
 import FAQ from "@/components/FAQ";
+import type { Metadata } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxai.com";
+
+export const metadata: Metadata = {
+  title: "Our Services",
+  description: "WebX AI offers premium services including Mobile App Development, Website & Web App Development, AI Development, and Data Analytics & Dashboards. Pricing starts from ₹25,000. Built with Next.js, React, Flutter, Python, and more.",
+  keywords: ["mobile app development services", "web development services", "AI development services", "data analytics services", "Next.js development", "React development", "Flutter app development", "Python development", "web app development", "custom software development", "app development pricing"],
+  openGraph: {
+    title: "Our Premium Services - Mobile Apps, Web Development & AI Solutions",
+    description: "Mobile App Development, Web Apps, AI Development, and Data Analytics services. Pricing from ₹25,000. Built with modern technologies.",
+    url: `${siteUrl}/services`,
+    images: [
+      {
+        url: `${siteUrl}/logo.png`,
+        width: 1200,
+        height: 630,
+        alt: "WebX AI Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Premium Services - Mobile Apps, Web Development & AI",
+    description: "Mobile App Development, Web Apps, AI Development, and Data Analytics services.",
+  },
+  alternates: {
+    canonical: `${siteUrl}/services`,
+  },
+};
 
 export default function ServicesPage() {
   return (
@@ -65,9 +95,37 @@ export default function ServicesPage() {
 
         <ServiceBlock
           reverse={false}
+          title="E-Commerce Solutions"
+          desc="We build powerful online stores and multi-vendor marketplaces designed to maximize sales and user retention."
+          img="/services/ecommerce.png"
+        />
+
+        <ServiceBlock
+          reverse={true}
           title="AI Development"
           desc="Automation systems, AI assistants, ML models and next-gen tools integrated directly into your business workflow."
           img="/services/ai.png"
+        />
+
+        <ServiceBlock
+          reverse={false}
+          title="AI Chatbots & Assistants"
+          desc="Enhance user engagement with AI-powered chatbots that understand context, intent, and deliver instant support."
+          img="/services/chatbot.png"
+        />
+
+        <ServiceBlock
+          reverse={true}
+          title="Blockchain Solutions"
+          desc="From smart contracts to full-scale dApps, we deliver secure and scalable blockchain solutions tailored to your needs."
+          img="/services/blockchain.png"
+        />
+
+        <ServiceBlock
+          reverse={false}
+          title="Game Development"
+          desc="We create captivating mobile and desktop games with cutting-edge graphics, physics, and addictive mechanics."
+          img="/services/game.png"
         />
 
         <ServiceBlock
