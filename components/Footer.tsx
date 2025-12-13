@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="relative p-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
 
               {/* Gloss highlight */}
-              <div className="absolute inset-0 rounded-xl bg-linear-to-br from-white/40/10 to-transparent opacity-20 pointer-events-none" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-20 pointer-events-none" />
 
               <img
                 src="/logo.png"
@@ -24,7 +24,7 @@ export default function Footer() {
 
             <h1 className="text-2xl font-semibold tracking-tight">
               WebX{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
                 AI
               </span>
             </h1>
@@ -34,7 +34,7 @@ export default function Footer() {
             Engineering intelligent digital systems with precision, speed and futuristic design thinking.
           </p>
 
-          {/* SOCIAL ICONS — ONLY INSTAGRAM + LINKEDIN */}
+          {/* SOCIAL ICONS */}
           <div className="flex items-center gap-4">
 
             {/* Instagram */}
@@ -57,7 +57,7 @@ export default function Footer() {
               className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="opacity-80">
-                <path d="M4.98 3.5a2.5 2.5 0 11-.01 5.01 2.5 2.5 0 01.01-5.01zM3 9h4v12H3zM15.5 9c-2.33 0-3.5 1.17-4 2v-2H7v12h4v-6.5c0-1.5.5-3 2.5-3 2 0 2 1.67 2 3.25V21h4v-6.75C19.5 10.67 17.5 9 15.5 9z" />
+                <path d="M4.98 3.5a2.5 2.5 0 11-.01 5.01 2.5 2.5 0 01-.01-5.01zM3 9h4v12H3zM15.5 9c-2.33 0-3.5 1.17-4 2v-2H7v12h4v-6.5c0-1.5.5-3 2.5-3 2 0 2 1.67 2 3.25V21h4v-6.75C19.5 10.67 17.5 9 15.5 9z" />
               </svg>
             </a>
 
@@ -65,36 +65,36 @@ export default function Footer() {
         </div>
 
         {/* COLUMN 2 */}
-<div data-aos="fade-up" data-aos-delay="100">
-  <h3 className="text-lg font-semibold mb-4">Company</h3>
-  <ul className="space-y-3 text-soft text-[15px]">
-    <li><a href="/about" className="hover:text-white transition">About</a></li>
-    <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
-    <li><a href="/careers" className="hover:text-white transition">Careers</a></li>
-  </ul>
-</div>
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h3 className="text-lg font-semibold mb-4">Company</h3>
+          <ul className="space-y-3 text-soft text-[15px]">
+            <li>About</li>
+            <li>Contact</li>
+            <li>Careers</li>
+          </ul>
+        </div>
 
-{/* COLUMN 3 */}
-<div data-aos="fade-up" data-aos-delay="200">
-  <h3 className="text-lg font-semibold mb-4">Services</h3>
-  <ul className="space-y-3 text-soft text-[15px]">
-    <li><a href="/services/web-development" className="hover:text-white transition">Web Development</a></li>
-    <li><a href="/services/app-development" className="hover:text-white transition">App Development</a></li>
-    <li><a href="/services/ai-development" className="hover:text-white transition">AI Development</a></li>
-    <li><a href="/services/data-analytics" className="hover:text-white transition">Data Analytics</a></li>
-  </ul>
-</div>
+        {/* COLUMN 3 */}
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h3 className="text-lg font-semibold mb-4">Services</h3>
+          <ul className="space-y-3 text-soft text-[15px]">
+            <li>Web Development</li>
+            <li>App Development</li>
+            <li>AI Development</li>
+            <li>Data Analytics</li>
+          </ul>
+        </div>
 
-{/* COLUMN 4 */}
-<div data-aos="fade-up" data-aos-delay="300">
-  <h3 className="text-lg font-semibold mb-4">Resources</h3>
-  <ul className="space-y-3 text-soft text-[15px]">
-    <li><a href="/portfolio" className="hover:text-white transition">Portfolio</a></li>
-    <li><a href="/blog" className="hover:text-white transition">Blog</a></li>
-    <li><a href="/process" className="hover:text-white transition">Process</a></li>
-  </ul>
-</div>
-
+        {/* COLUMN 4 */}
+        <div data-aos="fade-up" data-aos-delay="300">
+          <h3 className="text-lg font-semibold mb-4">Resources</h3>
+          <ul className="space-y-3 text-soft text-[15px]">
+            <li>Portfolio</li>
+            <li>Blog</li>
+            <li>Process</li>
+          </ul>
+        </div>
+      </div>
 
       {/* DIVIDER */}
       <div className="w-full h-px bg-white/10 mt-16 mb-8" />
