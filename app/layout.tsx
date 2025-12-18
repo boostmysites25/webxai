@@ -78,9 +78,9 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   icons: {
-    icon: "/favicon.jpg",
-    shortcut: "/favicon.jpg",
-    apple: "/favicon.jpg",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
