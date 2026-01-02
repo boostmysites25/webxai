@@ -57,6 +57,6 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function CaseStudyPage({ params }: { params: { id: string } }) {
-  return <CaseStudyClient params={params} />;
+export default function CaseStudyPage() {
+  return <CaseStudyClient />;
 }

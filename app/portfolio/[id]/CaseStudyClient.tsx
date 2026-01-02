@@ -7,22 +7,25 @@ import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-export default function CaseStudyClient({ params }: { params: { id: string } }) {
+export default function CaseStudyClient() {
     const [project, setProject] = useState<PortfolioItem | null>(null);
     const router = useRouter();
+    const params = useParams();
+    const id = params?.id as string;
 
     useEffect(() => {
         AOS.init({ once: true, duration: 1000 });
 
-        if (params?.id) {
-            const found = allProjects.find((p) => p.id === parseInt(params.id));
+        if (id) {
+            const projectId = parseInt(id);
+            const found = allProjects.find((p) => p.id === projectId);
             if (found) {
                 setProject(found);
             } else {
                 router.push("/work");
             }
         }
-    }, [params, router]);
+    }, [id, router]);
 
     if (!project) return <div className="h-screen bg-[#05050A] flex items-center justify-center text-white">Loading...</div>;
 
