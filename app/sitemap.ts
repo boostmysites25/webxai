@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { allProjects } from '@/data/portfolioContent'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://webxai.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://webxaitech.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseRoutes = [
