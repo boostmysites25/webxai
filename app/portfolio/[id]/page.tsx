@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { allProjects } from "@/data/portfolioContent";
 import CaseStudyClient from "./CaseStudyClient";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxai.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> | { id: string } }): Promise<Metadata> {
   try {
