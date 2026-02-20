@@ -1,7 +1,7 @@
 import FAQ from "@/components/FAQ";
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxai.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
 
 export const metadata: Metadata = {
   title: "About Us",
