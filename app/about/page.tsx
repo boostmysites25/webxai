@@ -1,29 +1,43 @@
 import FAQ from "@/components/FAQ";
+import Script from "next/script";
 import type { Metadata } from "next";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description: "Learn about WebX AI - our mission, vision, and values. We're a technology partner specializing in AI-driven digital systems, engineering excellence, and strategic collaboration with BoostMySites. MSME registered company delivering enterprise-grade solutions.",
-  keywords: ["about WebX AI", "AI development company", "web development team", "software engineering company", "BoostMySites partner", "MSME registered", "digital transformation company", "India tech company", "remote development team"],
+  title: "About Webxai – AI & Web Development Company in Hyderabad, India",
+  description: "Webxai is an AI-driven software development company based in Hyderabad, India. MSME registered. Official technology partner of BoostMySites. We engineer intelligent digital systems with precision — web development, AI solutions, mobile apps, and scalable platforms for startups and enterprises.",
+  keywords: [
+    "about Webxai",
+    "Webxai company",
+    "AI development company India",
+    "web development team Hyderabad",
+    "software engineering company India",
+    "BoostMySites partner",
+    "MSME registered tech company",
+    "digital transformation company",
+    "India tech company",
+    "remote development team",
+    "Webxai AI development",
+    "Webxai software",
+  ],
   openGraph: {
-    title: "About WebX AI - Engineering Digital Systems with Clarity",
-    description: "Learn about our mission to build intelligent digital systems with precision. We're partners with BoostMySites and MSME registered, delivering enterprise-grade AI and web solutions.",
+    title: "About Webxai – Engineering Digital Systems with Clarity & Precision",
+    description: "Webxai is an MSME registered AI & web development company in India, partnered with BoostMySites. We deliver enterprise-grade AI and web solutions.",
     url: `${siteUrl}/about`,
     images: [
       {
         url: `${siteUrl}/logo.png`,
         width: 1200,
         height: 630,
-        alt: "About WebX AI",
+        alt: "About Webxai",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About WebX AI - Engineering Digital Systems",
-    description: "Learn about our mission to build intelligent digital systems with precision.",
+    title: "About Webxai – AI & Web Development Company India",
+    description: "MSME registered. BoostMySites partner. Engineering intelligent digital systems with precision.",
   },
   alternates: {
     canonical: `${siteUrl}/about`,
@@ -31,8 +45,74 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About",
+        item: `${siteUrl}/about`,
+      },
+    ],
+  };
+
+  const aboutFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is Webxai?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Webxai (WebX AI) is a leading AI software development and web solutions company based in Hyderabad, India. We specialize in web development, mobile app development, AI development, ecommerce solutions, chatbot development, and data analytics.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is Webxai a registered company?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, Webxai is an MSME registered company under the Government of India (UDYAM). We are also an official technology partner of BoostMySites (Triple-Seven BoostMySites AI Solutions LLP).",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where is Webxai located?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Webxai is based in Hyderabad, Telangana, India. We work remotely with clients worldwide across India, US, UAE, UK, Singapore, and Australia.",
+        },
+      },
+    ],
+  };
+
   return (
     <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
+      <Script
+        id="about-breadcrumb-schema"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+      <Script
+        id="about-faq-schema"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aboutFaqSchema),
+        }}
+      />
 
       {/* GLOBAL BACKGROUND */}
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
@@ -87,7 +167,7 @@ export default function AboutPage() {
           <div className="relative rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.4)]" data-aos="fade-up" data-aos-delay="200">
             <img
               src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b"
-              alt="AI Mission"
+              alt="Webxai AI Mission - intelligent digital systems"
               className="w-full h-full object-cover"
             />
           </div>
@@ -104,7 +184,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="text-soft text-lg md:text-xl leading-relaxed mb-6 opacity-90">
-              We’re shaping a world where AI, engineering and design merge into systems that think,
+              We're shaping a world where AI, engineering and design merge into systems that think,
               scale and evolve automatically.
             </p>
             <p className="text-soft text-lg leading-relaxed opacity-90">
@@ -115,7 +195,7 @@ export default function AboutPage() {
           <div className="relative rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.4)]" data-aos="fade-up" data-aos-delay="200">
             <img
               src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
-              alt="AI Vision"
+              alt="Webxai Vision - building intelligent digital futures"
               className="w-full h-full object-cover"
             />
           </div>
@@ -201,7 +281,7 @@ export default function AboutPage() {
           <div className="relative rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.4)]" data-aos="fade-up" data-aos-delay="200">
             <img
               src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
-              alt="Philosophy"
+              alt="Webxai Philosophy - technology with clarity"
               className="w-full h-full object-cover"
             />
           </div>

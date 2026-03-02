@@ -9,10 +9,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     // Handle both Promise and direct params (Next.js 15+ compatibility)
     const resolvedParams = params instanceof Promise ? await params : params;
     const projectId = resolvedParams?.id;
-    
+
     if (!projectId) {
       return {
-        title: "Project Not Found | WebX AI",
+        title: "Project Not Found | Webxai",
         description: "The requested project could not be found.",
       };
     }
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const parsedId = parseInt(projectId, 10);
     if (isNaN(parsedId)) {
       return {
-        title: "Project Not Found | WebX AI",
+        title: "Project Not Found | Webxai",
         description: "Invalid project ID.",
       };
     }
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
     if (!project) {
       return {
-        title: "Project Not Found | WebX AI",
+        title: "Project Not Found | Webxai",
         description: "The requested project could not be found.",
       };
     }
@@ -44,10 +44,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         "web development",
         "mobile app development",
         "portfolio",
+        "Webxai",
         ...project.caseStudy.techStack,
       ],
       openGraph: {
-        title: `${project.title} - Case Study | WebX AI`,
+        title: `${project.title} - Case Study | Webxai`,
         description: project.description,
         url: `${siteUrl}/portfolio/${project.id}`,
         images: [
@@ -72,7 +73,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
   } catch (error) {
     return {
-      title: "Project Not Found | WebX AI",
+      title: "Project Not Found | Webxai",
       description: "An error occurred while loading the project.",
     };
   }

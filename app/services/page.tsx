@@ -1,29 +1,50 @@
 import FAQ from "@/components/FAQ";
+import Script from "next/script";
 import type { Metadata } from "next";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
 
 export const metadata: Metadata = {
-  title: "Our Services",
-  description: "WebX AI offers premium services including Mobile App Development, Website & Web App Development, AI Development, and Data Analytics & Dashboards. Pricing starts from ₹25,000. Built with Next.js, React, Flutter, Python, and more.",
-  keywords: ["mobile app development services", "web development services", "AI development services", "data analytics services", "Next.js development", "React development", "Flutter app development", "Python development", "web app development", "custom software development", "app development pricing"],
+  title: "Software Development Services – Web, App, AI, Ecommerce & Chatbot | Webxai",
+  description: "Webxai offers premium software development services: Mobile App Development, Website & Web App Development, AI Development, Ecommerce Solutions, AI Chatbots, Blockchain, Game Development, and Data Analytics. Pricing starts from ₹25,000. Built with Next.js, React, Flutter, Python, and more.",
+  keywords: [
+    "web development services",
+    "mobile app development services",
+    "AI development services",
+    "ecommerce development company",
+    "chatbot development services",
+    "custom software development India",
+    "Next.js development company",
+    "React development services",
+    "Flutter app development",
+    "Python development",
+    "web app development pricing",
+    "affordable web development",
+    "AI chatbot development India",
+    "blockchain development company",
+    "game development services",
+    "data analytics services",
+    "app development company Hyderabad",
+    "best web development company India",
+    "Webxai services",
+  ],
   openGraph: {
-    title: "Our Premium Services - Mobile Apps, Web Development & AI Solutions",
-    description: "Mobile App Development, Web Apps, AI Development, and Data Analytics services. Pricing from ₹25,000. Built with modern technologies.",
+    title: "Software Development Services – Web, App, AI & Ecommerce | Webxai",
+    description: "Webxai delivers premium Mobile App Development, Web Apps, AI Development, Ecommerce, Chatbots, and Data Analytics services. Modern tech stack. Pricing from ₹25,000.",
     url: `${siteUrl}/services`,
     images: [
       {
         url: `${siteUrl}/logo.png`,
         width: 1200,
         height: 630,
-        alt: "WebX AI Services",
+        alt: "Webxai Software Development Services",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Our Premium Services - Mobile Apps, Web Development & AI",
-    description: "Mobile App Development, Web Apps, AI Development, and Data Analytics services.",
+    title: "Software Development Services – Web, App, AI & Ecommerce | Webxai",
+    description: "Mobile App Development, Web Apps, AI Development, Ecommerce, Chatbots, and Data Analytics services by Webxai.",
   },
   alternates: {
     canonical: `${siteUrl}/services`,
@@ -31,8 +52,177 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [
+      {
+        "@type": "Service",
+        position: 1,
+        name: "Mobile App Development",
+        description: "High-performance iOS and Android apps engineered with stunning UI, smooth experiences and scalable backend architecture.",
+        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
+        areaServed: "Worldwide",
+        serviceType: "Mobile Application Development",
+      },
+      {
+        "@type": "Service",
+        position: 2,
+        name: "Website & Web App Development",
+        description: "Fast, conversion-focused websites and scalable web apps built using modern frameworks like Next.js, React and Node.",
+        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
+        areaServed: "Worldwide",
+        serviceType: "Web Development",
+      },
+      {
+        "@type": "Service",
+        position: 3,
+        name: "E-Commerce Solutions",
+        description: "Powerful online stores and multi-vendor marketplaces designed to maximize sales and user retention.",
+        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
+        areaServed: "Worldwide",
+        serviceType: "Ecommerce Development",
+      },
+      {
+        "@type": "Service",
+        position: 4,
+        name: "AI Development",
+        description: "Automation systems, AI assistants, ML models and next-gen tools integrated directly into your business workflow.",
+        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
+        areaServed: "Worldwide",
+        serviceType: "Artificial Intelligence Development",
+      },
+      {
+        "@type": "Service",
+        position: 5,
+        name: "AI Chatbots & Assistants",
+        description: "Enhance user engagement with AI-powered chatbots that understand context, intent, and deliver instant support.",
+        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
+        areaServed: "Worldwide",
+        serviceType: "Chatbot Development",
+      },
+      {
+        "@type": "Service",
+        position: 6,
+        name: "Blockchain Solutions",
+        description: "From smart contracts to full-scale dApps, secure and scalable blockchain solutions tailored to your needs.",
+        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
+        areaServed: "Worldwide",
+        serviceType: "Blockchain Development",
+      },
+      {
+        "@type": "Service",
+        position: 7,
+        name: "Game Development",
+        description: "Captivating mobile and desktop games with cutting-edge graphics, physics, and addictive mechanics.",
+        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
+        areaServed: "Worldwide",
+        serviceType: "Game Development",
+      },
+      {
+        "@type": "Service",
+        position: 8,
+        name: "Data Analytics & Dashboards",
+        description: "Transform raw data into live dashboards, forecasts and insights that power real business decisions.",
+        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
+        areaServed: "Worldwide",
+        serviceType: "Data Analytics",
+      },
+    ],
+  };
+
+  const serviceFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What web development services does Webxai offer?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Webxai offers full-stack web development including static websites, dynamic web applications, SaaS platforms, and progressive web apps (PWAs). We use Next.js, React, Node.js, and modern technologies for enterprise-grade performance.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How much does app development cost at Webxai?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Our pricing starts from ₹25,000 for starter projects. Professional-grade projects start at ₹60,000+, and enterprise-level custom AI + advanced solutions start at ₹1,50,000+. Final pricing depends on scope and complexity.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does Webxai develop AI chatbots and virtual assistants?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, Webxai specializes in building AI-powered chatbots and virtual assistants that understand context and intent. Our chatbots integrate with websites, mobile apps, WhatsApp, and more for automated customer support and engagement.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can Webxai build custom ecommerce platforms?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Absolutely. We build custom B2B and B2C ecommerce platforms, multi-vendor marketplaces, and online stores with seamless checkout, inventory management, payment integration, and high-conversion UI design.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What technologies does Webxai use for development?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We use Next.js, React, Flutter, Python, Node.js, PostgreSQL, TensorFlow, and AWS among other modern technologies. Our tech stack is chosen for maximum performance, scalability, and maintainability.",
+        },
+      },
+    ],
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${siteUrl}/services`,
+      },
+    ],
+  };
+
   return (
     <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
+      <Script
+        id="service-schema"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceSchema),
+        }}
+      />
+      <Script
+        id="service-faq-schema"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceFaqSchema),
+        }}
+      />
+      <Script
+        id="service-breadcrumb-schema"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
 
       {/* GLOBAL CONTINUOUS BACKGROUND */}
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
