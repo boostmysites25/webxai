@@ -133,10 +133,7 @@ export default function Testimonials() {
 function Card({ name, company, text, img }: any) {
   return (
     <div
-      className="min-w-[360px] max-w-[360px] rounded-2xl p-6 
-      bg-[#0A0A0C]/60 backdrop-blur-xl border border-white/10
-      hover:border-white/20 transition-all duration-300
-      shadow-[0_0_30px_rgba(0,0,0,0.35)] hover:shadow-[0_0_40px_rgba(100,70,255,0.4)]"
+      className={`min-w-[360px] max-w-[360px] rounded-2xl p-6 bg-[#0A0A0C]/60 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.35)] hover:shadow-[0_0_40px_rgba(100,70,255,0.4)]`}
     >
       <div className="flex items-center mb-5">
         <img

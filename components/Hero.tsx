@@ -1,6 +1,55 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  const contents = [
+    {
+      top: "We Build Intelligent",
+      bottom: "Digital Experiences",
+      desc: "AI, Apps, Web & Data engineering crafted for ambitious modern brands.",
+      buttonPrimaryUrl: "/contact",
+      buttonPrimaryText: "Start Project",
+      buttonSecondaryUrl: "/work",
+      buttonSecondaryText: "View Work"
+    },
+    {
+      top: "Own Your Custom",
+      bottom: "Real Estate CRM",
+      desc: "Stop paying endlessly. Acquire the complete PropertyFlow CRM platform entirely for your company.",
+      buttonPrimaryUrl: "https://propertyflow.webxaitech.com",
+      buttonPrimaryText: "Explore Platform",
+      buttonSecondaryUrl: "/contact", // Since /contact exists
+      buttonSecondaryText: "Get a Quote"
+    },
+    {
+      top: "Automate Workflows With",
+      bottom: "AI Assistants",
+      desc: "Intelligent conversational agents engineered to scale your customer support and enterprise workflows.",
+      buttonPrimaryUrl: "/contact",
+      buttonPrimaryText: "Build AI Models",
+      buttonSecondaryUrl: "/work",
+      buttonSecondaryText: "View Work"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFade(false); // trigger fade out
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % contents.length);
+        setFade(true); // trigger fade in
+      }, 400); // 400ms fade transition
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const current = contents[currentIndex];
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#05050A] flex items-center justify-center pt-[180px] md:pt-[220px] pb-[160px] md:pb-[200px]">
 
@@ -46,57 +95,48 @@ export default function Hero() {
 
       {/* --- MAIN CONTENT --- */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-[1000px]">
+        <style jsx>{`
+          @keyframes customFade {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+          .animate-custom-fade {
+            animation: customFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+        `}</style>
 
-        <h1 className="text-white font-extrabold leading-[1.1] tracking-tight mb-8" data-aos="fade-up">
-          <span className="block text-[42px] sm:text-[52px] md:text-[72px] lg:text-[92px]">
-            We Build Intelligent
-          </span>
-          <span className="block text-transparent bg-clip-text 
-            bg-linear-to-r from-blue-400 via-purple-400 to-blue-500
-            text-[48px] sm:text-[58px] md:text-[82px] lg:text-[102px]">
-            Digital Experiences
-          </span>
-        </h1>
+        <div key={currentIndex} className="animate-custom-fade">
+          <h1 className="text-white font-extrabold leading-[1.1] tracking-tight mb-8 min-h-[100px] sm:min-h-[140px] md:min-h-[180px] lg:min-h-[220px]">
+            <span className="block text-[32px] sm:text-[42px] md:text-[62px] lg:text-[76px] xl:text-[92px]">
+              {current.top}
+            </span>
+            <span className="block text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-blue-500 text-[40px] sm:text-[50px] md:text-[70px] lg:text-[86px] xl:text-[102px]">
+              {current.bottom}
+            </span>
+          </h1>
 
-        <p className="text-soft text-[16px] sm:text-[18px] md:text-[22px] leading-relaxed max-w-3xl mx-auto mb-12 md:mb-16 opacity-95" data-aos="fade-up" data-aos-delay="100">
-          AI, Apps, Web & Data engineering crafted for ambitious modern brands.
-        </p>
+          <p className="text-soft text-[16px] sm:text-[18px] md:text-[22px] leading-relaxed max-w-3xl mx-auto mb-10 md:mb-12 opacity-95 min-h-[50px]">
+            {current.desc}
+          </p>
 
-        {/* BUTTONS */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-16" data-aos="fade-up" data-aos-delay="200">
+          {/* BUTTONS */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-16">
+            {/* Start Project */}
+            <Link
+              href={current.buttonPrimaryUrl}
+              className={`w-full sm:w-auto min-w-[180px] px-7 py-3 sm:px-12 sm:py-4 rounded-lg sm:rounded-xl bg-linear-to-r from-blue-600/30 to-purple-600/30 border border-white/20 text-white text-sm sm:text-lg font-medium backdrop-blur-xl transition hover:from-blue-600/40 hover:to-purple-600/40 text-center`}
+            >
+              {current.buttonPrimaryText}
+            </Link>
 
-          {/* Start Project */}
-          <Link
-            href="/contact"
-            className="
-              w-auto max-w-[180px] sm:max-w-none
-              px-7 py-2.5 sm:px-12 sm:py-4
-              rounded-lg sm:rounded-xl
-              bg-linear-to-r from-blue-600/30 to-purple-600/30
-              border border-white/20 text-white text-sm sm:text-lg font-medium
-              backdrop-blur-xl transition
-              hover:from-blue-600/40 hover:to-purple-600/40 text-center
-            "
-          >
-            Start Project
-          </Link>
-
-          {/* View Work */}
-          <Link
-            href="/work"
-            className="
-              w-auto max-w-[180px] sm:max-w-none
-              px-7 py-2.5 sm:px-12 sm:py-4
-              rounded-lg sm:rounded-xl
-              bg-white/5 border border-white/15
-              text-white text-sm sm:text-lg
-              hover:bg-white/10 hover:border-white/25
-              transition backdrop-blur-xl text-center
-            "
-          >
-            View Work
-          </Link>
-
+            {/* View Work */}
+            <Link
+              href={current.buttonSecondaryUrl}
+              className={`w-full sm:w-auto min-w-[180px] px-7 py-3 sm:px-12 sm:py-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/15 text-white text-sm sm:text-lg hover:bg-white/10 hover:border-white/25 transition backdrop-blur-xl text-center`}
+            >
+              {current.buttonSecondaryText}
+            </Link>
+          </div>
         </div>
 
         {/* METRICS */}

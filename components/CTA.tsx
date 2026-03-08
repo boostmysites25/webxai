@@ -57,8 +57,7 @@ export default function CTA() {
           <span className="block text-5xl md:text-6xl">
             Let's Create Something
           </span>
-          <span className="block text-6xl md:text-7xl bg-clip-text text-transparent
-            bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500">
+          <span className="block text-6xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500">
             Truly Intelligent
           </span>
         </h2>

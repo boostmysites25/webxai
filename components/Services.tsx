@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Services() {
   return (
     <section className="relative w-full pt-[160px] pb-[160px] px-6 overflow-hidden bg-[#05050A]">
@@ -34,6 +36,33 @@ export default function Services() {
 
         {/* SERVICES GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 md:gap-14">
+
+          {/* CRM DEVELOPMENT CARD */}
+          <div
+            className="relative group p-8 md:p-10 rounded-2xl bg-gradient-to-br from-[#0D0F17]/85 to-[#0A0B12]/85 backdrop-blur-xl border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.45)] hover:shadow-[0_0_55px_rgba(120,80,255,0.35)] transition-all duration-300 md:col-span-2"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl transition-all duration-500"></div>
+            <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between relative z-10">
+              <div className="flex-1">
+                <h3 className="text-white text-2xl md:text-3xl font-bold mb-3 tracking-tight">
+                  Real Estate CRM Development
+                </h3>
+                <p className="text-[#C9C9C9] text-base md:text-lg leading-relaxed max-w-2xl">
+                  WebXAI develops advanced CRM platforms for real estate businesses. Our flagship system, PropertyFlow CRM, helps teams manage leads, automate follow-ups, track deals, and monitor performance through powerful analytics dashboards.
+                </p>
+              </div>
+              <div className="shrink-0">
+                <Link
+                  href="https://propertyflow.webxaitech.com"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-white font-medium bg-gradient-to-r from-blue-600/80 to-purple-600/80 border border-white/20 hover:from-blue-600 hover:to-purple-600 transition-all shadow-[0_0_20px_rgba(0,0,0,0.3)]"
+                >
+                  Explore PropertyFlow CRM
+                </Link>
+              </div>
+            </div>
+          </div>
 
           <ServiceCard
             icon="/icons/mobile.svg"

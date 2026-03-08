@@ -1,6 +1,10 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import CRMShowcase from "@/components/CRMShowcase";
+import CRMPreview from "@/components/CRMPreview";
+import CRMFeatures from "@/components/CRMFeatures";
+import CRMCTA from "@/components/CRMCTA";
 import WhyWebXAI from "@/components/WhyWebXAI";
 import Approach from "@/components/Approach";
 import Portfolio from "@/components/Portfolio";
@@ -143,6 +147,9 @@ export default function Home() {
       />
       <Hero />
       <About />
+      <CRMShowcase />
+      <CRMPreview />
+      <CRMFeatures />
       <Services />
       <WhyWebXAI />
       <Approach />
@@ -150,6 +157,7 @@ export default function Home() {
       <Portfolio />
       <Testimonials />
       <FAQ />
+      <CRMCTA />
       <CTA />
     </>
   );
