@@ -19,14 +19,14 @@ export default function WhyUs() {
       <div className="w-full max-w-[1200px] mx-auto px-6">
 
         <div className="mb-16">
-          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white leading-[1.1]">
+          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white leading-[1.1]" data-reveal>
             Why WebX AI
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[#1F1F1F] border border-[#1F1F1F]">
           {REASONS.map((r, idx) => (
-            <div key={idx} className="bg-[#0B0B0B] p-10 flex flex-col hover:bg-[#0F0F0F] transition-colors">
+            <div key={idx} className="bg-[#0B0B0B] p-10 flex flex-col hover:bg-[#0F0F0F] transition-colors" data-reveal data-reveal-delay={100 + idx * 100}>
               <span className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-[0.1em] mb-4">
                 0{idx + 1}
               </span>

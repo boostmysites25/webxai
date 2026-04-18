@@ -11,18 +11,18 @@ export default function Approach() {
       <div className="w-full max-w-[1200px] mx-auto px-6">
         
         <div className="mb-20 text-left">
-          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white">
+          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white" data-reveal>
             Deployment Protocol
           </h2>
         </div>
 
         <div className="relative">
            {/* Horizontal minimal axis */}
-           <div className="hidden md:block absolute top-[12px] left-[0%] right-[0%] h-[1px] bg-[#1F1F1F] z-0" />
+           <div className="hidden md:block absolute top-[12px] left-[0%] right-[0%] h-[1px] bg-[#1F1F1F] z-0" data-reveal />
            
            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6 relative z-10">
               {STEPS.map((step, idx) => (
-                <div key={idx} className="flex flex-col items-start relative group">
+                <div key={idx} className="flex flex-col items-start relative group" data-reveal="scale" data-reveal-delay={200 + idx * 150}>
                    
                    {/* Clean timeline dot connecting to horizontal axis */}
                    <div className="w-[24px] h-[24px] rounded-full bg-[#0B0B0B] border-[4px] border-[#1F1F1F] group-hover:border-[#7C3AED] transition-colors mb-6 z-10" />

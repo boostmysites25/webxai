@@ -29,14 +29,14 @@ export default function FAQ() {
       <div className="w-full max-w-[1200px] mx-auto px-6">
 
         <div className="mb-16">
-          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white leading-[1.1]">
+          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white leading-[1.1]" data-reveal>
             Common Questions
           </h2>
         </div>
 
         <div className="flex flex-col border-t border-[#1F1F1F]">
           {FAQS.map((faq, idx) => (
-            <div key={idx} className="border-b border-[#1F1F1F]">
+            <div key={idx} className="border-b border-[#1F1F1F]" data-reveal data-reveal-delay={100 + idx * 100}>
               <button
                 onClick={() => setOpen(open === idx ? null : idx)}
                 className="w-full flex items-center justify-between py-6 text-left group"

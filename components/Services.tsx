@@ -38,10 +38,10 @@ export default function Services() {
         
         {/* Header */}
         <div className="flex flex-col items-start mb-16 md:mb-20">
-          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white mb-6 leading-[1.1]">
+          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white mb-6 leading-[1.1]" data-reveal>
             Core Capabilities
           </h2>
-          <p className="text-[16px] text-[#A1A1AA] leading-[1.6] max-w-[560px]">
+          <p className="text-[16px] text-[#A1A1AA] leading-[1.6] max-w-[560px]" data-reveal data-reveal-delay="100">
             Enterprise-grade engineering competencies focused strictly on reliable execution and product scale.
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function Services() {
         {/* 3-Column Minimal Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[#1F1F1F] border border-[#1F1F1F]">
           {CAPABILITIES.map((srv, idx) => (
-            <div key={idx} className="bg-[#0B0B0B] p-8 md:p-10 flex flex-col group transition-colors duration-300 hover:bg-[#121212]">
+            <div key={idx} className="bg-[#0B0B0B] p-8 md:p-10 flex flex-col group transition-colors duration-300 hover:bg-[#121212]" data-reveal data-reveal-delay={150 + idx * 100}>
               
               <h3 className="text-[18px] font-semibold text-white mb-3 tracking-tight group-hover:text-white transition-colors">
                 {srv.title}

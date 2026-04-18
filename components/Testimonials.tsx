@@ -22,14 +22,14 @@ export default function Testimonials() {
       <div className="w-full max-w-[1200px] mx-auto px-6">
 
         <div className="mb-16">
-          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white leading-[1.1]">
+          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white leading-[1.1]" data-reveal>
             From the Field
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[#1F1F1F] border border-[#1F1F1F]">
           {TESTIMONIALS.map((t, idx) => (
-            <div key={idx} className="bg-[#0B0B0B] p-10 flex flex-col hover:bg-[#0F0F0F] transition-colors group">
+            <div key={idx} className="bg-[#0B0B0B] p-10 flex flex-col hover:bg-[#0F0F0F] transition-colors group" data-reveal data-reveal-delay={150 + idx * 100}>
 
               {/* Opening quote mark */}
               <div className="text-[32px] leading-none text-[#2A2A2A] font-serif mb-6 select-none">&ldquo;</div>

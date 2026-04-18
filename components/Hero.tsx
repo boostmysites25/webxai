@@ -4,25 +4,25 @@ export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden bg-[#0B0B0B]">
       
-      <div className="w-full max-w-[1200px] mx-auto px-6 pt-[160px] pb-[100px] md:pt-[180px] md:pb-[120px] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="w-full max-w-[1200px] mx-auto px-6 pt-[124px] pb-[64px] md:pt-[180px] md:pb-[120px] grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         
         {/* LEFT: Copy */}
         <div className="flex flex-col items-start z-10 relative">
           
-          <div className="mb-8 inline-flex items-center gap-2 text-[12px] font-mono text-[#A1A1AA] uppercase tracking-[0.1em]">
+          <div className="mb-8 inline-flex items-center gap-2 text-[12px] font-mono text-[#A1A1AA] uppercase tracking-[0.1em]" data-reveal data-reveal-delay="100">
              <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]" />
              Enterprise Infrastructure
           </div>
 
-          <h1 className="text-[52px] md:text-[68px] font-bold leading-[1.05] text-white mb-6 tracking-tight">
+          <h1 className="text-[52px] md:text-[68px] font-bold leading-[1.05] text-white mb-6 tracking-tight" data-reveal data-reveal-delay="300">
             Engineering AI Systems That Drive Revenue.
           </h1>
           
-          <p className="text-[16px] md:text-[18px] text-[#A1A1AA] leading-[1.6] max-w-[480px] mb-10">
+          <p className="text-[16px] md:text-[18px] text-[#A1A1AA] leading-[1.6] max-w-[480px] mb-10" data-reveal data-reveal-delay="500">
             We architect deterministic AI pipelines, scalable data environments, and high-performance SaaS platforms designed for absolute operational scale.
           </p>
           
-          <div className="flex gap-4">
+          <div className="flex gap-4" data-reveal data-reveal-delay="700">
             <Link
               href="?contact=true"
               className="h-[44px] px-8 rounded-[6px] bg-white text-black font-medium text-[14px] flex items-center justify-center transition-all hover:bg-[#e2e8f0]"
@@ -33,7 +33,7 @@ export default function Hero() {
         </div>
 
         {/* RIGHT: Vercel/Linear Abstract Lattice */}
-        <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-end select-none pointer-events-none">
+        <div className="hidden md:flex relative w-full h-[500px] items-center justify-end select-none pointer-events-none">
           
           <div className="absolute right-0 w-full max-w-[500px] h-full relative">
             

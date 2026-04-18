@@ -7,7 +7,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 import ContactModal from "@/components/ContactModal";
-import { AOSInit } from "@/components/AOSInit";
+import PageLoader from "@/components/PageLoader";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -324,7 +325,8 @@ export default function RootLayout({
         />
 
         <Providers>
-          <AOSInit />
+          <PageLoader />
+          <ScrollReveal />
           <Navbar />
           {children}
           <Footer />

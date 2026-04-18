@@ -22,10 +22,10 @@ export default function ArchitectureFlow() {
       <div className="w-full max-w-[1200px] mx-auto px-6">
 
         <div className="mb-20 text-left">
-          <span className="text-[11px] font-mono uppercase tracking-[0.1em] text-[#A1A1AA] mb-4 block">
+          <span className="text-[11px] font-mono uppercase tracking-[0.1em] text-[#A1A1AA] mb-4 block" data-reveal>
             System Diagram
           </span>
-          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white leading-[1.1]">
+          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white leading-[1.1]" data-reveal data-reveal-delay="100">
             Infrastructure Architecture
           </h2>
         </div>
@@ -34,7 +34,7 @@ export default function ArchitectureFlow() {
         <div className="relative flex flex-col md:flex-row items-center justify-center gap-0">
 
           {NODES.map((node, idx) => (
-            <div key={idx} className="flex flex-col md:flex-row items-center w-full md:w-auto">
+            <div key={idx} className="flex flex-col md:flex-row items-center w-full md:w-auto" data-reveal="scale" data-reveal-delay={100 + idx * 150}>
 
               {/* Node Box */}
               <div className={`relative flex flex-col items-center justify-center text-center w-full md:w-[200px] py-8 px-6 border transition-all duration-300 group

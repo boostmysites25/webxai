@@ -48,10 +48,10 @@ export default function WorkShowcase() {
         
         {/* Header */}
         <div className="flex flex-col mb-16 text-left">
-          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white mb-4">
+          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white mb-4" data-reveal>
             Systems Executed.
           </h2>
-          <p className="text-[16px] text-[#A1A1AA] leading-[1.6] max-w-[560px]">
+          <p className="text-[16px] text-[#A1A1AA] leading-[1.6] max-w-[560px]" data-reveal data-reveal-delay="100">
              We measure success in reduced latency, lower operational cost, and direct revenue enablement.
           </p>
         </div>
@@ -60,7 +60,7 @@ export default function WorkShowcase() {
         <div className="flex flex-col gap-12 lg:gap-16">
           
           {/* FEATURED BOUNDARY */}
-          <Link href={`/work/${FEATURED.id}`} className="block group">
+          <Link href={`/work/${FEATURED.id}`} className="block group" data-reveal="scale" data-reveal-delay="150">
             <div className="w-full linear-surface p-10 md:p-16 flex flex-col lg:flex-row gap-12 lg:gap-24 relative overflow-hidden bg-[#0A0A0A]">
                   
                 {/* Left side: Typography */}
@@ -92,14 +92,14 @@ export default function WorkShowcase() {
                 </div>
 
                 {/* Right side: Strict Metrics */}
-                <div className="lg:w-[320px] flex flex-col justify-between border-l border-[#1F1F1F] pl-0 lg:pl-12 pt-8 lg:pt-0 border-t lg:border-t-0">
+                <div className="lg:w-[280px] xl:w-[320px] shrink-0 flex flex-col justify-between border-l border-[#1F1F1F] pl-0 lg:pl-10 xl:pl-12 pt-8 lg:pt-0 border-t lg:border-t-0">
                   
                   <div className="mb-12">
                      <h4 className="text-[11px] font-mono tracking-[0.1em] text-[#A1A1AA] uppercase mb-4">Measured Impact</h4>
                      <div className="text-[64px] font-medium text-white leading-[1.0] mb-2 tracking-tighter">
                        {FEATURED.result}
                      </div>
-                     <p className="text-[13px] text-[#A1A1AA]">{FEATURED.resultLabel}</p>
+                     <p className="text-[13px] text-[#A1A1AA] pr-2 break-words leading-snug">{FEATURED.resultLabel}</p>
                   </div>
                   
                   <div>
@@ -118,9 +118,9 @@ export default function WorkShowcase() {
 
           {/* SECONDARY PROJECTS */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[#1F1F1F] border border-[#1F1F1F]">
-            {SECONDARY.map((proj) => {
+            {SECONDARY.map((proj, idx) => {
               const ContentBlock = (
-                <div className="bg-[#0A0A0A] p-10 md:p-12 transition-colors hover:bg-[#121212] flex flex-col h-full group">
+                <div className="bg-[#0A0A0A] p-10 md:p-12 transition-colors hover:bg-[#121212] flex flex-col h-full group" data-reveal data-reveal-delay={200 + idx * 100}>
                    
                    <div className="mb-10 flex flex-col gap-2">
                       <div className="text-[40px] font-medium text-white tracking-tighter leading-[1.0]">
