@@ -4,42 +4,28 @@ import Script from "next/script";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
 
 export const metadata: Metadata = {
-  title: "Blog – AI, Web Development & Tech Insights | Webxai",
-  description: "Read insights, engineering breakdowns, AI strategy, and deep technical analysis from the Webxai team. Articles on AI transformation, web development best practices, mobile apps, ecommerce, chatbots, and modern technology trends.",
+  title: "Blog – Engineering Insights & Technical Breakdowns | WebX AI",
+  description: "Read WebX AI's engineering blog for technical breakdowns, AI architecture strategies, scalable system design, and infrastructure insights from our team.",
   keywords: [
-    "Webxai blog",
-    "AI development blog",
-    "web development articles",
-    "Next.js tutorials",
-    "React development blog",
-    "AI transformation insights",
-    "technology insights",
-    "software engineering blog",
-    "mobile app development articles",
-    "ecommerce development tips",
-    "chatbot development guides",
+    "WebX AI blog", "webxai engineering blog", "AI engineering insights",
+    "web development blog India", "AI systems blog", "technical blog webxai",
+    "webex ai blog", "aiweb engineering", "software architecture blog India",
+    "Webxai blog", "AI development blog", "web development articles",
+    "Next.js tutorials", "React development blog", "AI transformation insights",
+    "software engineering blog", "mobile app development articles",
   ],
   openGraph: {
-    title: "Webxai Blog – AI, Web Development & Technology Insights",
-    description: "Read insights, engineering breakdowns, AI strategy, and deep technical analysis from the Webxai team.",
+    title: "Engineering Insights – WebX AI Blog",
+    description: "Technical breakdowns, architecture systems, and scalable engineering strategies from the WebX AI engineering studio.",
     url: `${siteUrl}/blog`,
-    images: [
-      {
-        url: `${siteUrl}/logo.png`,
-        width: 1200,
-        height: 630,
-        alt: "Webxai Blog",
-      },
-    ],
+    images: [{ url: `${siteUrl}/logo.png`, width: 1200, height: 630, alt: "WebX AI Blog" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Webxai Blog – AI, Web Development & Technical Analysis",
-    description: "Read insights, engineering breakdowns, AI strategy, and deep technical analysis.",
+    title: "Engineering Insights – WebX AI Blog",
+    description: "Technical breakdowns, architecture systems, and scalable engineering strategies.",
   },
-  alternates: {
-    canonical: `${siteUrl}/blog`,
-  },
+  alternates: { canonical: `${siteUrl}/blog` },
 };
 
 export default function BlogLayout({

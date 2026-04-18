@@ -1,453 +1,295 @@
-import FAQ from "@/components/FAQ";
-import Script from "next/script";
-import type { Metadata } from "next";
+"use client";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Software Development Services – Web, App, AI, Ecommerce & Chatbot | Webxai",
-  description: "Webxai offers premium software development services: Mobile App Development, Website & Web App Development, AI Development, Ecommerce Solutions, AI Chatbots, Blockchain, Game Development, and Data Analytics. Pricing starts from ₹25,000. Built with Next.js, React, Flutter, Python, and more.",
-  keywords: [
-    "web development services",
-    "mobile app development services",
-    "AI development services",
-    "ecommerce development company",
-    "chatbot development services",
-    "custom software development India",
-    "Next.js development company",
-    "React development services",
-    "Flutter app development",
-    "Python development",
-    "web app development pricing",
-    "affordable web development",
-    "AI chatbot development India",
-    "blockchain development company",
-    "game development services",
-    "data analytics services",
-    "app development company Hyderabad",
-    "best web development company India",
-    "Webxai services",
-  ],
-  openGraph: {
-    title: "Software Development Services – Web, App, AI & Ecommerce | Webxai",
-    description: "Webxai delivers premium Mobile App Development, Web Apps, AI Development, Ecommerce, Chatbots, and Data Analytics services. Modern tech stack. Pricing from ₹25,000.",
-    url: `${siteUrl}/services`,
-    images: [
-      {
-        url: `${siteUrl}/logo.png`,
-        width: 1200,
-        height: 630,
-        alt: "Webxai Software Development Services",
-      },
+const NAV_ITEMS = [
+  { id: "ai-dev", label: "AI Development" },
+  { id: "web-app", label: "Web App Infrastructure" },
+  { id: "mobile", label: "Mobile App Development" },
+  { id: "ecommerce", label: "E-Commerce Logistics" },
+  { id: "web3", label: "Web3 & Blockchain" },
+  { id: "game", label: "Game Logic Engineering" },
+];
+
+const SERVICES = [
+  {
+    id: "ai-dev",
+    num: "01",
+    title: "AI Development",
+    desc: "Custom generative models and fine-tuned RAG pipelines integrated securely into your latency-critical enterprise workloads.",
+    tags: ["OpenAI", "LangChain", "Vector DB"],
+    features: [
+      "Autonomous Multi-Agent Systems",
+      "Semantic Search & Routing",
+      "Fine-tuned Context Engines",
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Software Development Services – Web, App, AI & Ecommerce | Webxai",
-    description: "Mobile App Development, Web Apps, AI Development, Ecommerce, Chatbots, and Data Analytics services by Webxai.",
+  {
+    id: "web-app",
+    num: "02",
+    title: "Web App Infrastructure",
+    desc: "End-to-end multi-tenant platform architecture, engineered with advanced RBAC, load balancing, and autonomous scaling from day one.",
+    tags: ["Next.js", "PostgreSQL", "React"],
+    features: [
+      "Multi-tenant Database Design",
+      "Edge Rendering",
+      "React Suspense Architecture",
+    ],
   },
-  alternates: {
-    canonical: `${siteUrl}/services`,
+  {
+    id: "mobile",
+    num: "03",
+    title: "Mobile App Development",
+    desc: "High-performance native and cross-platform mobile architectures optimized for peak frame rate and reliable offline caching.",
+    tags: ["React Native", "Swift", "Kotlin"],
+    features: [
+      "Native UI Rendering",
+      "Offline-first Sync",
+      "Hardware Accelerated Performance",
+    ],
   },
-};
+  {
+    id: "ecommerce",
+    num: "04",
+    title: "E-Commerce Logistics",
+    desc: "Highly-scalable checkout routing, payment gateways, and real-time inventory management built for high-volume concurrent operations.",
+    tags: ["Shopify Plus", "Stripe", "Redis"],
+    features: [
+      "Real-time Inventory Sync",
+      "Sub-second Checkout Flow",
+      "Headless CMS Integration",
+    ],
+  },
+  {
+    id: "web3",
+    num: "05",
+    title: "Web3 & Blockchain",
+    desc: "Deterministic smart contract deployment, decentralized ledgers, zero-knowledge proofs, and secure on-chain wallet integrations.",
+    tags: ["Solidity", "Hardhat", "Web3.js"],
+    features: [
+      "Secure Smart Contracts",
+      "Layer 2 Scaling",
+      "Cross-chain Bridges",
+    ],
+  },
+  {
+    id: "game",
+    num: "06",
+    title: "Game Logic Engineering",
+    desc: "Real-time multiplayer networking, precision physics engines, and rendering pipelines architected for minimum state latency.",
+    tags: ["Unity", "Unreal Engine", "WebGL"],
+    features: [
+      "Real-time Networking",
+      "Custom Physics Pipelines",
+      "WebGL Rendering",
+    ],
+  },
+];
+
+const PROCESS = [
+  { num: "01", label: "Audit" },
+  { num: "02", label: "Build" },
+  { num: "03", label: "Integrate" },
+  { num: "04", label: "Scale" },
+];
+
+const TECH = ["Next.js", "PostgreSQL", "OpenAI", "LangChain", "AWS", "Redis"];
 
 export default function ServicesPage() {
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: [
-      {
-        "@type": "Service",
-        position: 1,
-        name: "Mobile App Development",
-        description: "High-performance iOS and Android apps engineered with stunning UI, smooth experiences and scalable backend architecture.",
-        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
-        areaServed: "Worldwide",
-        serviceType: "Mobile Application Development",
-      },
-      {
-        "@type": "Service",
-        position: 2,
-        name: "Website & Web App Development",
-        description: "Fast, conversion-focused websites and scalable web apps built using modern frameworks like Next.js, React and Node.",
-        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
-        areaServed: "Worldwide",
-        serviceType: "Web Development",
-      },
-      {
-        "@type": "Service",
-        position: 3,
-        name: "E-Commerce Solutions",
-        description: "Powerful online stores and multi-vendor marketplaces designed to maximize sales and user retention.",
-        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
-        areaServed: "Worldwide",
-        serviceType: "Ecommerce Development",
-      },
-      {
-        "@type": "Service",
-        position: 4,
-        name: "AI Development",
-        description: "Automation systems, AI assistants, ML models and next-gen tools integrated directly into your business workflow.",
-        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
-        areaServed: "Worldwide",
-        serviceType: "Artificial Intelligence Development",
-      },
-      {
-        "@type": "Service",
-        position: 5,
-        name: "AI Chatbots & Assistants",
-        description: "Enhance user engagement with AI-powered chatbots that understand context, intent, and deliver instant support.",
-        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
-        areaServed: "Worldwide",
-        serviceType: "Chatbot Development",
-      },
-      {
-        "@type": "Service",
-        position: 6,
-        name: "Blockchain Solutions",
-        description: "From smart contracts to full-scale dApps, secure and scalable blockchain solutions tailored to your needs.",
-        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
-        areaServed: "Worldwide",
-        serviceType: "Blockchain Development",
-      },
-      {
-        "@type": "Service",
-        position: 7,
-        name: "Game Development",
-        description: "Captivating mobile and desktop games with cutting-edge graphics, physics, and addictive mechanics.",
-        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
-        areaServed: "Worldwide",
-        serviceType: "Game Development",
-      },
-      {
-        "@type": "Service",
-        position: 8,
-        name: "Data Analytics & Dashboards",
-        description: "Transform raw data into live dashboards, forecasts and insights that power real business decisions.",
-        provider: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Webxai" },
-        areaServed: "Worldwide",
-        serviceType: "Data Analytics",
-      },
-    ],
-  };
+  const [activeSection, setActiveSection] = useState("ai-dev");
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-  const serviceFaqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What web development services does Webxai offer?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Webxai offers full-stack web development including static websites, dynamic web applications, SaaS platforms, and progressive web apps (PWAs). We use Next.js, React, Node.js, and modern technologies for enterprise-grade performance.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How much does app development cost at Webxai?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Our pricing starts from ₹25,000 for starter projects. Professional-grade projects start at ₹60,000+, and enterprise-level custom AI + advanced solutions start at ₹1,50,000+. Final pricing depends on scope and complexity.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does Webxai develop AI chatbots and virtual assistants?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes, Webxai specializes in building AI-powered chatbots and virtual assistants that understand context and intent. Our chatbots integrate with websites, mobile apps, WhatsApp, and more for automated customer support and engagement.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can Webxai build custom ecommerce platforms?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Absolutely. We build custom B2B and B2C ecommerce platforms, multi-vendor marketplaces, and online stores with seamless checkout, inventory management, payment integration, and high-conversion UI design.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What technologies does Webxai use for development?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "We use Next.js, React, Flutter, Python, Node.js, PostgreSQL, TensorFlow, and AWS among other modern technologies. Our tech stack is chosen for maximum performance, scalability, and maintainability.",
-        },
-      },
-    ],
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const offsets = NAV_ITEMS.map(({ id }) => {
+        const el = sectionRefs.current[id];
+        if (!el) return { id, top: Infinity };
+        return { id, top: el.getBoundingClientRect().top };
+      });
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteUrl,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Services",
-        item: `${siteUrl}/services`,
-      },
-    ],
+      const current = offsets
+        .filter((o) => o.top <= 160)
+        .sort((a, b) => b.top - a.top)[0];
+
+      if (current) setActiveSection(current.id);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    const el = sectionRefs.current[id];
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
-      <Script
-        id="service-schema"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceSchema),
-        }}
-      />
-      <Script
-        id="service-faq-schema"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceFaqSchema),
-        }}
-      />
-      <Script
-        id="service-breadcrumb-schema"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-      />
+    <main className="w-full min-h-screen bg-[#0B0B0B] text-white">
 
-      {/* GLOBAL CONTINUOUS BACKGROUND */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-            backgroundSize: "85px 85px",
-          }}
-        />
-      </div>
-
-      {/* VERTICAL LINES */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-        <div className="absolute left-1/4 top-0 w-[2px] h-full bg-linear-to-b from-purple-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-linear-to-b from-blue-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-[70%] top-0 w-[2px] h-full bg-linear-to-b from-purple-400/30 to-transparent blur-sm"></div>
-      </div>
-
-      {/* HERO GLOWS */}
-      <div className="absolute -top-40 left-0 w-[1300px] h-[300px] bg-linear-to-r from-blue-600/40 to-purple-500/40 blur-[120px]" />
-      <div className="absolute bottom-[-250px] right-[-150px] w-[1300px] h-[300px] bg-linear-to-r from-purple-600/40 to-blue-400/40 blur-[120px]" />
-
-      {/* MAIN WRAPPER */}
-      <div className="relative z-10 max-w-[1250px] mx-auto px-6 py-[160px]">
-
-        {/* -------------------------------------------------------------- */}
-        {/* HERO */}
-        {/* -------------------------------------------------------------- */}
-        <div className="text-center mb-[160px]" data-aos="fade-up">
-          <h1 className="text-[60px] md:text-[90px] font-extrabold tracking-tight leading-[1.05]">
-            Our Premium{" "}
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-purple-400 to-blue-500">
-              Services
-            </span>
+      {/* ── HERO ──────────────────────────────────────────── */}
+      <section className="w-full pt-[160px] pb-[100px] bg-[#0B0B0B]">
+        <div className="w-full max-w-[1200px] mx-auto px-6">
+          <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-[#A1A1AA] mb-6 block">
+            Core Capabilities Array
+          </span>
+          <h1 className="text-[56px] md:text-[80px] font-bold tracking-tight leading-[1.0] text-white mb-8">
+            Engineering Capabilities.
           </h1>
-          <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90 mt-6">
-            We build intelligent, scalable digital systems crafted for growth-driven brands.
+          <p className="text-[17px] md:text-[20px] text-[#A1A1AA] leading-[1.6] max-w-[600px]">
+            We deploy exact, deterministic systems designed to scale infrastructure and generate measurable revenue.
           </p>
         </div>
+      </section>
 
-        {/* -------------------------------------------------------------- */}
-        {/* SERVICE BLOCKS (ULTRA PREMIUM) */}
-        {/* -------------------------------------------------------------- */}
-
-        <ServiceBlock
-          reverse={false}
-          title="Mobile App Development"
-          desc="High-performance iOS and Android apps engineered with stunning UI, smooth experiences and scalable backend architecture."
-          img="/services/mobile.png"
-        />
-
-        <ServiceBlock
-          reverse={true}
-          title="Website & Web App Development"
-          desc="Fast, conversion-focused websites and scalable web apps built using modern frameworks like Next.js, React and Node."
-          img="/services/web.png"
-        />
-
-        <ServiceBlock
-          reverse={false}
-          title="E-Commerce Solutions"
-          desc="We build powerful online stores and multi-vendor marketplaces designed to maximize sales and user retention."
-          img="/services/ecommerce.png"
-        />
-
-        <ServiceBlock
-          reverse={true}
-          title="AI Development"
-          desc="Automation systems, AI assistants, ML models and next-gen tools integrated directly into your business workflow."
-          img="/services/ai.png"
-        />
-
-        <ServiceBlock
-          reverse={false}
-          title="AI Chatbots & Assistants"
-          desc="Enhance user engagement with AI-powered chatbots that understand context, intent, and deliver instant support."
-          img="/services/chatbot.png"
-        />
-
-        <ServiceBlock
-          reverse={true}
-          title="Blockchain Solutions"
-          desc="From smart contracts to full-scale dApps, we deliver secure and scalable blockchain solutions tailored to your needs."
-          img="/services/blockchain.png"
-        />
-
-        <ServiceBlock
-          reverse={false}
-          title="Game Development"
-          desc="We create captivating mobile and desktop games with cutting-edge graphics, physics, and addictive mechanics."
-          img="/services/game.png"
-        />
-
-        <ServiceBlock
-          reverse={true}
-          title="Data Analytics & Dashboards"
-          desc="We transform raw data into live dashboards, forecasts and insights that power real business decisions."
-          img="/services/data.png"
-        />
-
-        {/* -------------------------------------------------------------- */}
-        {/* PROCESS / WORKFLOW SECTION */}
-        {/* -------------------------------------------------------------- */}
-
-        <div className="mt-[200px] mb-[150px]" data-aos="fade-up">
-          <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-14">
-            Our Process
-          </h2>
-
-          <div className="grid md:grid-cols-4 gap-10">
-            {[
-              ["1. Discovery", "Understanding your goals, audience & product vision."],
-              ["2. Engineering", "Architecture, UI/UX, and core technical development."],
-              ["3. AI Integration", "Enhancing systems with automation and intelligence."],
-              ["4. Launch & Scale", "Testing, deployment, monitoring & continuous growth."]
-            ].map(([title, desc], i) => (
-              <div
-                key={title}
-                className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-center hover:bg-white/10 transition"
-                data-aos="fade-up"
-                data-aos-delay={i * 100}
+      {/* ── STICKY NAV STRIP ──────────────────────────────── */}
+      <div className="w-full border-t border-b border-[#1F1F1F] bg-[#0B0B0B] sticky top-[64px] z-40">
+        <div className="w-full max-w-[1200px] mx-auto px-6">
+          <nav className="flex overflow-x-auto scrollbar-hide gap-0">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className={`flex-shrink-0 py-4 px-4 text-[12px] font-medium transition-all border-b-[2px] ${
+                  activeSection === item.id
+                    ? "text-white border-white"
+                    : "text-[#A1A1AA] border-transparent hover:text-white"
+                }`}
               >
-                <h3 className="text-xl font-semibold mb-3">{title}</h3>
-                <p className="text-soft">{desc}</p>
-              </div>
+                {item.label}
+              </button>
             ))}
-          </div>
+          </nav>
         </div>
+      </div>
 
-        {/* -------------------------------------------------------------- */}
-        {/* TECHNOLOGIES */}
-        {/* -------------------------------------------------------------- */}
+      {/* ── SERVICE SECTIONS ──────────────────────────────── */}
+      <div className="w-full max-w-[1200px] mx-auto px-6">
+        {SERVICES.map((srv, idx) => {
+          const isReversed = idx % 2 !== 0;
+          return (
+            <section
+              key={srv.id}
+              id={srv.id}
+              ref={(el) => { sectionRefs.current[srv.id] = el; }}
+              className="py-[100px] border-b border-[#1F1F1F] last:border-b-0"
+            >
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start ${isReversed ? "lg:flex lg:flex-row-reverse" : ""}`}>
 
-        <div className="mb-[180px]" data-aos="fade-up">
-          <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-12">
-            Technologies We Use
-          </h2>
+                {/* LEFT / RIGHT (alternating): Info */}
+                <div className="flex flex-col">
+                  <div className="flex items-start gap-5 mb-10">
+                    <span className="text-[11px] font-mono text-[#A1A1AA] mt-1 flex-shrink-0">{srv.num}</span>
+                    <div>
+                      <h2 className="text-[36px] md:text-[48px] font-bold tracking-tight text-white leading-[1.1] mb-6">
+                        {srv.title}
+                      </h2>
+                      <p className="text-[16px] text-[#A1A1AA] leading-[1.7] max-w-[440px]">
+                        {srv.desc}
+                      </p>
+                    </div>
+                  </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center opacity-90">
-            {["Next.js", "React", "Flutter", "Python", "Node.js", "PostgreSQL", "TensorFlow", "AWS"].map(
-              (t, i) => (
-                <div
-                  key={t}
-                  className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xl hover:bg-white/10 transition"
-                  data-aos="fade-up"
-                  data-aos-delay={i * 50}
-                >
-                  <p className="text-lg">{t}</p>
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-2 ml-9">
+                    {srv.tags.map((t) => (
+                      <span key={t} className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-[0.08em] border border-[#1F1F1F] px-2.5 py-1 rounded-sm">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              )
-            )}
-          </div>
-        </div>
 
-        {/* -------------------------------------------------------------- */}
-        {/* PRICING OVERVIEW */}
-        {/* -------------------------------------------------------------- */}
+                {/* RIGHT / LEFT (alternating): Features */}
+                <div className="flex flex-col justify-center border-l border-[#1F1F1F] pl-12 lg:pl-16 gap-0">
+                  {srv.features.map((feat, fidx) => (
+                    <div
+                      key={fidx}
+                      className={`py-7 flex items-start gap-5 group ${fidx !== srv.features.length - 1 ? "border-b border-[#1F1F1F]" : ""}`}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] mt-2 flex-shrink-0" />
+                      <span className="text-[18px] font-medium text-[#A1A1AA] group-hover:text-white transition-colors leading-tight">
+                        {feat}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
-        <div className="mb-[200px]" data-aos="fade-up">
-          <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-14">
-            Pricing Overview
-          </h2>
+              </div>
+            </section>
+          );
+        })}
+      </div>
 
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              ["Starter", "₹25,000+", "Ideal for small businesses"],
-              ["Professional", "₹60,000+", "For scaling companies"],
-              ["Enterprise", "₹1,50,000+", "Custom AI + advanced solutions"]
-            ].map(([tier, price, note], i) => (
-              <div
-                key={tier}
-                className="p-10 text-center bg-white/5 border border-white/10 rounded-2xl backdrop-blur-xl hover:bg-white/10 transition"
-                data-aos="fade-up"
-                data-aos-delay={i * 100}
-              >
-                <h3 className="text-3xl font-bold mb-2">{tier}</h3>
-                <p className="text-4xl font-extrabold text-white mb-3">{price}</p>
-                <p className="text-soft opacity-80">{note}</p>
+      {/* ── PROCESS STRIP ─────────────────────────────────── */}
+      <section className="w-full py-[100px] bg-[#0B0B0B]">
+        <div className="w-full max-w-[1200px] mx-auto px-6">
+          <h3 className="text-[11px] font-mono uppercase tracking-[0.15em] text-[#A1A1AA] mb-16 text-center">
+            Deployment Protocol
+          </h3>
+          <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-12 md:gap-0">
+            {/* Horizontal Line */}
+            <div className="hidden md:block absolute top-[12px] left-[5%] right-[5%] h-[1px] bg-[#1F1F1F]" />
+            {PROCESS.map((step, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center relative z-10 flex-1">
+                <div className="w-6 h-6 rounded-full bg-[#0B0B0B] border border-[#333] flex items-center justify-center mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]" />
+                </div>
+                <span className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-[0.1em] mb-1">{step.num}</span>
+                <span className="text-[18px] font-semibold text-white">{step.label}</span>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* -------------------------------------------------------------- */}
-        {/* FAQ SECTION */}
-        {/* -------------------------------------------------------------- */}
-
-        <div className="mb-[200px]">
-          <FAQ />
+      {/* ── TECH STRIP ────────────────────────────────────── */}
+      <section className="w-full py-10 border-t border-[#1F1F1F] bg-[#0B0B0B]">
+        <div className="w-full max-w-[1200px] mx-auto px-6">
+          <div className="flex flex-wrap gap-x-8 gap-y-3 justify-center items-center">
+            {TECH.map((item, idx) => (
+              <span key={item} className="flex items-center gap-8">
+                <span className="text-[14px] font-semibold text-white hover:text-[#A1A1AA] transition-colors cursor-default tracking-tight">
+                  {item}
+                </span>
+                {idx < TECH.length - 1 && (
+                  <span className="text-[#2A2A2A] text-[18px] font-light select-none">/</span>
+                )}
+              </span>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* FINAL CTA */}
-        <div className="text-center py-[100px]" data-aos="fade-up">
-          <h3 className="text-4xl md:text-5xl font-bold mb-8">
-            Ready to Build Something Powerful?
-          </h3>
-          <button className="px-14 py-5 rounded-xl text-white text-lg font-medium 
-            bg-linear-to-r from-blue-600/40 to-purple-600/40 
-            border border-white/20 backdrop-blur-xl 
-            hover:from-blue-600/50 hover:to-purple-600/50 transition">
-            Start Your Project
-          </button>
+      {/* ── FINAL CTA ─────────────────────────────────────── */}
+      <section className="w-full py-[140px] bg-[#0B0B0B]">
+        <div className="w-full max-w-[800px] mx-auto px-6 text-center flex flex-col items-center">
+          <h2 className="text-[44px] md:text-[64px] font-bold text-white leading-[1.05] tracking-tight mb-6">
+            Build Systems That<br />
+            <span className="text-[#A1A1AA]">Actually Scale.</span>
+          </h2>
+          <p className="text-[16px] md:text-[18px] text-[#A1A1AA] leading-[1.6] mb-12 max-w-[520px]">
+            Work directly with engineers building production-grade infrastructure. No project managers. No templates.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <Link
+              href="?contact=true"
+              className="h-[44px] px-8 rounded-[6px] bg-white text-black font-medium text-[14px] flex items-center justify-center hover:bg-[#e2e8f0] transition-colors"
+            >
+              Start Project
+            </Link>
+            <Link
+              href="?contact=true"
+              className="h-[44px] px-8 rounded-[6px] border border-[#1F1F1F] text-white font-medium text-[14px] flex items-center justify-center hover:bg-[#121212] transition-colors"
+            >
+              Discuss Architecture
+            </Link>
+          </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-/* ------------------------------------------------------------------ */
-/* SERVICE BLOCK COMPONENT                                            */
-/* ------------------------------------------------------------------ */
-
-function ServiceBlock({ reverse, title, desc, img }: any) {
-  return (
-    <div className={`grid md:grid-cols-2 gap-20 mb-[180px] items-center ${reverse ? "md:flex-row-reverse" : ""}`} data-aos="fade-up">
-      <div>
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">{title}</h2>
-        <p className="text-soft text-lg leading-relaxed opacity-90">{desc}</p>
-      </div>
-
-      <div className="relative w-full h-[380px] rounded-3xl overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10">
-        <img src={img} alt={title} className="w-full h-full object-cover opacity-90" />
-      </div>
-    </div>
+    </main>
   );
 }

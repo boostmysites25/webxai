@@ -1,242 +1,203 @@
 "use client";
-import React, { useRef } from "react";
-import Image from "next/image";
-import FAQ from "@/components/FAQ";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 
-import {
-  webPortfolio,
-  ecommercePortfolio,
-  appPortfolio,
-  aiPortfolio,
-  blockchainPortfolio,
-  chatbotPortfolio,
-  gamePortfolio,
-  recentPortfolio,
-} from "@/data/portfolioContent";
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import { allProjects } from "@/data/portfolioContent";
+
+const CATEGORIES = ["All", ...Array.from(new Set(allProjects.map((p) => p.category)))];
+
+// Featured project layout rule:
+const FEATURED_PROJECT = allProjects.find(p => p.id === 77) || allProjects[0];
 
 export default function WorkPage() {
+  const [activeTab, setActiveTab] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(9); // Pagination count
+
+  // Filter core logic (disabled text search as per updated minimal spec, but kept filtering robust)
+  const filteredProjects = useMemo(() => {
+    return allProjects.filter((p) => {
+      // Exclude featured project if viewing "All"
+      if (p.id === FEATURED_PROJECT.id && activeTab === "All") return false;
+      return activeTab === "All" || p.category === activeTab;
+    });
+  }, [activeTab]);
+
+  const displayedProjects = filteredProjects.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProjects.length;
+
   return (
-    <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
-      {/* GLOBAL BACKGROUND */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-            backgroundSize: "85px 85px",
-          }}
-        />
-      </div>
-
-      {/* NEON LINES */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-        <div className="absolute left-1/4 top-0 w-[2px] h-full bg-linear-to-b from-purple-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-linear-to-b from-blue-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-[70%] top-0 w-[2px] h-full bg-linear-to-b from-purple-400/30 to-transparent blur-sm"></div>
-      </div>
-
-      {/* GLOWS */}
-      <div className="absolute -top-40 left-0 w-[1200px] h-[300px] bg-linear-to-r from-blue-600/30 to-purple-500/30 blur-[120px]" />
-      <div className="absolute bottom-[-250px] right-[-150px] w-[1300px] h-[300px] bg-linear-to-r from-purple-600/30 to-blue-400/30 blur-[120px]" />
-
-      {/* MAIN CONTENT */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 py-[160px]">
-        {/* HERO TITLE - Matches About/Contact Style */}
-        <div className="text-center mb-[140px]" data-aos="fade-up">
-          <h1 className="text-[70px] md:text-[95px] font-extrabold leading-[1.05] mb-6">
-            Our{" "}
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-purple-400 to-blue-500">
-              Work
-            </span>
+    <main className="w-full min-h-screen bg-[#0B0B0B] text-white">
+      
+      {/* ── HERO ── */}
+      <section className="w-full pt-[160px] pb-[80px]">
+        <div className="w-full max-w-[1200px] mx-auto px-6">
+          <h1 className="text-[56px] md:text-[80px] font-bold tracking-tight text-white leading-[1.0] mb-6">
+            Systems Executed.
           </h1>
-
-          <p
-            className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            Selected digital products built for scale, performance, and impact.
+          <p className="text-[17px] md:text-[20px] text-[#A1A1AA] leading-[1.6] max-w-[600px]">
+             A structured ledger of scalable systems engineered for performance and measurable output.
           </p>
         </div>
+      </section>
 
-        {/* PORTFOLIO CONTENT - Groups */}
-        <PortfolioGroup title="Recent & Featured" items={recentPortfolio} />
-        <PortfolioGroup title="Web Development" items={webPortfolio} />
-        <PortfolioGroup title="E-Commerce" items={ecommercePortfolio} />
-        <PortfolioGroup title="App Development" items={appPortfolio} />
-        <PortfolioGroup title="AI Solutions" items={aiPortfolio} />
-        <PortfolioGroup title="Blockchain" items={blockchainPortfolio} />
-        <PortfolioGroup title="Chatbots" items={chatbotPortfolio} />
-        <PortfolioGroup title="Game Development" items={gamePortfolio} />
-
-        {/* FAQ */}
-        <div className="mt-[160px] mb-[160px]">
-          <FAQ />
-        </div>
-
-        {/* CTA */}
-        <div className="text-center py-[100px]" data-aos="fade-up">
-          <h3 className="text-4xl md:text-5xl font-bold mb-8">
-            Ready to Build Your Project?
-          </h3>
-          <button
-            className="px-14 py-5 rounded-xl text-white text-lg font-medium 
-            bg-linear-to-r from-blue-600/40 to-purple-600/40 
-            border border-white/20 backdrop-blur-xl 
-            hover:from-blue-600/50 hover:to-purple-600/50 transition"
-          >
-            Start Your Project
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* --------------------------------------------- */
-/* SUB COMPONENTS (Duplicated from Portfolio.tsx)*/
-/* --------------------------------------------- */
-
-function PortfolioGroup({ title, items }: any) {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-
-  const carouselSettings = {
-    modules: [Autoplay, Navigation],
-    spaceBetween: 30,
-    slidesPerView: 1,
-    loop: true,
-    speed: 1000,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    navigation: {
-      prevEl: prevRef.current,
-      nextEl: nextRef.current,
-    },
-    breakpoints: {
-      640: {
-        slidesPerView: 1,
-      },
-      768: {
-        slidesPerView: 2,
-      },
-      1024: {
-        slidesPerView: 3,
-      },
-    },
-    onBeforeInit: (swiper: any) => {
-      swiper.params.navigation.prevEl = prevRef.current;
-      swiper.params.navigation.nextEl = nextRef.current;
-    },
-  };
-
-  return (
-    <div className="mb-24 relative" data-aos="fade-up" data-aos-delay="200">
-      <div className="flex justify-between items-center mb-8 px-4">
-        <h3 className="text-white text-3xl font-semibold border-l-4 border-blue-500 ml-4 pl-4">
-          {title}
-        </h3>
-        {/* Navigation Buttons */}
-        <div className="flex gap-4">
-          <button
-            ref={prevRef}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-500/20 flex items-center justify-center transition-all border border-white/20 hover:border-blue-500"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 19L8 12L15 5"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            ref={nextRef}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-500/20 flex items-center justify-center transition-all border border-white/20 hover:border-blue-500"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 5L16 12L9 19"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+      {/* ── FILTER TABS (STICKY) ── */}
+      <div className="w-full border-t border-b border-[#1F1F1F] bg-[#0B0B0B]/90 backdrop-blur-md sticky top-[64px] z-30">
+        <div className="w-full max-w-[1200px] mx-auto px-6">
+          <nav className="flex overflow-x-auto scrollbar-hide gap-0 items-center">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => { setActiveTab(cat); setVisibleCount(9); }}
+                className={`flex-shrink-0 py-4 px-4 text-[13px] font-medium transition-all border-b-[2px] ${
+                  activeTab === cat ? "text-white border-white" : "text-[#A1A1AA] border-transparent hover:text-white"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </nav>
         </div>
       </div>
 
-      <div className="px-4">
-        <Swiper {...carouselSettings} className="w-full">
-          {items.map((item: any) => (
-            <SwiperSlide key={item.id}>
-              <PortfolioCard item={item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </div>
-  );
-}
+      {/* ── GRID SYSTEM ── */}
+      <section className="w-full max-w-[1200px] mx-auto px-6 py-[80px]">
+         
+         {/* FEATURED: Only show if tab is "All" */}
+         {activeTab === "All" && (
+           <div className="w-full mb-16">
+              <div className="w-full flex-col block bg-[#0A0A0A] border border-[#1F1F1F] relative overflow-hidden group">
+                 <div className="flex flex-col lg:flex-row relative z-10 p-0 md:p-4">
+                    
+                    {/* Image Box */}
+                    <div className="w-full lg:w-[600px] aspect-[16/10] overflow-hidden bg-[#121212]">
+                       <img src={FEATURED_PROJECT.image} alt={FEATURED_PROJECT.title} className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-[1.02]" />
+                    </div>
 
-function PortfolioCard({ item }: any) {
-  const linkUrl = `/portfolio/${item.id}`;
+                    {/* Content Box */}
+                    <div className="flex-1 p-8 lg:p-12 flex flex-col items-start justify-center">
+                       <span className="text-[11px] font-mono tracking-[0.1em] text-[#7C3AED] uppercase mb-4">Primary Architecture Node</span>
+                       <h2 className="text-[32px] md:text-[48px] font-bold text-white mb-6 leading-[1.1] tracking-tight">{FEATURED_PROJECT.title}</h2>
+                       <p className="text-[15px] text-[#A1A1AA] leading-[1.6] mb-8 line-clamp-2 max-w-[500px]">{FEATURED_PROJECT.caseStudy.challenge}</p>
+                       
+                       {/* Outcome Metric extracted */}
+                       <div className="flex flex-col border-l border-[#1F1F1F] pl-5 mb-12">
+                         <span className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-widest mb-1">Measured Outcome</span>
+                         <span className="text-[28px] font-medium text-white tracking-tight leading-none">{FEATURED_PROJECT.caseStudy.impact.split('.')[0]}.</span>
+                       </div>
 
-  return (
-    <a
-      href={linkUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block w-full rounded-2xl bg-[#0A0A0C]/80 backdrop-blur-xl 
-      border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.3)]
-      hover:border-white/25 hover:shadow-[0_0_40px_rgba(100,200,255,0.15)]
-      transform hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
-    >
-      <div className="relative w-full h-[220px] overflow-hidden">
-        <Image
-          src={item.image}
-          alt={item.title}
-          width={400}
-          height={300}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          unoptimized
-        />
-      </div>
+                       {/* Action Buttons */}
+                       <div className="flex flex-wrap items-center gap-4 w-full">
+                          {FEATURED_PROJECT.link !== "#" && (
+                            <a 
+                              href={FEATURED_PROJECT.link}
+                              target="_blank"
+                              rel="noreferrer" 
+                              className="px-6 h-[40px] flex items-center justify-center bg-white text-black text-[13px] font-medium transition-colors hover:bg-gray-200"
+                            >
+                              View Live ↗
+                            </a>
+                          )}
+                          <Link 
+                            href={`/work/${FEATURED_PROJECT.id}`}
+                            className="px-6 h-[40px] flex items-center justify-center bg-transparent border border-[#1F1F1F] text-white text-[13px] font-medium transition-colors hover:bg-[#121212]"
+                          >
+                            Read Case Study
+                          </Link>
+                       </div>
+                    </div>
 
-      <div className="p-6">
-        <h3 className="text-white text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">
-          {item.title}
-        </h3>
-        <p className="text-soft text-sm leading-relaxed opacity-80 h-[60px] overflow-hidden">
-          {item.description}
-        </p>
+                 </div>
+              </div>
+           </div>
+         )}
 
-        <div className="mt-4 flex items-center text-blue-400 text-sm font-medium">
-          View Case Study <span className="ml-2">→</span>
+         {/* MAIN PAGINATED GRID */}
+         {displayedProjects.length > 0 ? (
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             {displayedProjects.map((p) => (
+               <div key={p.id} className="w-full bg-[#0B0B0B] group flex flex-col overflow-hidden border border-transparent hover:border-[#1F1F1F] transition-colors duration-300">
+                 {/* Image Container */}
+                 <div className="w-full aspect-[4/3] overflow-hidden bg-[#121212] mb-6">
+                    <img src={p.image} alt={p.title} className="w-full h-full object-cover scale-[1.01] grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
+                 </div>
+                 
+                 {/* Body */}
+                 <div className="px-2 flex-1 flex flex-col">
+                    <div className="flex items-center justify-between mb-3 border-b border-[#1F1F1F] pb-3">
+                       <h3 className="text-[18px] font-semibold text-white tracking-tight">{p.title}</h3>
+                       <span className="text-[10px] font-mono tracking-[0.1em] text-[#A1A1AA] uppercase">{p.category}</span>
+                    </div>
+                    <p className="text-[14px] text-[#A1A1AA] leading-[1.6] line-clamp-2 mb-8 flex-1">
+                      {p.description}
+                    </p>
+                    
+                    {/* Actions - Always Visible Minimal Style */}
+                    <div className="flex items-center gap-3 pb-2">
+                       {p.link !== "#" && (
+                         <a 
+                           href={p.link}
+                           target="_blank"
+                           rel="noreferrer" 
+                           className="flex-1 h-[36px] flex items-center justify-center bg-[#121212] border border-[#1F1F1F] text-white text-[12px] font-medium transition-colors hover:bg-white hover:text-black hover:border-white"
+                         >
+                           Live Site ↗
+                         </a>
+                       )}
+                       <Link 
+                         href={`/work/${p.id}`}
+                         className="flex-1 h-[36px] flex items-center justify-center bg-transparent border border-[#1F1F1F] text-[#A1A1AA] text-[12px] font-medium transition-colors hover:text-white hover:border-[#333]"
+                       >
+                         Case Study →
+                       </Link>
+                    </div>
+                 </div>
+               </div>
+             ))}
+           </div>
+         ) : (
+            <div className="w-full py-20 text-center text-[#A1A1AA] font-mono text-[13px] uppercase tracking-widest border border-[#1F1F1F]">
+               No architecture mapped for these parameters.
+            </div>
+         )}
+
+         {/* PAGINATION */}
+         {hasMore && (
+           <div className="w-full mt-24 flex justify-center">
+             <button 
+                onClick={() => setVisibleCount(v => v + 9)}
+                className="h-[44px] px-8 bg-transparent border border-[#1F1F1F] text-white hover:bg-[#121212] transition-colors font-medium text-[13px]"
+             >
+               Load More Systems
+             </button>
+           </div>
+         )}
+
+      </section>
+
+      {/* ── FOOTER CTA ── */}
+      <section className="relative w-full py-[160px] lg:py-[200px] bg-[#0B0B0B] border-t border-[#1F1F1F] overflow-hidden">
+        <div className="w-full max-w-[800px] mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+          <div className="mb-8 inline-flex items-center gap-2 px-3 py-1 border border-[#1F1F1F] text-[11px] font-mono text-[#A1A1AA] tracking-[0.1em] uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] animate-pulse" />
+            Infrastructure Deployment
+          </div>
+          
+          <h2 className="text-[48px] md:text-[72px] font-bold text-white tracking-tighter leading-[1.0] mb-8">
+            Build the Next<br />
+            System With Us.
+          </h2>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 w-full sm:w-auto">
+            <Link href="?contact=true" className="w-full sm:w-auto h-[48px] px-8 rounded-sm bg-white text-black font-medium text-[14px] flex items-center justify-center hover:bg-gray-200 transition-colors">
+              Start Project
+            </Link>
+            <Link href="/services" className="w-full sm:w-auto h-[48px] px-8 rounded-sm border border-[#1F1F1F] text-white font-medium text-[14px] flex items-center justify-center hover:bg-[#121212] transition-colors">
+              Explore Capabilities
+            </Link>
+          </div>
         </div>
-      </div>
-    </a>
+      </section>
+
+    </main>
   );
 }

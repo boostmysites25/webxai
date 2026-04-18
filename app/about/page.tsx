@@ -1,332 +1,196 @@
-import FAQ from "@/components/FAQ";
-import Script from "next/script";
 import type { Metadata } from "next";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Webxai – AI & Web Development Company in Hyderabad, India",
-  description: "Webxai is an AI-driven software development company based in Hyderabad, India. MSME registered. Official technology partner of BoostMySites. We engineer intelligent digital systems with precision — web development, AI solutions, mobile apps, and scalable platforms for startups and enterprises.",
-  keywords: [
-    "about Webxai",
-    "Webxai company",
-    "AI development company India",
-    "web development team Hyderabad",
-    "software engineering company India",
-    "BoostMySites partner",
-    "MSME registered tech company",
-    "digital transformation company",
-    "India tech company",
-    "remote development team",
-    "Webxai AI development",
-    "Webxai software",
-  ],
+  title: "About – Engineering Studio Philosophy",
+  description: "WebX AI is an autonomous syndicate of engineers building scalable AI systems and infrastructure. Learn how we think, build, and engineer revenue-directed technology.",
+  keywords: ["WebX AI about", "webxai engineering studio", "AI engineering company India", "webx ai team", "about webxai"],
+  alternates: { canonical: "https://webxaitech.com/about" },
   openGraph: {
-    title: "About Webxai – Engineering Digital Systems with Clarity & Precision",
-    description: "Webxai is an MSME registered AI & web development company in India, partnered with BoostMySites. We deliver enterprise-grade AI and web solutions.",
-    url: `${siteUrl}/about`,
-    images: [
-      {
-        url: `${siteUrl}/logo.png`,
-        width: 1200,
-        height: 630,
-        alt: "About Webxai",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Webxai – AI & Web Development Company India",
-    description: "MSME registered. BoostMySites partner. Engineering intelligent digital systems with precision.",
-  },
-  alternates: {
-    canonical: `${siteUrl}/about`,
+    title: "About WebX AI – Engineering Studio",
+    description: "We don't build websites. We build systems that generate output. Learn about our engineering-first philosophy.",
+    url: "https://webxaitech.com/about",
   },
 };
 
 export default function AboutPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteUrl,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "About",
-        item: `${siteUrl}/about`,
-      },
-    ],
-  };
-
-  const aboutFaqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What is Webxai?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Webxai (WebX AI) is a leading AI software development and web solutions company based in Hyderabad, India. We specialize in web development, mobile app development, AI development, ecommerce solutions, chatbot development, and data analytics.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Webxai a registered company?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes, Webxai is an MSME registered company under the Government of India (UDYAM). We are also an official technology partner of BoostMySites (Triple-Seven BoostMySites AI Solutions LLP).",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Where is Webxai located?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Webxai is based in Hyderabad, Telangana, India. We work remotely with clients worldwide across India, US, UAE, UK, Singapore, and Australia.",
-        },
-      },
-    ],
-  };
-
   return (
-    <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
-      <Script
-        id="about-breadcrumb-schema"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-      />
-      <Script
-        id="about-faq-schema"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(aboutFaqSchema),
-        }}
-      />
+    <main className="w-full min-h-screen bg-[#0B0B0B] text-white">
 
-      {/* GLOBAL BACKGROUND */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-            backgroundSize: "85px 85px",
-          }}
-        />
-      </div>
-
-      {/* NEON LINES */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-        <div className="absolute left-1/4 top-0 w-[2px] h-full bg-linear-to-b from-purple-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-linear-to-b from-blue-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-[70%] top-0 w-[2px] h-full bg-linear-to-b from-purple-400/30 to-transparent blur-sm"></div>
-      </div>
-
-      {/* GLOWS */}
-      <div className="absolute -top-40 left-0 w-[1200px] h-[300px] bg-linear-to-r from-blue-600/30 to-purple-500/30 blur-[120px]" />
-      <div className="absolute bottom-[-250px] right-[-150px] w-[1300px] h-[300px] bg-linear-to-r from-purple-600/30 to-blue-400/30 blur-[120px]" />
-
-      {/* MAIN CONTENT */}
-      <div className="relative z-10 max-w-[1250px] mx-auto px-6 py-[160px]">
-
-        {/* HERO TITLE */}
-        <div className="text-center mb-[140px]" data-aos="fade-up">
-          <h1 className="text-[70px] md:text-[95px] font-extrabold leading-[1.05] mb-6">
-            About{" "}
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-purple-400 to-blue-500">
-              WebX AI
-            </span>
+      {/* ─── 1. HERO ─── */}
+      <section className="w-full pt-[180px] pb-[100px] border-b border-[#1F1F1F]">
+        <div className="w-full max-w-[800px] mx-auto px-6 text-center">
+          <h1 className="text-[56px] md:text-[80px] font-bold text-white tracking-tighter leading-[1.0] mb-8">
+            Engineering Studio.
           </h1>
-
-          <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">
-            We engineer AI-driven digital systems with precision and a strong product mindset.
+          <p className="text-[18px] md:text-[20px] text-[#A1A1AA] leading-[1.6]">
+            We are an autonomous syndicate of engineers, architects, and deployment specialists building scalable AI infrastructure.
           </p>
         </div>
+      </section>
 
-        {/* MISSION */}
-        <div className="grid md:grid-cols-2 gap-20 items-center mb-[160px]">
-          <div data-aos="fade-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Mission</h2>
-            <p className="text-soft text-lg leading-relaxed opacity-90">
-              To build intelligent digital systems that help businesses scale faster with clean architecture,
-              future-proof engineering and clarity.
-            </p>
-          </div>
-
-          <div className="relative rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.4)]" data-aos="fade-up" data-aos-delay="200">
-            <img
-              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b"
-              alt="Webxai AI Mission - intelligent digital systems"
-              className="w-full h-full object-cover"
-            />
-          </div>
+      {/* ─── 2. CORE STATEMENT ─── */}
+      <section className="w-full py-[140px] px-6 border-b border-[#1F1F1F]">
+        <div className="w-full max-w-[1000px] mx-auto text-center">
+          <h2 className="text-[36px] md:text-[56px] font-bold tracking-tight text-white leading-[1.2]">
+            We don't build websites.<br />
+            <span className="text-[#A1A1AA]">We build systems that generate output.</span>
+          </h2>
         </div>
+      </section>
 
-        {/* VISION */}
-        <div className="grid md:grid-cols-2 gap-20 items-center mb-[180px]">
-          <div data-aos="fade-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Our Vision
-              <span className="block bg-clip-text text-transparent bg-linear-to-r from-purple-400 to-blue-400">
-                Building Intelligent Digital Futures
-              </span>
-            </h2>
-
-            <p className="text-soft text-lg md:text-xl leading-relaxed mb-6 opacity-90">
-              We're shaping a world where AI, engineering and design merge into systems that think,
-              scale and evolve automatically.
-            </p>
-            <p className="text-soft text-lg leading-relaxed opacity-90">
-              Future-proofing businesses with automation and precision-built tech.
-            </p>
-          </div>
-
-          <div className="relative rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.4)]" data-aos="fade-up" data-aos-delay="200">
-            <img
-              src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
-              alt="Webxai Vision - building intelligent digital futures"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-
-        {/* STRATEGIC COLLABORATION */}
-        <div className="mb-[160px]" data-aos="fade-up">
-          <div className="relative p-8 md:p-14 rounded-3xl bg-linear-to-br from-blue-900/20 to-purple-900/20 border border-white/10 backdrop-blur-2xl overflow-hidden">
-
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
-
-            <div className="relative z-10 flex flex-col lg:flex-row gap-12 items-center">
-              <div className="flex-1">
-                <h3 className="text-3xl md:text-4xl font-bold mb-6">Strategic Collaboration</h3>
-                <p className="text-lg text-soft mb-6 leading-relaxed opacity-90">
-                  We are proud to be a key technology partner for <span className="text-white font-semibold">BoostMySites (Triple-Seven BoostMySites AI Solutions LLP)</span>, a premier Business-as-a-Service (BaaS) and AI provider founded in 2016.
-                </p>
-                <p className="text-lg text-soft leading-relaxed opacity-90">
-                  With a global footprint spanning <span className="text-white">Bangalore, Dubai, Hong Kong, and Bangkok</span>, BoostMySites specializes in empowering businesses with robust AI and IT infrastructure. This partnership validates our engineering capability and enables us to deliver enterprise-grade, scalable digital solutions backed by years of industry leadership.
-                </p>
-              </div>
-
-              {/* Info Card */}
-              <div className="flex-shrink-0 w-full lg:w-auto p-8 rounded-2xl bg-black/40 border border-white/10 backdrop-blur-md">
-                <p className="text-2xl font-bold text-white mb-1">BoostMySites</p>
-                <p className="text-sm text-white/50 mb-6 tracking-wide uppercase">Official Development Partner</p>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-soft">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-white text-sm">🌍</span>
-                    <span className="text-[15px]">Global Presence (India, UAE, HK, Thailand)</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-soft">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-white text-sm">🚀</span>
-                    <span className="text-[15px]">Est. 2016 — Industry Leaders</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-soft">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-white text-sm">💼</span>
-                    <span className="text-[15px]">Enterprise AI & BaaS Solutions</span>
-                  </div>
-                </div>
-              </div>
+      {/* ─── 3. PHILOSOPHY PRINCIPLES ─── */}
+      <section className="w-full max-w-[800px] mx-auto px-6 py-[140px]">
+         <div className="flex flex-col gap-24">
+            
+            <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+               <span className="text-[48px] font-bold text-[#333333] leading-none font-mono">01</span>
+               <div className="flex flex-col pt-2">
+                 <h3 className="text-[24px] font-semibold text-white mb-4 tracking-tight">Functional Over Flashy</h3>
+                 <p className="text-[16px] text-[#A1A1AA] leading-[1.7]">
+                   We build systems that handle real workloads, not surface-level design. Performance, stability, and speed dictate architecture.
+                 </p>
+               </div>
             </div>
+
+            <div className="w-full h-[1px] bg-[#1F1F1F]" />
+
+            <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+               <span className="text-[48px] font-bold text-[#333333] leading-none font-mono">02</span>
+               <div className="flex flex-col pt-2">
+                 <h3 className="text-[24px] font-semibold text-white mb-4 tracking-tight">Architecture First</h3>
+                 <p className="text-[16px] text-[#A1A1AA] leading-[1.7]">
+                   Every system is mapped before execution to ensure scalability and stability. We eliminate technical debt before a single line of code is written.
+                 </p>
+               </div>
+            </div>
+
+            <div className="w-full h-[1px] bg-[#1F1F1F]" />
+
+            <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+               <span className="text-[48px] font-bold text-[#333333] leading-none font-mono">03</span>
+               <div className="flex flex-col pt-2">
+                 <h3 className="text-[24px] font-semibold text-white mb-4 tracking-tight">Revenue Directed</h3>
+                 <p className="text-[16px] text-[#A1A1AA] leading-[1.7]">
+                   Every build must tie back to measurable business output. We engineer infrastructure specifically designed to reduce overhead and multiply throughput.
+                 </p>
+               </div>
+            </div>
+
+         </div>
+      </section>
+
+      {/* ─── 4. HOW WE WORK (FLOW) ─── */}
+      <section className="w-full border-t border-b border-[#1F1F1F] bg-[#0A0A0A]">
+         <div className="w-full max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#1F1F1F]">
+            
+            <div className="p-10 lg:p-14 flex flex-col items-center text-center">
+              <span className="text-[11px] font-mono tracking-widest text-[#7C3AED] uppercase mb-4">Phase 1</span>
+              <h4 className="text-[20px] font-semibold text-white tracking-tight">Audit</h4>
+            </div>
+
+            <div className="p-10 lg:p-14 flex flex-col items-center text-center">
+              <span className="text-[11px] font-mono tracking-widest text-[#7C3AED] uppercase mb-4">Phase 2</span>
+              <h4 className="text-[20px] font-semibold text-white tracking-tight">Build</h4>
+            </div>
+
+            <div className="p-10 lg:p-14 flex flex-col items-center text-center">
+              <span className="text-[11px] font-mono tracking-widest text-[#7C3AED] uppercase mb-4">Phase 3</span>
+              <h4 className="text-[20px] font-semibold text-white tracking-tight">Integrate</h4>
+            </div>
+
+            <div className="p-10 lg:p-14 flex flex-col items-center text-center">
+              <span className="text-[11px] font-mono tracking-widest text-[#7C3AED] uppercase mb-4">Phase 4</span>
+              <h4 className="text-[20px] font-semibold text-white tracking-tight">Scale</h4>
+            </div>
+
+         </div>
+      </section>
+
+      {/* ─── 5. TEAM POSITIONING ─── */}
+      <section className="w-full max-w-[800px] mx-auto px-6 py-[140px]">
+        <div className="flex flex-col border-l border-[#1F1F1F] pl-8">
+           <span className="text-[12px] font-mono tracking-widest text-[#A1A1AA] uppercase mb-8 block">Execution Protocol</span>
+           <p className="text-[24px] text-white leading-[1.5] tracking-tight mb-12">
+             A distributed team of engineers specializing in:
+           </p>
+           <ul className="flex flex-col gap-6">
+             <li className="flex items-center gap-4">
+               <span className="w-2 h-2 rounded-full bg-[#7C3AED]" />
+               <span className="text-[18px] text-[#A1A1AA]">AI Systems & Fine-tuning</span>
+             </li>
+             <li className="flex items-center gap-4">
+               <span className="w-2 h-2 rounded-full bg-[#7C3AED]" />
+               <span className="text-[18px] text-[#A1A1AA]">Backend Infrastructure Mapping</span>
+             </li>
+             <li className="flex items-center gap-4">
+               <span className="w-2 h-2 rounded-full bg-[#7C3AED]" />
+               <span className="text-[18px] text-[#A1A1AA]">High-performance Frontend Edges</span>
+             </li>
+           </ul>
+        </div>
+      </section>
+
+      {/* ─── 6. DIFFERENTIATION STRIP ─── */}
+      <section className="w-full border-t border-b border-[#1F1F1F] bg-[#121212]">
+         <div className="w-full max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#1F1F1F]">
+            
+            {/* Agency */}
+            <div className="p-12 lg:p-20 flex flex-col">
+               <h3 className="text-[14px] font-mono tracking-widest text-[#A1A1AA] uppercase mb-10 pb-4 border-b border-[#1F1F1F]">
+                 Traditional Agency
+               </h3>
+               <ul className="flex flex-col gap-6 text-[16px] text-[#A1A1AA]">
+                 <li className="flex items-center gap-3">
+                   <span className="opacity-50">✕</span> Layers of Management
+                 </li>
+                 <li className="flex items-center gap-3">
+                   <span className="opacity-50">✕</span> Severe Communication Delays
+                 </li>
+                 <li className="flex items-center gap-3">
+                   <span className="opacity-50">✕</span> Generic WordPress Output
+                 </li>
+               </ul>
+            </div>
+
+            {/* WebX AI */}
+            <div className="p-12 lg:p-20 flex flex-col bg-[#0B0B0B]">
+               <h3 className="text-[14px] font-mono tracking-widest text-white uppercase mb-10 pb-4 border-b border-[#1F1F1F]">
+                 WebX AI Studio
+               </h3>
+               <ul className="flex flex-col gap-6 text-[16px] text-white">
+                 <li className="flex items-center gap-3">
+                   <span className="text-[#7C3AED]">✓</span> Direct Execution Mapping
+                 </li>
+                 <li className="flex items-center gap-3">
+                   <span className="text-[#7C3AED]">✓</span> Fast Iteration & Shipping
+                 </li>
+                 <li className="flex items-center gap-3">
+                   <span className="text-[#7C3AED]">✓</span> Custom Deterministic Systems
+                 </li>
+               </ul>
+            </div>
+
+         </div>
+      </section>
+
+      {/* ─── 7. CTA ─── */}
+      <section className="w-full py-[160px] bg-[#0B0B0B]">
+        <div className="w-full max-w-[800px] mx-auto px-6 text-center flex flex-col items-center">
+          <h2 className="text-[40px] md:text-[64px] font-bold text-white tracking-tighter leading-[1.0] mb-10">
+            Work With Engineers,<br />Not Layers.
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+            <Link href="?contact=true" className="w-full sm:w-auto h-[48px] px-8 bg-white text-black font-medium text-[14px] flex items-center justify-center hover:bg-gray-200 transition-colors">
+              Start Project
+            </Link>
+            <Link href="/work" className="w-full sm:w-auto h-[48px] px-8 bg-transparent border border-[#1F1F1F] text-white font-medium text-[14px] flex items-center justify-center hover:bg-[#121212] transition-colors">
+              View Work
+            </Link>
           </div>
         </div>
+      </section>
 
-        {/* TRUST */}
-        <div className="mb-[160px]" data-aos="fade-up">
-          <h3 className="text-center text-3xl md:text-4xl font-bold mb-14">
-            Trust & Credentials
-          </h3>
-
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12">
-            <Badge title="MSME Registered" desc="Government of India UDYAM" />
-            <Badge title="Boostmysites Partner" desc="Official Development Partner" />
-          </div>
-        </div>
-
-        {/* VALUES */}
-        <div className="mb-[160px]" data-aos="fade-up">
-          <h3 className="text-center text-3xl md:text-4xl font-bold mb-14">
-            Our Core Values
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-10">
-            <ValueCard title="Engineering First" desc="Clean code, scalable systems, long-term architecture." />
-            <ValueCard title="AI-Native Mindset" desc="Automation baked into everything we build." />
-            <ValueCard title="Transparent Delivery" desc="Predictable timelines, honest communication." />
-          </div>
-        </div>
-
-        {/* PHILOSOPHY */}
-        <div className="grid md:grid-cols-2 gap-20 items-center mb-[160px]">
-          <div data-aos="fade-up">
-            <h3 className="text-4xl md:text-5xl font-bold mb-8">Our Philosophy</h3>
-            <p className="text-soft text-lg max-w-3xl opacity-90 leading-relaxed">
-              Technology should remove complexity — not add it.
-              We focus on clarity, thoughtful design and strong engineering logic.
-            </p>
-          </div>
-
-          <div className="relative rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.4)]" data-aos="fade-up" data-aos-delay="200">
-            <img
-              src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
-              alt="Webxai Philosophy - technology with clarity"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-
-        {/* CTA */}
-
-        {/* FAQ */}
-        <div className="mb-[160px]">
-          <FAQ />
-        </div>
-
-        {/* CTA */}
-        <div className="text-center py-[120px]" data-aos="fade-up">
-          <h3 className="text-4xl md:text-5xl font-bold mb-8">
-            Build Your Future with WebX AI
-          </h3>
-
-          <button className="px-14 py-5 rounded-xl text-white text-lg font-medium 
-            bg-linear-to-r from-blue-600/40 to-purple-600/40 
-            border border-white/20 backdrop-blur-xl 
-            hover:from-blue-600/50 hover:to-purple-600/50 transition">
-            Start Your Project
-          </button>
-        </div>
-      </div>
-    </section >
-  );
-}
-
-/* COMPONENTS */
-function Badge({ title, desc }: any) {
-  return (
-    <div className="px-10 py-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl text-center shadow-[0_0_25px_rgba(0,0,0,0.3)]">
-      <p className="text-2xl font-semibold mb-2 text-white">{title}</p>
-      <p className="text-soft opacity-80">{desc}</p>
-    </div>
-  );
-}
-
-function ValueCard({ title, desc }: any) {
-  return (
-    <div className="p-10 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.3)] hover:bg-white/10 transition">
-      <h4 className="text-2xl font-semibold mb-3">{title}</h4>
-      <p className="text-soft opacity-90">{desc}</p>
-    </div>
+    </main>
   );
 }

@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 export const AOSInit = () => {
     useEffect(() => {
-        AOS.init({
-            once: true,
-            duration: 1000,
-            easing: "ease-out-cubic",
+        // Removed AOS completely to enforce Stark Minimalist static views
+        // and fix build issues with node_modules.
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            el.removeAttribute('data-aos');
+            el.removeAttribute('data-aos-delay');
         });
     }, []);
 

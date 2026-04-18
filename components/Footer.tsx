@@ -1,130 +1,77 @@
 import Link from "next/link";
-import Image from "next/image";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#05050A] pt-20 pb-12 text-white relative">
-      {/* TOP GRID */}
-      <div className="max-w-[1300px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-14">
-        {/* COLUMN 1 — Logo + Text */}
-        <div data-aos="fade-up">
-          <Link
-              href="/" className="flex items-center gap-3 mb-5 w-fit">
-            {/* Glossy Logo Container */}
-            <div
-              className="relative p-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg"
-            >
-              {/* Gloss highlight */}
-              <div className="absolute inset-0 rounded-xl bg-linear-to-br from-white/40/10 to-transparent opacity-20 pointer-events-none" />
+    <footer className="w-full bg-[#0B0B0B]">
+      <div className="w-full max-w-[1200px] mx-auto px-6 pt-[80px] pb-10 border-t border-[#1F1F1F]">
 
-              <Image
-                src="/logo.png"
-                width={48}
-                height={48}
-                className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]"
-                alt="WebX AI Logo"
-              />
+        {/* ─── MAIN GRID ─── */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-[#1F1F1F]">
+
+          {/* Column 1: Brand — wider */}
+          <div className="md:col-span-4 flex flex-col gap-5">
+
+            {/* Logo Icon */}
+            <Link href="/" className="group w-fit">
+              <div className="w-8 h-8 rounded-[6px] overflow-hidden opacity-90 group-hover:opacity-100 transition-opacity">
+                <img src="/logo.png" alt="WebX AI" className="w-full h-full object-contain" />
+              </div>
+            </Link>
+
+            {/* Brand Name */}
+            <div>
+              <p className="text-[16px] font-semibold text-white tracking-tight leading-none mb-3">
+                WebX<span className="text-[#A1A1AA] font-medium"> AI</span>
+              </p>
+              <p className="text-[13px] leading-[1.65] text-[#555] max-w-[260px]">
+                Deterministic AI systems and automated architectures built for enterprise scale.
+              </p>
             </div>
 
-            <h1 className="text-2xl font-semibold tracking-tight">
-              WebX{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
-                AI
-              </span>
-            </h1>
-          </Link>
+          </div>
 
-          <p className="text-soft text-[15px] leading-relaxed max-w-xs mb-6">
-            Engineering intelligent digital systems with precision, speed and
-            futuristic design thinking.
+          {/* Column 2: Platform */}
+          <div className="md:col-span-2 flex flex-col gap-4">
+            <h4 className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#555] mb-1">Platform</h4>
+            <Link href="/" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Home</Link>
+            <Link href="/about" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">About</Link>
+            <Link href="/services" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Capabilities</Link>
+            <Link href="/work" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Work</Link>
+          </div>
+
+          {/* Column 3: Resources */}
+          <div className="md:col-span-3 flex flex-col gap-4">
+            <h4 className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#555] mb-1">Resources</h4>
+            <Link href="/blog" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Engineering Blog</Link>
+            <Link href="/about" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Studio Philosophy</Link>
+            <Link href="/contact" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Start a Project</Link>
+          </div>
+
+          {/* Column 4: Legal & Social */}
+          <div className="md:col-span-3 flex flex-col gap-4">
+            <h4 className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#555] mb-1">Legal & Social</h4>
+            <Link href="/privacy" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Privacy Policy</Link>
+            <Link href="/terms" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Terms of Service</Link>
+            <a href="https://www.linkedin.com/company/webxai/" target="_blank" rel="noreferrer" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">LinkedIn ↗</a>
+            <a href="https://www.instagram.com/webx.ai" target="_blank" rel="noreferrer" className="text-[13px] text-[#A1A1AA] hover:text-white transition-colors w-fit">Instagram ↗</a>
+          </div>
+
+        </div>
+
+        {/* ─── BOTTOM ROW ─── */}
+        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-[12px] text-[#3F3F3F] font-mono">
+            © {new Date().getFullYear()} WebX AI Systems. All rights reserved.
           </p>
-
-          {/* SOCIAL ICONS — ONLY INSTAGRAM + LINKEDIN */}
-          <div className="flex items-center gap-4">
-            {/* Instagram */}
-            <a
-              href="https://www.instagram.com/webx.ai?igsh=cHQzOTh3M3V3cDM2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition"
-              aria-label="Instagram"
-            >
-              <FaInstagram className="w-5 h-5 opacity-80" />
-            </a>
-
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/company/webxai/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin className="w-5 h-5 opacity-80" />
-            </a>
+          <div className="flex gap-2 items-center">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7C3AED] opacity-75" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#7C3AED]" />
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#555]">All Systems Nominal</span>
           </div>
         </div>
 
-        {/* COLUMN 2 */}
-        <div data-aos="fade-up" data-aos-delay="100">
-          <h3 className="text-lg font-semibold mb-4">Company</h3>
-          <ul className="space-y-3 text-soft text-[15px]">
-            <li>
-              <Link
-                href="/about"
-                className="hover:text-white transition-colors"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services"
-                className="hover:text-white transition-colors"
-              >
-                Our Services
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="hover:text-white transition-colors"
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* COLUMN 4 */}
-        <div data-aos="fade-up" data-aos-delay="300">
-          <h3 className="text-lg font-semibold mb-4">Resources</h3>
-          <ul className="space-y-3 text-soft text-[15px]">
-            <li>
-              <Link href="/work" className="hover:text-white transition-colors">
-                Portfolio
-              </Link>
-            </li>
-            <li>
-              <Link href="/blog" className="hover:text-white transition-colors">
-                Blog
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      {/* DIVIDER */}
-      <div className="w-full h-px bg-white/10 mt-16 mb-8" />
-
-      {/* BOTTOM AREA */}
-      <div
-        className="max-w-[1300px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-soft text-sm gap-4"
-        data-aos="fade-up"
-        data-aos-delay="400"
-      >
-        <p>© 2025 WebX AI. All rights reserved.</p>
       </div>
     </footer>
   );

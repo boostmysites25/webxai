@@ -1,302 +1,310 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useForm, Controller } from "react-hook-form";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { sendEmail } from "@/utils/sendEmail";
-import FAQ from "@/components/FAQ";
-import CustomDropdown from "@/components/CustomDropdown";
-import { countryCodes, projectTypes, budgetRanges, timelineOptions } from "@/data/formOptions";
+import Link from 'next/link';
 
-interface FormData {
-  name: string;
-  email: string;
-  countryCode: string;
-  phone: string;
-  company?: string;
-  projectType: string;
-  budget: string;
-  timeline: string;
-  details: string;
-}
-
-export default function ContactPage() {
+function ContactOnboardingContent() {
   const router = useRouter();
-  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormData>({
-    defaultValues: {
-      countryCode: "+91"
-    }
+  const searchParams = useSearchParams();
+  const intent = searchParams.get("intent") || "";
+
+  const [step, setStep] = useState(1);
+  const [isDeploying, setIsDeploying] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const [formData, setFormData] = useState({
+    companyName: "",
+    businessModel: "",
+    teamSize: "",
+    goal: intent || "",
+    bottleneck: "",
+    timeline: "",
+    budget: "",
+    name: "",
+    email: "",
   });
 
-  const onSubmit = async (data: any) => {
-    const success = await sendEmail(data);
+  const handleNext = () => setStep((s) => Math.min(s + 1, 3));
+  const handlePrev = () => setStep((s) => Math.max(s - 1, 1));
+
+  const isStep1Valid = formData.companyName && formData.businessModel && formData.teamSize;
+  const isStep2Valid = formData.goal && formData.bottleneck;
+  const isStep3Valid = formData.timeline && formData.budget && formData.name && /^\S+@\S+\.\S+$/.test(formData.email);
+
+  const handleSubmit = async () => {
+    setIsDeploying(true);
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: "N/A",
+      countryCode: "",
+      company: `${formData.companyName} (${formData.teamSize} team)`,
+      projectType: formData.businessModel,
+      budget: formData.budget,
+      timeline: formData.timeline,
+      details: `Goal: ${formData.goal}\nBottleneck: ${formData.bottleneck}`,
+    };
+    
+    const success = await sendEmail(payload);
     if (success) {
-      router.push("/thank-you");
+      setIsSuccess(true);
     } else {
-      alert("Something went wrong. Please try again.");
+      alert("System Error: Intake sequence failed. Please email us directly.");
+      setIsDeploying(false);
     }
   };
 
+  if (isSuccess) {
+     return (
+        <main className="w-full min-h-screen bg-[#0B0B0B] text-white flex flex-col items-center justify-center p-6">
+            <div className="w-full max-w-[600px] text-center flex flex-col items-center">
+                <span className="w-12 h-12 rounded-full border border-[#7C3AED] flex items-center justify-center mb-8">
+                   <svg className="w-5 h-5 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </span>
+                <h1 className="text-[32px] md:text-[40px] font-bold text-white tracking-tight mb-6">Request received.</h1>
+                <p className="text-[16px] text-[#A1A1AA] leading-[1.6] mb-12">
+                   We will review your system parameters and get back to you within 24–48 hours.
+                </p>
+                
+                <div className="w-full border-t border-[#1F1F1F] pt-12 flex flex-col items-center">
+                    <p className="text-[13px] font-mono tracking-widest text-[#A1A1AA] uppercase mb-4">Fast-Track Optional</p>
+                    <a href="https://calendly.com/webxdev-ai/30min" target="_blank" rel="noreferrer" className="h-[44px] px-8 bg-transparent border border-[#1F1F1F] text-white hover:bg-[#121212] transition-colors flex items-center justify-center text-[13px] font-medium">
+                        Book an Intro Call ↗
+                    </a>
+                </div>
+            </div>
+        </main>
+     );
+  }
+
   return (
-    <section className="relative w-full min-h-screen bg-[#05050A] text-white overflow-hidden">
+    <main className="w-full min-h-screen bg-[#0B0B0B] text-white pt-[140px] pb-24">
+      <div className="w-full max-w-[700px] mx-auto px-6 flex flex-col relative">
 
-      {/* GLOBAL BACKGROUND — SAME AS OTHER PAGES */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.09) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-            backgroundSize: "85px 85px",
-          }}
-        />
-      </div>
+        {/* ─── HEADER ─── */}
+        <Link href="/" className="inline-flex items-center text-[12px] font-mono uppercase tracking-widest text-[#A1A1AA] hover:text-white transition-colors mb-12 group">
+            <span className="mr-2 group-hover:-translate-x-1 transition-transform">←</span> Return Home
+        </Link>
+        <h1 className="text-[40px] md:text-[56px] font-bold tracking-tighter leading-[1.05] text-white mb-6">
+           Architecture Intake.
+        </h1>
+        <p className="text-[18px] text-[#A1A1AA] leading-[1.6] mb-12">
+           Define your system requirement. We'll evaluate and map execution.
+        </p>
 
-      {/* Vertical neon grid lines */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-        <div className="absolute left-1/4 top-0 w-[2px] h-full bg-linear-to-b from-purple-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-linear-to-b from-blue-400/40 to-transparent blur-sm"></div>
-        <div className="absolute left-[70%] top-0 w-[2px] h-full bg-linear-to-b from-purple-400/30 to-transparent blur-sm"></div>
-      </div>
-
-      {/* Soft glows */}
-      <div className="absolute -top-52 left-0 w-[1200px] h-[300px] bg-linear-to-r from-blue-600/30 to-purple-600/30 blur-[140px]" />
-      <div className="absolute bottom-[-240px] right-[-200px] w-[1200px] h-[300px] bg-linear-to-r from-purple-600/30 to-blue-500/30 blur-[140px]" />
-
-      {/* MAIN WRAPPER */}
-      <div className="relative z-10 max-w-[1350px] mx-auto px-6 py-[160px]">
-
-        {/* TITLE */}
-        <div className="text-center mb-[120px]" data-aos="fade-up">
-          <h1 className="text-[70px] md:text-[95px] font-extrabold leading-[1.05] mb-6">
-            Contact{" "}
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-purple-400 to-blue-500">
-              WebX AI
-            </span>
-          </h1>
-
-          <p className="text-soft text-xl md:text-2xl max-w-3xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">
-            Tell us about your project. We’ll turn it into an intelligent, scalable digital system.
-          </p>
+        {/* ─── QUALIFIER BANNER ─── */}
+        <div className="w-full bg-[#121212] border-l-[3px] border-[#7C3AED] p-6 mb-16">
+           <p className="text-[15px] text-[#A1A1AA] leading-[1.6]">
+              "We work with teams building scalable systems. Not suitable for basic brochure websites."
+           </p>
         </div>
 
-        {/* --------------------- MAIN 2-COLUMN SECTION ---------------------- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+        {/* ─── WHAT HAPPENS NEXT ─── */}
+        <div className="w-full border-t border-b border-[#1F1F1F] py-8 mb-16 hidden sm:block">
+           <div className="flex items-center justify-between text-[11px] font-mono tracking-widest uppercase text-[#555]">
+               <div className="flex items-center gap-3">
+                   <span className="text-[#A1A1AA]">01</span>
+                   <span>Submit Request</span>
+               </div>
+               <span>→</span>
+               <div className="flex items-center gap-3">
+                   <span className="text-[#A1A1AA]">02</span>
+                   <span>System Evaluation</span>
+               </div>
+               <span>→</span>
+               <div className="flex items-center gap-3">
+                   <span className="text-[#A1A1AA]">03</span>
+                   <span>Architecture Proposal</span>
+               </div>
+               <span>→</span>
+               <div className="flex items-center gap-3">
+                   <span className="text-[#A1A1AA]">04</span>
+                   <span>Execution Begins</span>
+               </div>
+           </div>
+        </div>
 
-          {/* LEFT — Contact Info + Trust + Explanation */}
-          <div data-aos="fade-up" data-aos-delay="200">
-            <h2 className="text-4xl font-bold mb-8 leading-tight">
-              Let’s Build Something<br />
-              <span className="bg-clip-text text-transparent bg-linear-to-r from-purple-400 to-blue-400">
-                Intelligent Together
-              </span>
-            </h2>
+        {/* ─── STEP INDICATOR ─── */}
+        <div className="flex items-center gap-4 text-[12px] font-mono tracking-widest uppercase mb-10 pb-4 border-b border-[#1F1F1F]">
+            <span className={step >= 1 ? "text-white" : "text-[#555]"}>Step 1</span>
+            <span className="text-[#333]">/</span>
+            <span className={step >= 2 ? "text-white" : "text-[#555]"}>Step 2</span>
+            <span className="text-[#333]">/</span>
+            <span className={step === 3 ? "text-white" : "text-[#555]"}>Step 3</span>
+        </div>
 
-            <p className="text-soft leading-relaxed text-lg mb-10 opacity-90">
-              Whether it's AI development, modern apps, scalable systems, automations or data engineering —
-              we work with brands that want engineering clarity and real business outcomes.
-            </p>
+        {/* ─── FORM FLOW ─── */}
+        <div className="w-full flex-1 mb-16 relative overflow-hidden">
+            
+            {step === 1 && (
+                <div className="animate-in fade-in slide-in-from-right-4 duration-300 flex flex-col gap-8">
+                   <div className="flex flex-col gap-3">
+                       <label className="text-[13px] font-medium text-[#A1A1AA]">Company Name</label>
+                       <input 
+                           type="text" 
+                           className="w-full bg-[#0A0A0A] border border-[#1F1F1F] px-4 py-3 text-white text-[15px] focus:outline-none focus:border-[#7C3AED] transition-colors"
+                           placeholder="Acme Corp"
+                           value={formData.companyName}
+                           onChange={e => setFormData({...formData, companyName: e.target.value})}
+                       />
+                   </div>
+                   
+                   <div className="flex flex-col gap-3">
+                       <label className="text-[13px] font-medium text-[#A1A1AA]">Business Model</label>
+                       <select 
+                           className="w-full bg-[#0A0A0A] border border-[#1F1F1F] px-4 py-3 text-white text-[15px] focus:outline-none focus:border-[#7C3AED] transition-colors appearance-none cursor-pointer"
+                           value={formData.businessModel}
+                           onChange={e => setFormData({...formData, businessModel: e.target.value})}
+                       >
+                           <option value="" disabled>Select model</option>
+                           <option value="B2B SaaS">B2B SaaS</option>
+                           <option value="E-Commerce">E-Commerce</option>
+                           <option value="Internal Tools">Internal Tools</option>
+                           <option value="Other">Other</option>
+                       </select>
+                   </div>
 
-            {/* CONTACT METHODS */}
-            <div className="space-y-6 mb-16">
+                   <div className="flex flex-col gap-3">
+                       <label className="text-[13px] font-medium text-[#A1A1AA]">Team Size</label>
+                       <select 
+                           className="w-full bg-[#0A0A0A] border border-[#1F1F1F] px-4 py-3 text-white text-[15px] focus:outline-none focus:border-[#7C3AED] transition-colors appearance-none cursor-pointer"
+                           value={formData.teamSize}
+                           onChange={e => setFormData({...formData, teamSize: e.target.value})}
+                       >
+                           <option value="" disabled>Select size</option>
+                           <option value="1-5">1–5</option>
+                           <option value="5-20">5–20</option>
+                           <option value="20+">20+</option>
+                       </select>
+                   </div>
+                </div>
+            )}
 
-              <div className="flex items-center gap-4">
-                <span className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10 backdrop-blur-md">
-                  📞
-                </span>
-                <p className="text-lg text-soft">+91 7093242788</p>
-              </div>
+            {step === 2 && (
+                <div className="animate-in fade-in slide-in-from-right-4 duration-300 flex flex-col gap-8">
+                   <div className="flex flex-col gap-3">
+                       <label className="text-[13px] font-medium text-[#A1A1AA]">What's your primary goal?</label>
+                       <select 
+                           className="w-full bg-[#0A0A0A] border border-[#1F1F1F] px-4 py-3 text-white text-[15px] focus:outline-none focus:border-[#7C3AED] transition-colors appearance-none cursor-pointer"
+                           value={formData.goal}
+                           onChange={e => setFormData({...formData, goal: e.target.value})}
+                       >
+                           <option value="" disabled>Select goal...</option>
+                           <option value="Increase revenue">Increase revenue</option>
+                           <option value="Reduce manual work">Reduce manual work</option>
+                           <option value="Scale users">Scale users</option>
+                           <option value="Build new product">Build new product</option>
+                           {/* Add fallback for the modal intent pass if it wasn't strictly one of these */}
+                           {intent && !["Increase revenue", "Reduce manual work", "Scale users", "Build new product"].includes(intent) && (
+                              <option value={intent}>{intent}</option>
+                           )}
+                       </select>
+                   </div>
 
-              <div className="flex items-center gap-4">
-                <span className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10 backdrop-blur-md">
-                  ✉️
-                </span>
-                <p className="text-lg text-soft">webxdev.ai@gmail.com</p>
-              </div>
+                   <div className="flex flex-col gap-3">
+                       <label className="text-[13px] font-medium text-[#A1A1AA]">Technical Bottleneck</label>
+                       <textarea 
+                           className="w-full bg-[#0A0A0A] border border-[#1F1F1F] px-4 py-3 text-white text-[15px] focus:outline-none focus:border-[#7C3AED] transition-colors resize-none h-[180px]"
+                           placeholder="Describe your current system problem..."
+                           value={formData.bottleneck}
+                           onChange={e => setFormData({...formData, bottleneck: e.target.value})}
+                       />
+                   </div>
+                </div>
+            )}
 
-              <div className="flex items-center gap-4">
-                <span className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10 backdrop-blur-md">
-                  📍
-                </span>
-                <p className="text-lg text-soft">India — Remote Worldwide</p>
-              </div>
-            </div>
+            {step === 3 && (
+                <div className="animate-in fade-in slide-in-from-right-4 duration-300 flex flex-col gap-10">
+                   
+                   <div className="flex flex-col gap-4 border-b border-[#1F1F1F] pb-8">
+                       <label className="text-[13px] font-medium text-[#A1A1AA] uppercase tracking-wide font-mono">Timeline</label>
+                       <div className="flex flex-col gap-3">
+                           {["ASAP", "1-2 months", "Flexible"].map((time) => (
+                               <label key={time} onClick={() => setFormData({...formData, timeline: time})} className="flex items-center gap-3 cursor-pointer group">
+                                   <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${formData.timeline === time ? "border-[#7C3AED]" : "border-[#1F1F1F] group-hover:border-[#555]"}`}>
+                                       {formData.timeline === time && <div className="w-2 h-2 rounded-full bg-[#7C3AED]" />}
+                                   </div>
+                                   <span className="text-[15px] text-white">{time}</span>
+                               </label>
+                           ))}
+                       </div>
+                   </div>
 
-            {/* TRUST BADGES */}
-            <div className="flex flex-col gap-6">
+                   <div className="flex flex-col gap-4 border-b border-[#1F1F1F] pb-8">
+                       <label className="text-[13px] font-medium text-[#A1A1AA] uppercase tracking-wide font-mono">Budget</label>
+                       <div className="flex flex-col gap-3">
+                           {["$5k - $10k", "$10k+"].map((budg) => (
+                               <label key={budg} onClick={() => setFormData({...formData, budget: budg})} className="flex items-center gap-3 cursor-pointer group">
+                                   <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${formData.budget === budg ? "border-[#7C3AED]" : "border-[#1F1F1F] group-hover:border-[#555]"}`}>
+                                       {formData.budget === budg && <div className="w-2 h-2 rounded-full bg-[#7C3AED]" />}
+                                   </div>
+                                   <span className="text-[15px] text-white">{budg}</span>
+                               </label>
+                           ))}
+                       </div>
+                   </div>
 
-              <div className="px-10 py-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl text-center">
-                <p className="text-2xl font-semibold mb-2">MSME Registered</p>
-                <p className="text-soft opacity-80">Government of India UDYAM</p>
-              </div>
+                   <div className="flex flex-col gap-6">
+                       <div className="flex flex-col gap-3">
+                           <label className="text-[13px] font-medium text-[#A1A1AA]">Full Name</label>
+                           <input 
+                               type="text" 
+                               className="w-full bg-[#0A0A0A] border border-[#1F1F1F] px-4 py-3 text-white text-[15px] focus:outline-none focus:border-[#7C3AED] transition-colors"
+                               value={formData.name}
+                               onChange={e => setFormData({...formData, name: e.target.value})}
+                           />
+                       </div>
+                       <div className="flex flex-col gap-3">
+                           <label className="text-[13px] font-medium text-[#A1A1AA]">Work Email</label>
+                           <input 
+                               type="email" 
+                               className="w-full bg-[#0A0A0A] border border-[#1F1F1F] px-4 py-3 text-white text-[15px] focus:outline-none focus:border-[#7C3AED] transition-colors"
+                               value={formData.email}
+                               onChange={e => setFormData({...formData, email: e.target.value})}
+                           />
+                       </div>
+                   </div>
 
-              <div className="px-10 py-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl text-center">
-                <p className="text-2xl font-semibold mb-2">Boostmysites Partner</p>
-                <p className="text-soft opacity-80">Official Development Partner</p>
-              </div>
+                </div>
+            )}
+            
+        </div>
 
-            </div>
-          </div>
-
-          {/* RIGHT — FORM */}
-          <div className="relative" data-aos="fade-up" data-aos-delay="300">
-
-            <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 to-purple-600/10 blur-2xl rounded-3xl" />
-
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="relative p-10 rounded-3xl bg-white/5 border border-white/10 
-              backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.4)] space-y-6"
+        {/* ─── NAVIGATION BUTTONS ─── */}
+        <div className="w-full flex items-center justify-between border-t border-[#1F1F1F] pt-8">
+            <button 
+                onClick={handlePrev}
+                disabled={step === 1}
+                className={`text-[13px] font-mono tracking-widest uppercase transition-colors ${step === 1 ? "opacity-0 pointer-events-none" : "text-[#A1A1AA] hover:text-white"}`}
             >
-              <h3 className="text-3xl font-bold mb-4">Start Your Project</h3>
+                ← Back
+            </button>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <input {...register("name", { required: true })} className="input" placeholder="Name *" />
-                  {errors.name && <span className="text-red-400 text-sm">Name is required</span>}
-                </div>
-                <div>
-                  <input
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Invalid email address"
-                      }
-                    })}
-                    className="input"
-                    placeholder="Email *"
-                  />
-                  {errors.email && <span className="text-red-400 text-sm">{(errors.email.message as string) || "Email is required"}</span>}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="md:col-span-1">
-                  <Controller
-                    name="countryCode"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <CustomDropdown
-                        options={countryCodes}
-                        value={field.value}
-                        onChange={field.onChange}
-                        placeholder="+ Code"
-                        className="w-full"
-                      />
-                    )}
-                  />
-                  {errors.countryCode && <span className="text-red-400 text-sm">Required</span>}
-                </div>
-
-                {/* Phone Number */}
-                <div className="md:col-span-2">
-                  <input
-                    {...register("phone", {
-                      required: "Phone number is required",
-                      pattern: {
-                        value: /^[0-9]+$/,
-                        message: "Phone number must contain only digits"
-                      }
-                    })}
-                    className="input w-full"
-                    type="tel"
-                    placeholder="Phone Number *"
-                  />
-                  {errors.phone && <span className="text-red-400 text-sm">{(errors.phone.message as string) || "Phone number is required"}</span>}
-                </div>
-              </div>
-              {/* Company row */}
-              <div className="mt-6">
-                <input {...register("company")} className="input" placeholder="Company (optional)" />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <Controller
-                    name="projectType"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <CustomDropdown
-                        options={projectTypes}
-                        value={field.value}
-                        onChange={field.onChange}
-                        placeholder="Project Type *"
-                      />
-                    )}
-                  />
-                  {errors.projectType && <span className="text-red-400 text-sm">Please select a project type</span>}
-                </div>
-
-                <div>
-                  <Controller
-                    name="budget"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <CustomDropdown
-                        options={budgetRanges}
-                        value={field.value}
-                        onChange={field.onChange}
-                        placeholder="Budget Range *"
-                      />
-                    )}
-                  />
-                  {errors.budget && <span className="text-red-400 text-sm">Please select a budget range</span>}
-                </div>
-              </div>
-
-              <div>
-                <Controller
-                  name="timeline"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <CustomDropdown
-                      options={timelineOptions}
-                      value={field.value}
-                      onChange={field.onChange}
-                      placeholder="Timeline *"
-                    />
-                  )}
-                />
-                {errors.timeline && <span className="text-red-400 text-sm">Please select a timeline</span>}
-              </div>
-
-              <div>
-                <textarea
-                  {...register("details", { required: true })}
-                  className="input h-32"
-                  placeholder="Project Details *"
-                ></textarea>
-                {errors.details && <span className="text-red-400 text-sm">Please provide some details</span>}
-              </div>
-
-              <button
-                disabled={isSubmitting}
-                className="w-full rounded-xl py-4 text-lg font-medium
-                bg-linear-to-r from-blue-600/40 to-purple-600/40
-                border border-white/20 backdrop-blur-xl hover:from-blue-600/50 hover:to-purple-600/50 transition disabled:opacity-50"
-              >
-                {isSubmitting ? "Sending..." : "Submit Inquiry"}
-              </button>
-            </form>
-          </div>
+            <button 
+                onClick={step === 3 ? handleSubmit : handleNext}
+                disabled={isDeploying || (step === 1 && !isStep1Valid) || (step === 2 && !isStep2Valid) || (step === 3 && !isStep3Valid)}
+                className="h-[44px] px-8 bg-white text-black font-medium text-[13px] flex items-center justify-center hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                {isDeploying ? "Transmitting..." : step === 3 ? "Submit Overview" : "Next Step →"}
+            </button>
         </div>
 
-        <div className="mt-32">
-          <FAQ />
+        {/* ─── FINAL TOUCH ─── */}
+        <div className="mt-16 text-center text-[#555] text-[12px] font-mono tracking-widest uppercase">
+            <p>Limited onboarding capacity each month.</p>
         </div>
+
       </div>
-    </section>
+    </main>
   );
 }
 
-/* GLOBAL INPUT STYLE */
-const inputStyles = `
-.input {
-  @apply w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 
-  text-white placeholder-white/40 backdrop-blur-md focus:outline-none 
-  focus:border-white/30 transition;
+export default function ContactOnboarding() {
+  return (
+    <Suspense fallback={<div className="w-full min-h-screen bg-[#0B0B0B]" />}>
+       <ContactOnboardingContent />
+    </Suspense>
+  )
 }
-`;

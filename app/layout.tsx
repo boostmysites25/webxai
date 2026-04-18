@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
+import ContactModal from "@/components/ContactModal";
 import { AOSInit } from "@/components/AOSInit";
 
 const geistSans = Geist({
@@ -26,34 +27,56 @@ export const metadata: Metadata = {
 
   title: {
     default:
-      "Webxai – AI Software Development & Web Solutions Company in India",
-    template: "%s | Webxai",
+      "WebX AI – AI Software Development & Web Solutions Company in India",
+    template: "%s | WebX AI",
   },
 
   description:
-    "Webxai (WebX AI) is a leading AI software development and web solutions company in India. We build scalable websites, web applications, SaaS platforms, mobile apps, ecommerce stores, AI chatbots, and intelligent automation systems using Next.js, React, and modern technologies.",
+    "WebX AI (Webxai) is a leading AI software development and engineering studio in India. We build scalable websites, web applications, SaaS platforms, mobile apps, ecommerce stores, AI chatbots, and intelligent automation systems using Next.js, React, and modern technologies.",
 
   keywords: [
-    "Webxai",
-    "Webxai software",
-    "Webxai AI development",
-    "Webxai company",
+    // Primary brand keywords
     "WebX AI",
-    "Web development company in India",
+    "webx ai",
+    "WEBX AI",
+    "Webxai",
+    "webxai",
+    "webxaitech",
+    // Common misspellings / alternatives users search
+    "webex ai",
+    "webex",
+    "web ai",
+    "aiweb",
+    "wixweb",
+    "wiwebx",
+    "web x ai",
+    "webxai tech",
+    "webxai company",
+    // Service keywords
     "AI development company India",
+    "AI automation systems",
+    "LLM integration",
+    "SaaS product development",
     "Next.js development company",
-    "React development services",
-    "Full stack development company",
-    "Mobile app development India",
-    "SaaS development company",
-    "Custom software development",
-    "Ecommerce development services",
-    "Digital transformation company India",
+    "AI engineering studio",
+    "revenue-driven AI",
+    "data pipeline engineering",
+    "web development company Hyderabad",
+    "AI development company Hyderabad",
+    "mobile app development India",
+    "ecommerce development India",
+    "chatbot development company India",
+    "custom software development India",
+    "React development company",
+    "full stack development company",
+    "digital transformation company India",
     "AI automation solutions",
-    "Chatbot development company",
     "AI chatbot development India",
-    "Business web application development",
-    "App development company Hyderabad",
+    "business web application development",
+    "app development company Hyderabad",
+    "software development company India",
+    "scalable AI systems",
+    "startup software development India",
   ],
 
   authors: [{ name: "Webxai", url: siteUrl }],
@@ -305,6 +328,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <ContactModal />
         </Providers>
 
         <Analytics />

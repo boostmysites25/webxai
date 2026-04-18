@@ -4,42 +4,28 @@ import Script from "next/script";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
 
 export const metadata: Metadata = {
-  title: "Contact Webxai – Get a Free Project Quote | AI & Web Development",
-  description: "Contact Webxai to start your project. Get a free quote for AI development, web development, mobile app development, ecommerce, chatbot development, and data analytics services. Phone: +91 7093242788 | Email: webxdev.ai@gmail.com | Hyderabad, India — Remote Worldwide.",
+  title: "Contact – Start Your Architecture Build | WebX AI",
+  description: "Start a project with WebX AI. Submit your system requirements and we'll evaluate and map a scalable architecture. Work with engineers, not layers. Phone: +91 7093242788 | Email: webxdev.ai@gmail.com",
   keywords: [
-    "contact Webxai",
-    "Webxai contact",
-    "web development quote",
-    "mobile app development consultation",
-    "AI development services quote",
-    "software development company contact",
-    "get project quote",
-    "hire developers India",
-    "free web development quote",
-    "app development cost India",
-    "AI chatbot development quote",
+    "contact WebX AI", "webxai contact", "start project webxai",
+    "hire AI developer India", "hire web developer Hyderabad",
+    "webex ai contact", "aiweb contact", "webx ai start project",
+    "AI development inquiry India", "web development consultation India",
+    "contact Webxai", "Webxai contact", "web development quote",
+    "hire developers India", "free web development quote",
   ],
   openGraph: {
-    title: "Contact Webxai – Get a Free Project Quote Today",
-    description: "Get in touch with Webxai for AI development, web development, mobile apps, ecommerce, chatbots, and data analytics. Let's build something intelligent together.",
+    title: "Start Your Architecture Build – WebX AI",
+    description: "Submit your system requirements. We'll evaluate and map a scalable execution plan.",
     url: `${siteUrl}/contact`,
-    images: [
-      {
-        url: `${siteUrl}/logo.png`,
-        width: 1200,
-        height: 630,
-        alt: "Contact Webxai",
-      },
-    ],
+    images: [{ url: `${siteUrl}/logo.png`, width: 1200, height: 630, alt: "WebX AI Contact" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Webxai – Start Your Project Today",
-    description: "Get in touch for AI development, web development, mobile apps, ecommerce, and data analytics.",
+    title: "Start Your Architecture Build – WebX AI",
+    description: "Submit your system requirements. We'll evaluate and map a scalable execution plan.",
   },
-  alternates: {
-    canonical: `${siteUrl}/contact`,
-  },
+  alternates: { canonical: `${siteUrl}/contact` },
 };
 
 export default function ContactLayout({

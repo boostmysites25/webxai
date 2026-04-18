@@ -4,43 +4,28 @@ import Script from "next/script";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://webxaitech.com";
 
 export const metadata: Metadata = {
-  title: "Our Work – Portfolio & Case Studies | Webxai",
-  description: "Explore Webxai's portfolio of 40+ digital products built for scale, performance, and impact. Case studies spanning web development, mobile apps, AI solutions, ecommerce platforms, blockchain projects, chatbots, and game development.",
+  title: "Work – Systems & Case Studies | WebX AI",
+  description: "Explore WebX AI's portfolio of scalable AI systems, web applications, e-commerce platforms, and automation projects. Real engineering for real business output.",
   keywords: [
-    "Webxai portfolio",
-    "web development projects",
-    "mobile app portfolio",
-    "AI solutions case studies",
-    "ecommerce portfolio",
-    "chatbot projects",
-    "web development examples",
-    "app development projects",
-    "Next.js projects",
-    "React projects",
-    "blockchain development portfolio",
-    "game development portfolio",
+    "WebX AI portfolio", "webxai work", "webxai projects", "AI systems portfolio India",
+    "web development portfolio India", "case studies webxai", "webex ai projects",
+    "aiweb portfolio", "webx projects", "webxai case studies",
+    "web development case study India", "Webxai portfolio",
+    "web development projects", "mobile app portfolio", "AI solutions case studies",
+    "ecommerce portfolio", "chatbot projects", "blockchain development portfolio",
   ],
   openGraph: {
-    title: "Our Work – Webxai Portfolio & Case Studies",
-    description: "Explore 40+ digital products built for scale, performance, and impact by Webxai.",
+    title: "Work – WebX AI System Portfolio",
+    description: "A ledger of scalable systems engineered for performance and measurable output.",
     url: `${siteUrl}/work`,
-    images: [
-      {
-        url: `${siteUrl}/logo.png`,
-        width: 1200,
-        height: 630,
-        alt: "Webxai Portfolio",
-      },
-    ],
+    images: [{ url: `${siteUrl}/logo.png`, width: 1200, height: 630, alt: "WebX AI Portfolio" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Our Work – Webxai Portfolio & Case Studies",
-    description: "Explore 40+ digital products built for scale, performance, and impact.",
+    title: "Work – WebX AI Portfolio & Case Studies",
+    description: "Explore scalable digital products built for performance and measurable impact.",
   },
-  alternates: {
-    canonical: `${siteUrl}/work`,
-  },
+  alternates: { canonical: `${siteUrl}/work` },
 };
 
 export default function WorkLayout({

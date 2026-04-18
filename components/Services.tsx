@@ -1,154 +1,77 @@
-import Link from "next/link";
+const CAPABILITIES = [
+  {
+    title: "AI Development",
+    desc: "Custom generative models and fine-tuned RAG pipelines integrated securely into your latency-critical workloads.",
+    tags: ["OpenAI", "LangChain", "Vector DB"],
+  },
+  {
+    title: "Web App Infrastructure",
+    desc: "End-to-end multi-tenant platform architecture, engineered with advanced RBAC, load balancing, and autonomous scaling.",
+    tags: ["Next.js", "PostgreSQL", "React"],
+  },
+  {
+    title: "Mobile App Development",
+    desc: "High-performance native and cross-platform mobile architectures optimized for frame rate and offline caching.",
+    tags: ["React Native", "Swift", "Kotlin"],
+  },
+  {
+    title: "E-Commerce Logistics",
+    desc: "Highly-scalable checkout routing, payment gateways, and real-time inventory management dashboards.",
+    tags: ["Shopify Plus", "Stripe", "Redis"],
+  },
+  {
+    title: "Web3 & Blockchain Dev",
+    desc: "Deterministic smart contract deployment, decentralized ledgers, and secure on-chain wallet integrations.",
+    tags: ["Solidity", "Hardhat", "Web3.js"],
+  },
+  {
+    title: "Game Logic Engineering",
+    desc: "Plugging real-time multiplayer networking, physics engines, and disparate rendering APIs to eliminate latency.",
+    tags: ["Unity", "Unreal Engine", "WebGL"],
+  },
+];
 
 export default function Services() {
   return (
-    <section className="relative w-full pt-[160px] pb-[160px] px-6 overflow-hidden bg-[#05050A]">
-
-      {/* ---- TOP FADE ---- */}
-      <div className="absolute top-0 left-0 w-full h-48 bg-linear-to-b from-[#05050A] to-transparent pointer-events-none z-20"></div>
-
-      {/* ---- BOTTOM FADE ---- */}
-      <div className="absolute bottom-0 left-0 w-full h-48 bg-linear-to-t from-[#05050A] to-transparent pointer-events-none z-20"></div>
-
-      {/* ---- PREMIUM SOFT GLOWS (NO GRID / NO LINES) ---- */}
-      <div className="absolute -top-52 left-[10%] w-[1400px] h-[350px] 
-        bg-linear-to-r from-blue-600/25 via-purple-500/20 to-blue-400/20 
-        blur-[150px] opacity-60"></div>
-
-      <div className="absolute bottom-[-250px] right-[10%] w-[1500px] h-[350px] 
-        bg-linear-to-l from-purple-600/25 via-blue-500/20 to-purple-400/20 
-        blur-[150px] opacity-60"></div>
-
-      {/* ---- CONTENT ---- */}
-      <div className="relative z-10 max-w-[1250px] mx-auto">
-
-        {/* TITLE */}
-        <h2 className="text-center text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight" data-aos="fade-up">
-          Transforming Businesses with{" "}
-          <span className="bg-linear-to-r from-blue-400 via-purple-400 to-blue-500 bg-clip-text text-transparent">
-            Intelligent Solutions
-          </span>
-        </h2>
-
-        <p className="text-center text-[#C9C9C9] max-w-2xl mx-auto text-lg md:text-xl mb-20 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-          We build modern, scalable and intelligent digital systems that accelerate business growth.
-        </p>
-
-        {/* SERVICES GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 md:gap-14">
-
-          {/* CRM DEVELOPMENT CARD */}
-          <div
-            className="relative group p-8 md:p-10 rounded-2xl bg-gradient-to-br from-[#0D0F17]/85 to-[#0A0B12]/85 backdrop-blur-xl border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.45)] hover:shadow-[0_0_55px_rgba(120,80,255,0.35)] transition-all duration-300 md:col-span-2"
-            data-aos="fade-up"
-            data-aos-delay="150"
-          >
-            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl transition-all duration-500"></div>
-            <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between relative z-10">
-              <div className="flex-1">
-                <h3 className="text-white text-2xl md:text-3xl font-bold mb-3 tracking-tight">
-                  Real Estate CRM Development
-                </h3>
-                <p className="text-[#C9C9C9] text-base md:text-lg leading-relaxed max-w-2xl">
-                  WebXAI develops advanced CRM platforms for real estate businesses. Our flagship system, PropertyFlow CRM, helps teams manage leads, automate follow-ups, track deals, and monitor performance through powerful analytics dashboards.
-                </p>
-              </div>
-              <div className="shrink-0">
-                <Link
-                  href="https://propertyflow.webxaitech.com"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-white font-medium bg-gradient-to-r from-blue-600/80 to-purple-600/80 border border-white/20 hover:from-blue-600 hover:to-purple-600 transition-all shadow-[0_0_20px_rgba(0,0,0,0.3)]"
-                >
-                  Explore PropertyFlow CRM
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <ServiceCard
-            icon="/icons/mobile.svg"
-            title="Mobile App Development"
-            desc="High-performance iOS & Android apps with modern UI, fast performance and scalable backend."
-          />
-
-          <ServiceCard
-            icon="/icons/web.svg"
-            title="Website & Web App Development"
-            desc="Fast, responsive and premium-grade web experiences powered by Next.js and modern frameworks."
-          />
-
-          <ServiceCard
-            icon="/icons/ecommerce.png"
-            title="E-Commerce Development"
-            desc="Scalable B2B & B2C platforms with seamless checkout, inventory management and high-conversion UI."
-          />
-
-          <ServiceCard
-            icon="/icons/ai.svg"
-            title="AI Development"
-            desc="Custom AI models, automation pipelines, RAG systems and intelligent tools built for real impact."
-          />
-
-          <ServiceCard
-            icon="/icons/chatbot.png"
-            title="AI Chatbots & Assistants"
-            desc="Intelligent conversational agents for customer support, engagement and automated workflows."
-          />
-
-          <ServiceCard
-            icon="/icons/blockchain.png"
-            title="Blockchain Solutions"
-            desc="Secure decentralized solutions, smart contracts, and crypto exchange platforms built on robust chains."
-          />
-
-          <ServiceCard
-            icon="/icons/game.png"
-            title="Game Development"
-            desc="Immersive 2D/3D gaming experiences with Unity/Unreal Engine, multiplayer support and stunning graphics."
-          />
-
-          <ServiceCard
-            icon="/icons/data.svg"
-            title="Data Analytics"
-            desc="Insight dashboards, analytics pipelines and data engineering systems that drive decisions."
-          />
-
+    <section className="relative w-full py-[120px] lg:py-[160px] bg-[#0B0B0B]">
+      <div className="w-full max-w-[1200px] mx-auto px-6">
+        
+        {/* Header */}
+        <div className="flex flex-col items-start mb-16 md:mb-20">
+          <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-white mb-6 leading-[1.1]">
+            Core Capabilities
+          </h2>
+          <p className="text-[16px] text-[#A1A1AA] leading-[1.6] max-w-[560px]">
+            Enterprise-grade engineering competencies focused strictly on reliable execution and product scale.
+          </p>
         </div>
+
+        {/* 3-Column Minimal Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[#1F1F1F] border border-[#1F1F1F]">
+          {CAPABILITIES.map((srv, idx) => (
+            <div key={idx} className="bg-[#0B0B0B] p-8 md:p-10 flex flex-col group transition-colors duration-300 hover:bg-[#121212]">
+              
+              <h3 className="text-[18px] font-semibold text-white mb-3 tracking-tight group-hover:text-white transition-colors">
+                {srv.title}
+              </h3>
+              <p className="text-[14px] text-[#A1A1AA] leading-[1.6] mb-8 flex-1">
+                {srv.desc}
+              </p>
+
+              {/* Tech Tags */}
+              <div className="flex flex-wrap gap-2 pt-6 border-t border-[#1F1F1F]">
+                {srv.tags.map(t => (
+                  <span key={t} className="tech-pill">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
-  );
-}
-
-function ServiceCard({ icon, title, desc }: any) {
-  return (
-    <div
-      className="
-        relative group p-8 md:p-10 rounded-2xl
-        bg-linear-to-br from-[#0D0F17]/85 to-[#0A0B12]/85
-        backdrop-blur-xl border border-white/5
-        shadow-[0_0_40px_rgba(0,0,0,0.45)]
-        hover:shadow-[0_0_55px_rgba(120,80,255,0.35)]
-        transition-all duration-300
-      "
-      data-aos="fade-up"
-      data-aos-delay="200"
-    >
-
-      {/* Hover Glow */}
-      <div className="
-        absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20
-        bg-linear-to-r from-blue-500/20 to-purple-500/20
-        blur-xl transition-all duration-500
-      "></div>
-
-      <img src={icon} alt="" className="w-12 h-12 mb-6 opacity-90" />
-
-      <h3 className="text-white text-xl md:text-2xl font-semibold mb-3 tracking-tight">
-        {title}
-      </h3>
-
-      <p className="text-[#C9C9C9] text-[15px] md:text-[16px] leading-relaxed">
-        {desc}
-      </p>
-    </div>
   );
 }
