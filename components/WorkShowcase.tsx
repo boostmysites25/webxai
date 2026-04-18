@@ -92,7 +92,7 @@ export default function WorkShowcase() {
                 </div>
 
                 {/* Right side: Strict Metrics */}
-                <div className="lg:w-[280px] xl:w-[320px] shrink-0 flex flex-col justify-between border-l border-[#1F1F1F] pl-0 lg:pl-10 xl:pl-12 pt-8 lg:pt-0 border-t lg:border-t-0">
+                <div className="lg:w-[280px] xl:w-[320px] shrink-0 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-[#1F1F1F] pt-8 lg:pt-0 pl-0 lg:pl-10 xl:pl-12 mt-4 lg:mt-0">
                   
                   <div className="mb-12">
                      <h4 className="text-[11px] font-mono tracking-[0.1em] text-[#A1A1AA] uppercase mb-4">Measured Impact</h4>
