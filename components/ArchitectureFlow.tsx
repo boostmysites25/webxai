@@ -34,7 +34,7 @@ export default function ArchitectureFlow() {
         <div className="relative flex flex-col md:flex-row items-center justify-center gap-0">
 
           {NODES.map((node, idx) => (
-            <div key={idx} className="flex flex-col md:flex-row items-center w-full md:w-auto" data-reveal="scale" data-reveal-delay={100 + idx * 150}>
+            <div key={idx} className="flex flex-col md:flex-row items-center w-full md:w-auto" data-reveal data-reveal-delay={100 + idx * 150}>
 
               {/* Node Box */}
               <div className={`relative flex flex-col items-center justify-center text-center w-full md:w-[200px] py-8 px-6 border transition-all duration-300 group

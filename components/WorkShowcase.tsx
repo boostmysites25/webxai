@@ -60,7 +60,7 @@ export default function WorkShowcase() {
         <div className="flex flex-col gap-12 lg:gap-16">
           
           {/* FEATURED BOUNDARY */}
-          <Link href={`/work/${FEATURED.id}`} className="block group" data-reveal="scale" data-reveal-delay="150">
+          <Link href={`/work/${FEATURED.id}`} className="block group" data-reveal data-reveal-delay="150">
             <div className="w-full linear-surface p-10 md:p-16 flex flex-col lg:flex-row gap-12 lg:gap-24 relative overflow-hidden bg-[#0A0A0A]">
                   
                 {/* Left side: Typography */}

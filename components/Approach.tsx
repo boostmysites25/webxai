@@ -22,7 +22,7 @@ export default function Approach() {
            
            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6 relative z-10">
               {STEPS.map((step, idx) => (
-                <div key={idx} className="flex flex-col items-start relative group" data-reveal="scale" data-reveal-delay={200 + idx * 150}>
+                <div key={idx} className="flex flex-col items-start relative group" data-reveal data-reveal-delay={200 + idx * 150}>
                    
                    {/* Clean timeline dot connecting to horizontal axis */}
                    <div className="w-[24px] h-[24px] rounded-full bg-[#0B0B0B] border-[4px] border-[#1F1F1F] group-hover:border-[#7C3AED] transition-colors mb-6 z-10" />
